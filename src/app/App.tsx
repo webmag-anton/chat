@@ -1,7 +1,7 @@
-import './App.css'
+import { Layout } from '@/widgets/layout/ui/Layout.tsx'
 
 function App() {
-  return <h1>hi</h1>
+  return <Layout />
 }
 
 export default App
