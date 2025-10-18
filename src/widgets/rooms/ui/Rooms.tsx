@@ -10,12 +10,11 @@ export const Rooms = (props: RoomsProps) => {
 
   } = props
 
-  const openSidebar = useSidebarStore(state => state.open)
+  const openSidebarHandler = useSidebarStore(state => state.openSidebar)
 
   return (
     <div className='basis-[400px] min-w-[400px] border-r'>
-      rooms widget
-      <Hamburger onClick={openSidebar}/>
+      <Hamburger onClick={openSidebarHandler}/>
     </div>
   )
 }

@@ -1,4 +1,5 @@
 import { useSidebarStore } from '@/widgets/sidebar/model/sidebarStore.ts'
+import {useAuthStore} from '@/features/authentication/model/authStore.ts';
 
 interface SidebarProps {
 
@@ -10,6 +11,7 @@ export const Sidebar = (props: SidebarProps) => {
   } = props
 
   const isOpen = useSidebarStore(state => state.isOpen)
+  const { logOut } = useAuthStore()
 
   return (
     <aside className={`
@@ -24,7 +26,7 @@ export const Sidebar = (props: SidebarProps) => {
       z-2
       ${isOpen ? 'left-0' : '-left-full'}
     `}>
-      Sidebar
+      <button onClick={logOut}>Log out</button>
     </aside>
   )
 }

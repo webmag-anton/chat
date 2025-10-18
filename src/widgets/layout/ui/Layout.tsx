@@ -15,7 +15,7 @@ export const Layout = (props: LayoutProps) => {
   } = props
 
   const isSidebarOpen = useSidebarStore((state) => state.isOpen)
-  const closeSidebar = useSidebarStore((state) => state.close)
+  const closeSidebarHandler = useSidebarStore((state) => state.closeSidebar)
 
   return (
     <div className='relative'>
@@ -24,7 +24,7 @@ export const Layout = (props: LayoutProps) => {
         <Chat/>
       </main>
       <Sidebar/>
-      {isSidebarOpen && <Overlay onClick={closeSidebar}/>}
+      {isSidebarOpen && <Overlay onClick={closeSidebarHandler}/>}
     </div>
   )
 }
