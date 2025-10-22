@@ -1,5 +1,5 @@
-import { useSidebarStore } from '@/widgets/sidebar/model/sidebarStore.ts'
-import {useAuthStore} from '@/features/authentication/model/authStore.ts';
+import { useAuthStore } from '@/features/authentication'
+import { useSidebarStore } from '../model/sidebarStore.ts'
 
 interface SidebarProps {
 

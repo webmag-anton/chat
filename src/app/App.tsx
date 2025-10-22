@@ -1,9 +1,9 @@
-import { Authenticator } from '@/features/authentication/ui/Authenticator.tsx'
-import { Layout } from '@/widgets/layout/ui/Layout.tsx'
+import { Authenticator } from '@/features/authentication'
+import { Layout } from '@/widgets/layout'
 
 function App() {
   return <Authenticator
-    loggedInComponent={<Layout/>}
+    loggedInComponent={<Layout />}
   />
 }
 

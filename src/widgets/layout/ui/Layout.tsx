@@ -1,9 +1,8 @@
 import type { PropsWithChildren } from 'react'
-import { Rooms } from '@/widgets/rooms/ui/Rooms.tsx'
-import { Chat } from '@/widgets/chat/ui/Chat.tsx'
-import { Sidebar } from '@/widgets/sidebar/ui/Sidebar.tsx'
-import { useSidebarStore } from '@/widgets/sidebar/model/sidebarStore.ts'
-import { Overlay } from '@/shared/ui/overlay/Overlay.tsx'
+import { ChatSidebar } from '@/widgets/chatSidebar'
+import { Chat } from '@/widgets/chat'
+import { Sidebar, useSidebarStore } from '@/widgets/sidebar'
+import { Overlay } from '@/shared/ui/overlay'
 
 interface LayoutProps extends PropsWithChildren {
 
@@ -20,11 +19,13 @@ export const Layout = (props: LayoutProps) => {
   return (
     <div className='relative'>
       <main className='flex h-screen'>
-        <Rooms/>
-        <Chat/>
+        <ChatSidebar />
+        <Chat />
       </main>
-      <Sidebar/>
-      {isSidebarOpen && <Overlay onClick={closeSidebarHandler}/>}
+
+      <Sidebar />
+
+      {isSidebarOpen && <Overlay onClick={closeSidebarHandler} />}
     </div>
   )
 }
