@@ -1,12 +1,4 @@
-interface ChatProps {
-
-}
-
-export const Chat = (props: ChatProps) => {
-  const {
-
-  } = props
-
+export const Chat = () => {
   return (
     <div className='grow'>
       chat widget

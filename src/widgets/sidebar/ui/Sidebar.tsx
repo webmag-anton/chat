@@ -1,15 +1,7 @@
 import { useAuthStore } from '@/features/authentication'
 import { useSidebarStore } from '../model/sidebarStore.ts'
 
-interface SidebarProps {
-
-}
-
-export const Sidebar = (props: SidebarProps) => {
-  const {
-
-  } = props
-
+export const Sidebar = () => {
   const isOpen = useSidebarStore(state => state.isOpen)
   const { logOut } = useAuthStore()
 

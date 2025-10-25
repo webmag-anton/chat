@@ -1,18 +1,9 @@
-import type { PropsWithChildren } from 'react'
 import { ChatSidebar } from '@/widgets/chatSidebar'
 import { Chat } from '@/widgets/chat'
 import { Sidebar, useSidebarStore } from '@/widgets/sidebar'
 import { Overlay } from '@/shared/ui/overlay'
 
-interface LayoutProps extends PropsWithChildren {
-
-}
-
-export const Layout = (props: LayoutProps) => {
-  const {
-
-  } = props
-
+export const Layout = () => {
   const isSidebarOpen = useSidebarStore((state) => state.isOpen)
   const closeSidebarHandler = useSidebarStore((state) => state.closeSidebar)
 
