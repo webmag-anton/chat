@@ -1,5 +1,5 @@
 import type { UserProfile } from '../types'
-import { Avatar } from '@/shared/ui/avatar/Avatar.tsx'
+import { Avatar } from '@/shared/ui/avatar'
 
 interface UserProps {
   userData: UserProfile
@@ -19,8 +19,8 @@ export const User = ({ userData }: UserProps) => {
         pl-8
         pr-3
         py-2
+        cursor-pointer
         hover:bg-accent
-        hover:cursor-pointer
       '
     >
       <Avatar

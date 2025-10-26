@@ -1,4 +1,4 @@
-import { Icon } from '@/shared/ui/icon/Icon'
+import { Icon } from '@/shared/ui/icon'
 import AvatarSvg from '@/shared/assets/icons/avatar.svg?react'
 
 interface AvatarProps {
