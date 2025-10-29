@@ -1,6 +1,6 @@
 import type { RealtimeChannel } from '@supabase/supabase-js'
-import { supabase } from '@/shared/api/supabaseClient'
-import { queryClient } from '@/main'
+import { supabase } from '@/shared/api/supabaseClient.ts'
+import { queryClient } from '@/main.tsx'
 import type { UserProfile } from '@/entities/user'
 
 export const subscribeToProfileUpdates = (): RealtimeChannel => {

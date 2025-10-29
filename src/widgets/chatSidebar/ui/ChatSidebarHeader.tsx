@@ -1,14 +1,29 @@
 import { Hamburger } from '@/shared/ui/hamburger'
 import { useSidebarStore } from '@/widgets/sidebar'
+import { Button } from '@/shared/ui/button'
 
 export const ChatSidebarHeader = () => {
   const openSidebarHandler = useSidebarStore(state => state.openSidebar)
 
   return (
-    <div className='flex justify-between items-center h-[50px] border-b'>
+    <div
+      className='
+        flex
+        justify-between
+        items-center
+        h-[var(--headers-height)]
+      '
+    >
       <Hamburger onClick={openSidebarHandler} />
-      <span>search</span>
-      <span>chats btn</span>
+      <Button
+        className='uppercase border-l-1 tracking-[2px]'
+        horizontalPadding='sm'
+        fullHeight
+        square
+        hasBorders={false}
+      >
+        chats
+      </Button>
     </div>
   )
 }

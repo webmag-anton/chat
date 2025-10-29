@@ -1,4 +1,4 @@
-import { User } from '@/entities/user'
+import { ProfilesListItem } from '@/entities/profile'
 import { useAuthStore } from '@/features/authentication'
 import { useProfilesQuery } from '../model/useProfilesQuery'
 
@@ -16,7 +16,7 @@ export const ProfilesList = () => {
         : <ul className='grow overflow-y-auto'>
             {data?.map((user) => {
               if (session?.user?.id === user.id) return null
-              return <User userData={user} key={user.id}/>
+              return <ProfilesListItem userData={user} key={user.id}/>
             })}
           </ul>
       }

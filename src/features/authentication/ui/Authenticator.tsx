@@ -5,7 +5,7 @@ import type { RealtimeChannel } from '@supabase/supabase-js'
 import { supabase } from '@/shared/api/supabaseClient'
 import { subscriptionManager } from '@/shared/lib/subscriptionManager'
 import { useAuthStore } from '../model/authStore'
-import { subscribeToProfileUpdates } from '../model/subscribeToProfileUpdates'
+import { subscribeToProfileUpdates } from '@/features/profiles'
 
 interface AuthenticationProps {
   loggedInComponent: ReactElement

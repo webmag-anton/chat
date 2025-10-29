@@ -1,5 +1,6 @@
 import { useAuthStore } from '@/features/authentication'
-import { useSidebarStore } from '../model/sidebarStore.ts'
+import { useSidebarStore } from '../model/sidebarStore'
+import { Button } from '@/shared/ui/button'
 
 export const Sidebar = () => {
   const isOpen = useSidebarStore(state => state.isOpen)
@@ -18,7 +19,7 @@ export const Sidebar = () => {
       z-2
       ${isOpen ? 'left-0' : '-left-full'}
     `}>
-      <button onClick={logOut}>Log out</button>
+      <Button onClick={logOut}>Log out</Button>
     </aside>
   )
 }
