@@ -1,8 +1,7 @@
 import type { UserProfile } from '../types'
 import { Avatar } from '@/shared/ui/avatar'
-import { useChatQuery } from '@/entities/chat'
 import { useAuthStore } from '@/features/authentication'
-import { useChatStore } from '@/entities/chat'
+import { useChatStore, fetchPrivateChatId } from '@/entities/chat'
 import clsx from 'clsx'
 
 interface ProfilesListItemProps {
@@ -18,12 +17,15 @@ export const ProfilesListItem = ({ userData }: ProfilesListItemProps) => {
   } = userData
 
   const { session } = useAuthStore()
-
   const loggedUserId = session?.user.id
-  const { data: chatId } = useChatQuery(loggedUserId, userID)
+
   const { currentUserId, setActivePrivateChat } = useChatStore()
 
-  const handleListItemClick = () => {
+  const handleListItemClick = async () => {
+    if (!loggedUserId) return
+    // Trigger the query manually — it will also be cached
+    const chatId = await fetchPrivateChatId(loggedUserId, userID)
+
     setActivePrivateChat(chatId ?? null, userID, username || email)
   }
 

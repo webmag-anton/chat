@@ -1,4 +1,4 @@
-import { useChatStore } from '@/entities/chat'
+import { useChatStore } from '../model/chatStore'
 
 export const ChatWindow = () => {
   const { currentChatId, currentUserId } = useChatStore()
