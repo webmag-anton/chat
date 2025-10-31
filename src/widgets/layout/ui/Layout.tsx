@@ -8,7 +8,7 @@ export const Layout = () => {
   const closeSidebarHandler = useSidebarStore((state) => state.closeSidebar)
 
   return (
-    <div className='relative'>
+    <div className='relative max-w-7xl mx-auto border-x'>
       <main className='flex h-screen'>
         <ChatSidebar />
         <Chat />

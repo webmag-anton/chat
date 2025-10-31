@@ -1,12 +1,12 @@
 import { ChatHeader } from './ChatHeader'
-import { ChatBody } from './ChatBody'
+import { ChatWindow } from './ChatWindow.tsx'
 import { ChatFooter } from './ChatFooter'
 
 export const Chat = () => {
   return (
     <div className='grow flex flex-col'>
       <ChatHeader />
-      <ChatBody />
+      <ChatWindow />
       <ChatFooter />
     </div>
   )

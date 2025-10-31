@@ -1,7 +1,9 @@
 import type { UserProfile } from '../types'
 import { Avatar } from '@/shared/ui/avatar'
-import { useChatQuery } from '@/entities/chat/model/useChatQuery.ts'
+import { useChatQuery } from '@/entities/chat'
 import { useAuthStore } from '@/features/authentication'
+import { useChatStore } from '@/entities/chat'
+import clsx from 'clsx'
 
 interface ProfilesListItemProps {
   userData: UserProfile
@@ -9,7 +11,7 @@ interface ProfilesListItemProps {
 
 export const ProfilesListItem = ({ userData }: ProfilesListItemProps) => {
   const {
-    id: itemID,
+    id: userID,
     username,
     email,
     avatar
@@ -17,27 +19,24 @@ export const ProfilesListItem = ({ userData }: ProfilesListItemProps) => {
 
   const { session } = useAuthStore()
 
-  const currentUserId = session?.user.id
-  const { data: chatId } = useChatQuery(currentUserId, itemID)
+  const loggedUserId = session?.user.id
+  const { data: chatId } = useChatQuery(loggedUserId, userID)
+  const { currentUserId, setActivePrivateChat } = useChatStore()
 
   const handleListItemClick = () => {
-    if (chatId) {
-      console.log('Open existing chat: ', chatId)
-    } else {
-      console.log('No chat found between these users: ', `1: ${currentUserId}`, `2: ${itemID}`)
-    }
+    setActivePrivateChat(chatId ?? null, userID, username || email)
   }
+
+  const baseClasses = clsx(
+    'flex pl-8 pr-3 py-2 cursor-pointer hover:bg-accent',
+    {
+      'bg-accent': userID === currentUserId
+    }
+  )
 
   return (
     <li
-      className='
-        flex
-        pl-8
-        pr-3
-        py-2
-        cursor-pointer
-        hover:bg-accent
-      '
+      className={baseClasses}
       onClick={handleListItemClick}
     >
       <Avatar
