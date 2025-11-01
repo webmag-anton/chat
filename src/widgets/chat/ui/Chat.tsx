@@ -1,5 +1,5 @@
 import { ChatHeader } from './ChatHeader'
-import { ChatWindow } from '@/entities/chat'
+import { ChatWindow } from '@/features/chat'
 import { ChatFooter } from '@/features/sendMessage'
 
 export const Chat = () => {

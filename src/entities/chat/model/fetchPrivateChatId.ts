@@ -1,5 +1,5 @@
 import { getPrivateChatId } from '../api/getPrivateChatId'
-import { queryClient } from '@/shared/api/reactQueryClient.ts'
+import { queryClient } from '@/shared/api/reactQueryClient'
 
 export const fetchPrivateChatId = async (
   loggedUserId: string,

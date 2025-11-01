@@ -1,0 +1,1 @@
+export { useMessagesQuery } from './model/useMessagesQuery'

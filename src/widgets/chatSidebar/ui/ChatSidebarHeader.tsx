@@ -22,7 +22,7 @@ export const ChatSidebarHeader = () => {
         square
         hasBorders={false}
       >
-        chats
+        show chats
       </Button>
     </div>
   )
