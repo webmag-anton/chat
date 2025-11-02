@@ -1,4 +1,4 @@
-import { ProfilesList } from '@/features/profiles'
+import { ProfilesList } from '@/features/profilesList'
 
 interface ChatSidebarBodyProps {
   listType: 'profiles' | 'chats'
