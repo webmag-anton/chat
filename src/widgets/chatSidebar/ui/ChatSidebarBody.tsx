@@ -1,17 +1,14 @@
 import { ProfilesList } from '@/features/profilesList'
+import { useChatSidebarStore } from '../model/chatSidebarStore'
 
-interface ChatSidebarBodyProps {
-  listType: 'profiles' | 'chats'
-}
-
-export const ChatSidebarBody = (props: ChatSidebarBodyProps) => {
-  const { listType} = props
+export const ChatSidebarBody = () => {
+  const { listType } = useChatSidebarStore()
 
   const title = listType === 'profiles' ? 'all users' : 'chats'
 
   return (
     <div
-      style={{ '--before-content': `"${title}"` } as React.CSSProperties}
+      style={{ '--chat-sidebar-title': `"${title}"` } as React.CSSProperties}
       className={`
         relative
         h-[calc(100vh-var(--headers-height))]
@@ -19,7 +16,7 @@ export const ChatSidebarBody = (props: ChatSidebarBodyProps) => {
         before:absolute
         before:top-0
         before:bottom-0
-        before:content-[var(--before-content)]
+        before:content-[var(--chat-sidebar-title)]
         before:pl-[2px]
         before:text-[18px]
         before:font-medium
@@ -31,7 +28,7 @@ export const ChatSidebarBody = (props: ChatSidebarBodyProps) => {
         before:pointer-events-none
       `}
     >
-      <ProfilesList />
+      {listType === 'profiles' ? <ProfilesList /> : null}
     </div>
   )
 }

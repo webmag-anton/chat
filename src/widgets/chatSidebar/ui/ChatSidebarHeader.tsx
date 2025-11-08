@@ -1,9 +1,18 @@
 import { Hamburger } from '@/shared/ui/hamburger'
 import { useSidebarStore } from '@/widgets/sidebar'
 import { Button } from '@/shared/ui/button'
+import {
+  useChatSidebarStore,
+  type listTypeVariants
+} from '../model/chatSidebarStore'
 
 export const ChatSidebarHeader = () => {
   const openSidebarHandler = useSidebarStore(state => state.openSidebar)
+  const { listType, toggleListType } = useChatSidebarStore()
+
+  const nextListType: listTypeVariants =
+    listType === 'profiles' ? 'chats' : 'profiles'
+  const toggleButtonText = `show ${nextListType}`
 
   return (
     <div
@@ -21,8 +30,9 @@ export const ChatSidebarHeader = () => {
         fullHeight
         square
         hasBorders={false}
+        onClick={toggleListType}
       >
-        show chats
+        {toggleButtonText}
       </Button>
     </div>
   )
