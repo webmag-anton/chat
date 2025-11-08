@@ -19,12 +19,15 @@ export const ChatWindow = () => {
   if (isMessagesLoading) return <div>Loading...</div>
 
   return (
-    <div className='grow border-y'>
+    <div className='grow border-y p-3'>
       <ul>
         {messages?.map((m) => (
           <li key={m.id}>
             <b>
-              {m.sender_id === currentUserId ? currentUserName : 'I'}:
+              {m.sender_id === currentUserId
+                ? `${currentUserName}: `
+                : 'I: '
+              }
             </b>
             {m.content}
           </li>

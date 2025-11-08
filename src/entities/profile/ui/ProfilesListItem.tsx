@@ -17,14 +17,14 @@ export const ProfilesListItem = ({ userData }: ProfilesListItemProps) => {
   } = userData
 
   const { session } = useAuthStore()
-  const loggedUserId = session?.user.id
+  const loggedInUserId = session?.user.id
 
   const { currentUserId, setActivePrivateChat } = useChatStore()
 
   const handleListItemClick = async () => {
-    if (!loggedUserId) return
+    if (!loggedInUserId) return
     // Trigger the query manually — it will also be cached
-    const chatId = await fetchPrivateChatId(loggedUserId, userID)
+    const chatId = await fetchPrivateChatId(loggedInUserId, userID)
 
     setActivePrivateChat(chatId ?? null, userID, username || email)
   }

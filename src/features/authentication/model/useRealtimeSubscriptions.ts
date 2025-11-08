@@ -4,11 +4,13 @@ import { subscriptionManager } from '@/shared/lib/subscriptionManager'
 import { subscribeToProfileUpdates } from '@/features/profilesList'
 import { type Message, subscribeToUserMessages } from '@/entities/message'
 import { queryClient } from '@/shared/api/reactQueryClient'
-import { subscribeToNewChatMembership } from '@/entities/chat'
+import { subscribeToNewChatMembership, useChatStore } from '@/entities/chat'
 import type { ChatMember } from '@/entities/chat'
 import { getMessagesByChatId } from '@/entities/message'
 
 export const useRealtimeSubscriptions = (session: Session | null) => {
+  const { updateCurrentChatId } = useChatStore()
+
   useEffect(() => {
     // subscribe to Realtime only after session exists
     if (!session) return
@@ -25,23 +27,27 @@ export const useRealtimeSubscriptions = (session: Session | null) => {
       loggedInUserId,
       (newMessage: Message) => queryClient.setQueryData<Message[] | undefined>(
         ['messages', newMessage.chat_id],
-        (old = []) => [...old, newMessage]
+        (old = []) =>
+          old.some((message) => message.id === newMessage.id)
+            ? old
+            : [...old, newMessage]
       )
     )
     subscriptionManager.addSubscription(userMessagesChannel)
 
-    const newChatMembershipsChannel: RealtimeChannel
-      = subscribeToNewChatMembership(
-          loggedInUserId,
+    const newChatMembershipChannel: RealtimeChannel = subscribeToNewChatMembership(
+      loggedInUserId,
       async (chatMember: ChatMember) => {
-            const chatId = chatMember.chat_id
-            if (!chatId) return
+        const chatId = chatMember.chat_id
+        if (!chatId) return
 
-            const messages = await getMessagesByChatId(chatId)
-            queryClient.setQueryData(['messages', chatId], messages)
-          }
-        )
-    subscriptionManager.addSubscription(newChatMembershipsChannel)
+        updateCurrentChatId(chatId)
+
+        const firstChatMessage = await getMessagesByChatId(chatId)
+        queryClient.setQueryData(['messages', chatId], firstChatMessage)
+      }
+    )
+    subscriptionManager.addSubscription(newChatMembershipChannel)
 
     return subscriptionManager.clearSubscriptions
   }, [session])

@@ -1,8 +1,8 @@
 import { supabase } from '@/shared/api/supabaseClient'
 
-export const getPrivateChatId = async (currentUserId: string, otherUserId: string) => {
+export const getPrivateChatId = async (loggedInUserId: string, otherUserId: string) => {
   const { data, error } = await supabase.rpc('get_existing_private_chat', {
-    user_a: currentUserId,
+    user_a: loggedInUserId,
     user_b: otherUserId
   })
 

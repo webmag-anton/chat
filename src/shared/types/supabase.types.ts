@@ -153,8 +153,13 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      can_access_chat: { Args: { chat_id: string }; Returns: boolean }
       get_existing_private_chat: {
         Args: { user_a: string; user_b: string }
+        Returns: string
+      }
+      start_private_chat_and_send_message: {
+        Args: { message_text: string; recipient_id: string; sender_id: string }
         Returns: string
       }
     }

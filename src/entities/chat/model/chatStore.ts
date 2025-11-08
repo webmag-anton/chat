@@ -9,6 +9,7 @@ interface ChatState {
     chatId: string | null, userId: string | null, userName: string | null
   ) => void
   setActiveGroupChat: (chatId: string | null, groupName: string | null) => void
+  updateCurrentChatId: (chatId: string | null) => void
 }
 
 export const useChatStore = create<ChatState>((set) => ({
@@ -29,5 +30,6 @@ export const useChatStore = create<ChatState>((set) => ({
       currentGroupName: groupName,
       currentUserId: null,
       currentUserName: null
-    })
+    }),
+  updateCurrentChatId: (chatId) => set({ currentChatId: chatId })
 }))
