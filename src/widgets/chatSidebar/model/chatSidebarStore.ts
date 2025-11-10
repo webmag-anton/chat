@@ -1,16 +1,15 @@
 import { create } from 'zustand'
-
-export type listTypeVariants = 'profiles' | 'chats'
+import type { listType } from '../types'
 
 interface ChatSidebarState {
-  listType: listTypeVariants,
+  listType: listType,
   toggleListType: () => void
 }
 
 export const useChatSidebarStore = create<ChatSidebarState>((set) => ({
-  listType: 'profiles',
+  listType: 'users',
   toggleListType: () =>
     set((state) => ({
-      listType: state.listType === 'profiles' ? 'chats' : 'profiles'
+      listType: state.listType === 'users' ? 'chats' : 'users'
     }))
 }))

@@ -158,10 +158,24 @@ export type Database = {
         Args: { user_a: string; user_b: string }
         Returns: string
       }
-      start_private_chat_and_send_message: {
-        Args: { message_text: string; recipient_id: string; sender_id: string }
-        Returns: string
-      }
+      start_private_chat_and_send_message:
+        | {
+            Args: {
+              chat_name: string
+              message_text: string
+              recipient_id: string
+              sender_id: string
+            }
+            Returns: string
+          }
+        | {
+            Args: {
+              message_text: string
+              recipient_id: string
+              sender_id: string
+            }
+            Returns: string
+          }
     }
     Enums: {
       [_ in never]: never

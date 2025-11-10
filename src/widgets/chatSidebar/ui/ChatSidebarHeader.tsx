@@ -1,17 +1,15 @@
 import { Hamburger } from '@/shared/ui/hamburger'
 import { useSidebarStore } from '@/widgets/sidebar'
 import { Button } from '@/shared/ui/button'
-import {
-  useChatSidebarStore,
-  type listTypeVariants
-} from '../model/chatSidebarStore'
+import { useChatSidebarStore } from '../model/chatSidebarStore'
+import type { listType } from '../types'
 
 export const ChatSidebarHeader = () => {
   const openSidebarHandler = useSidebarStore(state => state.openSidebar)
   const { listType, toggleListType } = useChatSidebarStore()
 
-  const nextListType: listTypeVariants =
-    listType === 'profiles' ? 'chats' : 'profiles'
+  const nextListType: listType =
+    listType === 'users' ? 'chats' : 'users'
   const toggleButtonText = `show ${nextListType}`
 
   return (

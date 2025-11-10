@@ -1,10 +1,11 @@
 import { ProfilesList } from '@/features/profilesList'
 import { useChatSidebarStore } from '../model/chatSidebarStore'
+import { ChatsList } from '@/features/chatsList'
 
 export const ChatSidebarBody = () => {
   const { listType } = useChatSidebarStore()
 
-  const title = listType === 'profiles' ? 'all users' : 'chats'
+  const title = listType === 'users' ? 'all users' : 'my chats'
 
   return (
     <div
@@ -28,7 +29,7 @@ export const ChatSidebarBody = () => {
         before:pointer-events-none
       `}
     >
-      {listType === 'profiles' ? <ProfilesList /> : null}
+      {listType === 'users' ? <ProfilesList /> : <ChatsList />}
     </div>
   )
 }

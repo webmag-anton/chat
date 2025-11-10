@@ -16,7 +16,7 @@ export const ChatWindow = () => {
   if (!currentChatId) {
     return <div className='p-3 grow border-y'>No messages here yet...</div>
   }
-  if (isMessagesLoading) return <div>Loading...</div>
+  if (isMessagesLoading) return <div className='grow p-3'>Loading...</div>
 
   return (
     <div className='grow border-y p-3'>

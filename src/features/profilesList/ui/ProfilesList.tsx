@@ -6,8 +6,8 @@ export const ProfilesList = () => {
   const { data, isLoading, error } = useProfilesQuery()
   const { session } = useAuthStore()
 
-  if (isLoading) return <div>Loading...</div>
-  if (error) return <div>Error loading profiles</div>
+  if (isLoading) return <div className='h-full'>Loading...</div>
+  if (error) return <div className='h-full'>Error loading profiles</div>
 
   return (
     <div className='h-full'>

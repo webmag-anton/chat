@@ -8,10 +8,12 @@ export const useSendMessage = (loggedInUserId: string) => {
   return useMutation({
     mutationFn: async ({
       recipientId,
-      messageText
+      messageText,
+      chatName
     }: {
       recipientId: string
       messageText: string
+      chatName: string
     }) => {
       const existingChatId = await getPrivateChatId(loggedInUserId, recipientId)
 
@@ -28,14 +30,15 @@ export const useSendMessage = (loggedInUserId: string) => {
       const newChatId = await startPrivateChatAndSendMessage(
         loggedInUserId,
         recipientId,
-        messageText
+        messageText,
+        chatName
       )
 
       return newChatId
     },
 
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['chats'] })
+      queryClient.invalidateQueries({ queryKey: ['chats', loggedInUserId] })
     }
   })
 }
