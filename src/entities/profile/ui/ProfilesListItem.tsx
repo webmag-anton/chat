@@ -21,12 +21,14 @@ export const ProfilesListItem = ({ userData }: ProfilesListItemProps) => {
 
   const { currentUserId, setActivePrivateChat } = useChatStore()
 
+  const chatName = username || email
+
   const handleListItemClick = async () => {
     if (!loggedInUserId) return
     // Trigger the query manually — it will also be cached
     const chatId = await fetchPrivateChatId(loggedInUserId, userID)
 
-    setActivePrivateChat(chatId ?? null, userID, username || email)
+    setActivePrivateChat(chatId ?? null, userID, chatName)
   }
 
   const baseClasses = clsx(
@@ -48,7 +50,7 @@ export const ProfilesListItem = ({ userData }: ProfilesListItemProps) => {
         title="User's avatar"
       />
 
-      {username || email}
+      {chatName}
     </li>
   )
 }

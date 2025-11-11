@@ -14,7 +14,11 @@ export const ChatsListItem = ({ chatData }: ChatsListItemProps) => {
     opponent
   } = chatData
 
-  const { currentChatId } = useChatStore()
+  const { currentChatId, setActivePrivateChat } = useChatStore()
+
+  const handleListItemClick = () => {
+    setActivePrivateChat(chatID ?? null, opponent?.id ?? null, name)
+  }
 
   const baseClasses = clsx(
     'flex pl-8 pr-3 py-2 cursor-pointer hover:bg-accent',
@@ -26,6 +30,7 @@ export const ChatsListItem = ({ chatData }: ChatsListItemProps) => {
   return (
     <li
       className={baseClasses}
+      onClick={handleListItemClick}
     >
       <Avatar
         url={opponent?.avatar ?? null}
