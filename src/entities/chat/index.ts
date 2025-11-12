@@ -4,3 +4,4 @@ export { subscribeToNewChatMembership } from './api/subscribeToNewChatMembership
 export { fetchPrivateChatId } from './model/fetchPrivateChatId'
 export type { ChatMember, Chat } from './types'
 export { ChatsListItem } from './ui/ChatsListItem'
+export { useFirstChatId } from './model/useFirstChatId'

@@ -1,9 +1,21 @@
+import { useEffect } from 'react'
 import { ProfilesList } from '@/features/profilesList'
 import { useChatSidebarStore } from '../model/chatSidebarStore'
 import { ChatsList } from '@/features/chatsList'
+import { useFirstChatId } from '@/entities/chat'
+import { useAuthStore } from '@/features/authentication'
 
 export const ChatSidebarBody = () => {
-  const { listType } = useChatSidebarStore()
+  const { listType, setListType } = useChatSidebarStore()
+  const { session } = useAuthStore()
+  const loggedInUserId = session?.user?.id ?? ''
+  const { data: firstChatId } = useFirstChatId(loggedInUserId)
+
+  useEffect(() => {
+    if (firstChatId !== undefined) {
+      setListType(firstChatId ? 'chats' : 'users')
+    }
+  }, [firstChatId, setListType])
 
   const title = listType === 'users' ? 'all users' : 'my chats'
 
