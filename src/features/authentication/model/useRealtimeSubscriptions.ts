@@ -4,7 +4,12 @@ import { subscriptionManager } from '@/shared/lib/subscriptionManager'
 import { subscribeToProfileUpdates } from '@/features/profilesList'
 import { type Message, subscribeToUserMessages } from '@/entities/message'
 import { queryClient } from '@/shared/api/reactQueryClient'
-import { subscribeToNewChatMembership, useChatStore } from '@/entities/chat'
+import {
+  subscribeToNewChatMembership,
+  useChatStore,
+  subscribeToNewChats,
+  type Chat
+} from '@/entities/chat'
 import type { ChatMember } from '@/entities/chat'
 import { getMessagesByChatId } from '@/entities/message'
 
@@ -48,6 +53,16 @@ export const useRealtimeSubscriptions = (session: Session | null) => {
       }
     )
     subscriptionManager.addSubscription(newChatMembershipChannel)
+
+    const newChatsChannel: RealtimeChannel = subscribeToNewChats(
+      (newChat) => {
+        queryClient.setQueryData<Chat[]>(
+          ['chats', loggedInUserId],
+          (old = []) => [...old, newChat]
+        )
+      }
+    )
+    subscriptionManager.addSubscription(newChatsChannel)
 
     return subscriptionManager.clearSubscriptions
   }, [session])
