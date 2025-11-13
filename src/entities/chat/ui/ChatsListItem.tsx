@@ -1,6 +1,5 @@
 import { Avatar } from '@/shared/ui/avatar'
-import { useChatStore } from '@/entities/chat'
-import type { ChatWithOpponent } from '@/features/chatsList'
+import { useChatStore, type ChatWithOpponent } from '@/entities/chat'
 import clsx from 'clsx'
 
 interface ChatsListItemProps {
@@ -10,14 +9,19 @@ interface ChatsListItemProps {
 export const ChatsListItem = ({ chatData }: ChatsListItemProps) => {
   const {
     id: chatID,
-    name,
     opponent
   } = chatData
+
+  const opponentName = opponent?.username || opponent?.email
 
   const { currentChatId, setActivePrivateChat } = useChatStore()
 
   const handleListItemClick = () => {
-    setActivePrivateChat(chatID ?? null, opponent?.id ?? null, name)
+    setActivePrivateChat(
+      chatID ?? null,
+      opponent?.id ?? null,
+      opponentName ?? null
+    )
   }
 
   const baseClasses = clsx(
@@ -38,7 +42,7 @@ export const ChatsListItem = ({ chatData }: ChatsListItemProps) => {
         size={60}
         title="Chat's avatar"
       />
-      {name}
+      {opponentName}
     </li>
   )
 }

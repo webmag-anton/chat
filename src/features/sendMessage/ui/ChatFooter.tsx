@@ -10,19 +10,17 @@ export const ChatFooter = () => {
   const { session } = useAuthStore()
   const {
     currentUserId,
-    currentUserName,
     updateCurrentChatId
   } = useChatStore()
   const sendMessage = useSendMessage(session?.user.id ?? '')
 
   const handleMessageSending = async () => {
-    if (!session || !currentUserId || !currentUserName || !message.trim()) return
+    if (!session || !currentUserId || !message.trim()) return
 
     sendMessage.mutate(
       {
         recipientId: currentUserId,
-        messageText: message,
-        chatName: currentUserName
+        messageText: message
       },
       {
         onSuccess: (chatId) => {

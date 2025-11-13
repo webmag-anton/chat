@@ -7,11 +7,11 @@ import { queryClient } from '@/shared/api/reactQueryClient'
 import {
   subscribeToNewChatMembership,
   useChatStore,
-  subscribeToNewChats,
-  type Chat
+  subscribeToNewChats
 } from '@/entities/chat'
 import type { ChatMember } from '@/entities/chat'
 import { getMessagesByChatId } from '@/entities/message'
+import { handleNewChatInsertion } from '@/entities/chat'
 
 export const useRealtimeSubscriptions = (session: Session | null) => {
   const { updateCurrentChatId } = useChatStore()
@@ -55,12 +55,8 @@ export const useRealtimeSubscriptions = (session: Session | null) => {
     subscriptionManager.addSubscription(newChatMembershipChannel)
 
     const newChatsChannel: RealtimeChannel = subscribeToNewChats(
-      (newChat) => {
-        queryClient.setQueryData<Chat[]>(
-          ['chats', loggedInUserId],
-          (old = []) => [...old, newChat]
-        )
-      }
+      loggedInUserId,
+      handleNewChatInsertion
     )
     subscriptionManager.addSubscription(newChatsChannel)
 

@@ -161,7 +161,6 @@ export type Database = {
       start_private_chat_and_send_message:
         | {
             Args: {
-              chat_name: string
               message_text: string
               recipient_id: string
               sender_id: string
@@ -170,6 +169,7 @@ export type Database = {
           }
         | {
             Args: {
+              chat_name: string
               message_text: string
               recipient_id: string
               sender_id: string

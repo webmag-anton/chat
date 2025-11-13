@@ -5,7 +5,7 @@ import { useChatsQuery } from '../model/useChatsQuery'
 export const ChatsList = () => {
   const { session } = useAuthStore()
   const {
-    data: chatsWithOpponent,
+    data: chatsWithOpponents,
     isLoading,
     error
   } = useChatsQuery(session?.user?.id ?? '')
@@ -15,10 +15,10 @@ export const ChatsList = () => {
 
   return (
     <div className='h-full'>
-      {!chatsWithOpponent || chatsWithOpponent.length === 0
+      {!chatsWithOpponents || chatsWithOpponents.length === 0
         ? <div className='p-3'>No chats yet</div>
         : <ul className='grow overflow-y-auto'>
-            {chatsWithOpponent.map((chat) => {
+            {chatsWithOpponents.map((chat) => {
               return <ChatsListItem chatData={chat} key={chat.id}/>
             })}
           </ul>

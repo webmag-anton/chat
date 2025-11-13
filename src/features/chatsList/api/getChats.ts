@@ -1,5 +1,5 @@
 import { supabase } from '@/shared/api/supabaseClient'
-import type { ChatWithOpponent } from '../types'
+import type { ChatWithOpponent } from '@/entities/chat'
 
 /*
   Because of RLS rules, Supabase only returns chats that the current user belongs to.
