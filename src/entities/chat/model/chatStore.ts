@@ -1,6 +1,6 @@
 import { create } from 'zustand'
 
-interface ChatState {
+export interface ChatState {
   currentChatId: string | null
   currentUserId: string | null
   currentUserName: string | null

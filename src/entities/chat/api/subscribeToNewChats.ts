@@ -3,8 +3,7 @@ import { supabase } from '@/shared/api/supabaseClient'
 import { type Chat } from '../types'
 
 export const subscribeToNewChats = (
-  loggedInUserId: string,
-  onNewChat: (loggedInUserId: string, chat: Chat) => void
+  onNewChat: (chat: Chat) => void
 ): RealtimeChannel => {
   const channel = supabase
     .channel('chats')
@@ -14,7 +13,7 @@ export const subscribeToNewChats = (
         schema: 'public',
         table: 'chats'
       },
-      (payload) => onNewChat(loggedInUserId, payload.new as Chat)
+      (payload) => onNewChat(payload.new as Chat)
     )
     .subscribe()
 

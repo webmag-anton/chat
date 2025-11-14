@@ -2,19 +2,18 @@ import { useEffect } from 'react'
 import type { RealtimeChannel, Session } from '@supabase/supabase-js'
 import { subscriptionManager } from '@/shared/lib/subscriptionManager'
 import { subscribeToProfileUpdates } from '@/features/profilesList'
-import { type Message, subscribeToUserMessages } from '@/entities/message'
-import { queryClient } from '@/shared/api/reactQueryClient'
+import { subscribeToUserMessages, handleNewMessage } from '@/entities/message'
 import {
   subscribeToNewChatMembership,
   useChatStore,
-  subscribeToNewChats
+  subscribeToNewChats,
+  handleNewChatInsertion,
+  handleNewChatMembership,
+  type ChatMember
 } from '@/entities/chat'
-import type { ChatMember } from '@/entities/chat'
-import { getMessagesByChatId } from '@/entities/message'
-import { handleNewChatInsertion } from '@/entities/chat'
 
 export const useRealtimeSubscriptions = (session: Session | null) => {
-  const { updateCurrentChatId } = useChatStore()
+  const chatStore = useChatStore()
 
   useEffect(() => {
     // subscribe to Realtime only after session exists
@@ -30,33 +29,19 @@ export const useRealtimeSubscriptions = (session: Session | null) => {
 
     const userMessagesChannel: RealtimeChannel = subscribeToUserMessages(
       loggedInUserId,
-      (newMessage: Message) => queryClient.setQueryData<Message[] | undefined>(
-        ['messages', newMessage.chat_id],
-        (old = []) =>
-          old.some((message) => message.id === newMessage.id)
-            ? old
-            : [...old, newMessage]
-      )
+      handleNewMessage
     )
     subscriptionManager.addSubscription(userMessagesChannel)
 
     const newChatMembershipChannel: RealtimeChannel = subscribeToNewChatMembership(
       loggedInUserId,
-      async (chatMember: ChatMember) => {
-        const chatId = chatMember.chat_id
-        if (!chatId) return
-
-        updateCurrentChatId(chatId)
-
-        const firstChatMessage = await getMessagesByChatId(chatId)
-        queryClient.setQueryData(['messages', chatId], firstChatMessage)
-      }
+      (newChatMember: ChatMember | {}) =>
+        handleNewChatMembership(newChatMember, chatStore)
     )
     subscriptionManager.addSubscription(newChatMembershipChannel)
 
-    const newChatsChannel: RealtimeChannel = subscribeToNewChats(
-      loggedInUserId,
-      handleNewChatInsertion
+    const newChatsChannel: RealtimeChannel = subscribeToNewChats((chat) =>
+      handleNewChatInsertion(loggedInUserId, chat)
     )
     subscriptionManager.addSubscription(newChatsChannel)
 
