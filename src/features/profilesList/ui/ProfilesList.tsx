@@ -10,13 +10,13 @@ export const ProfilesList = () => {
   if (error) return <div className='h-full'>Error loading profiles</div>
 
   return (
-    <div className='h-full'>
+    <div>
       {!data || data.length === 0
         ? <div>No registered users yet.</div>
-        : <ul className='grow overflow-y-auto'>
+        : <ul>
             {data?.map((user) => {
               if (session?.user?.id === user.id) return null
-              return <ProfilesListItem userData={user} key={user.id}/>
+              return <ProfilesListItem userData={user} key={user.id} />
             })}
           </ul>
       }

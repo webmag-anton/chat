@@ -14,10 +14,10 @@ export const ChatsList = () => {
   if (error) return <div className='h-full p-3'>Error loading chats</div>
 
   return (
-    <div className='h-full'>
+    <div>
       {!chatsWithOpponents || chatsWithOpponents.length === 0
         ? <div className='p-3'>No chats yet</div>
-        : <ul className='grow overflow-y-auto'>
+        : <ul>
             {chatsWithOpponents.map((chat) => {
               return <ChatsListItem chatData={chat} key={chat.id}/>
             })}

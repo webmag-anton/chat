@@ -14,7 +14,7 @@ export const Sidebar = () => {
       w-[400px] 
       max-w-screen 
       p-3
-      bg-amber-50 
+      bg-white
       duration-150 
       ease
       z-2

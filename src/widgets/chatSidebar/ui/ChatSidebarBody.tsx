@@ -24,11 +24,12 @@ export const ChatSidebarBody = () => {
       style={{ '--chat-sidebar-title': `"${title}"` } as React.CSSProperties}
       className={`
         relative
-        h-[calc(100vh-var(--headers-height))]
+        grow
         border-t
-        before:absolute
-        before:top-0
-        before:bottom-0
+        overflow-y-auto
+        before:fixed
+        before:top-1/2
+        before:-translate-y-1/2
         before:content-[var(--chat-sidebar-title)]
         before:pl-[2px]
         before:text-[18px]
@@ -37,6 +38,7 @@ export const ChatSidebarBody = () => {
         before:text-center
         before:uppercase
         before:tracking-[14px]
+        before:text-[#1d0bb4]
         before:[writing-mode:vertical-lr]
         before:pointer-events-none
       `}

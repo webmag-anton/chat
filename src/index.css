@@ -3,7 +3,7 @@
 
 @theme {
   --font-nunito-sans: 'Nunito Sans';
-  --color-accent: #f4e6c8;
+  --color-accent: #f5f1de;
 
   --headers-height: 56px;
 }
@@ -11,5 +11,6 @@
 @layer base {
   html {
     font-family: var(--font-nunito-sans), sans-serif;
+    background-color: #eaeaea;
   }
 }

@@ -18,12 +18,13 @@ export const ChatSidebarHeader = () => {
         flex
         justify-between
         items-center
-        h-[var(--headers-height)]
+        basis-[var(--headers-height)]
+        shrink-0
       '
     >
       <Hamburger onClick={openSidebarHandler} />
       <Button
-        className='uppercase border-l-1 tracking-[2px]'
+        className='border-l-1 font-semibold text-[#072c82] uppercase tracking-[2px]'
         horizontalPadding='sm'
         fullHeight
         square

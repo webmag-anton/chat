@@ -19,17 +19,20 @@ export const ChatWindow = () => {
   if (isMessagesLoading) return <div className='grow p-3'>Loading...</div>
 
   return (
-    <div className='grow border-y p-3'>
-      <ul>
+    <div className='grow p-3 border-y overflow-y-auto overflow-x-hidden'>
+      <ul className='flex flex-col max-w-[580px]'>
         {messages?.map((m) => (
-          <li key={m.id}>
-            <b>
-              {m.sender_id === currentUserId
-                ? `${currentUserName}: `
-                : 'I: '
-              }
-            </b>
-            {m.content}
+          <li
+            key={m.id}
+            className='self-start max-w-full mb-2 p-2 border rounded-2xl'
+          >
+            <span className='font-bold'>
+              {m.sender_id === currentUserId ? `${currentUserName}: ` : 'I: '}
+            </span>
+
+            <span className='block break-words'>
+              {m.content}
+            </span>
           </li>
         ))}
       </ul>

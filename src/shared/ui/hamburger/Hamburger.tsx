@@ -16,7 +16,7 @@ export const Hamburger = (props: HamburgerProps) => {
         p-[10px]
         cursor-pointer
         text-black
-        hover:text-green-600
+        hover:text-[#1e57dc]
         transition'
       onClick={onClick}
     >

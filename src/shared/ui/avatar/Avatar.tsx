@@ -30,7 +30,7 @@ export const Avatar = ( props: AvatarProps ) => {
           width={size}
           height={size}
           className={className}
-          fill='brown'
+          fill='#072c82'
           title={title}
       />
   )

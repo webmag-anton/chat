@@ -41,22 +41,19 @@ export const ChatFooter = () => {
   }
 
   return (
-    <div className='flex h-[60px]'>
+    <div className='flex basis-[60px] shrink-0'>
       <Input
-        id='messageInput'
+        className='border-r-1'
         value={message}
         onChange={(e) => setMessage(e.target.value)}
         onKeyUp={handleKeyUp}
         fullWidth
-        fullHeight
         placeholder='Write a message...'
       />
       <Button
-        id='messageSubmitter'
-        className='border-l-1'
+        className='font-bold text-[#072c82] tracking-wider'
         onClick={handleMessageSending}
         square
-        fullHeight
         hasBorders={false}
       >
         Send
