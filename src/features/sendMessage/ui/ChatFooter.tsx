@@ -34,12 +34,19 @@ export const ChatFooter = () => {
     )
   }
 
+  const handleKeyUp = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === 'Enter') {
+      handleMessageSending()
+    }
+  }
+
   return (
     <div className='flex h-[60px]'>
       <Input
         id='messageInput'
         value={message}
         onChange={(e) => setMessage(e.target.value)}
+        onKeyUp={handleKeyUp}
         fullWidth
         fullHeight
         placeholder='Write a message...'
