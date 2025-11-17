@@ -10,11 +10,11 @@ export const ChatHeader = () => {
         items-center
         basis-[var(--headers-height)]
         shrink-0
-        px-3
+        px-5
       '
     >
       <span
-        className='text-xl font-semibold text-[#072c82] tracking-wider'
+        className='text-xl tracking-wider'
       >
         {currentUserName}
       </span>

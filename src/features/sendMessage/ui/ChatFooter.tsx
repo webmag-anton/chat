@@ -43,7 +43,7 @@ export const ChatFooter = () => {
   return (
     <div className='flex basis-[60px] shrink-0'>
       <Input
-        className='border-r-1'
+        className='border-r-1 px-5'
         value={message}
         onChange={(e) => setMessage(e.target.value)}
         onKeyUp={handleKeyUp}

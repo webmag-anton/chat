@@ -28,7 +28,7 @@ export const ProfilesListItem = ({ userData }: ProfilesListItemProps) => {
     // Trigger the query manually — it will also be cached
     const chatId = await fetchPrivateChatId(loggedInUserId, userID)
 
-    setActivePrivateChat(chatId ?? null, userID, chatName)
+    setActivePrivateChat(chatId ?? null, userID, chatName, avatar)
   }
 
   const baseClasses = clsx(

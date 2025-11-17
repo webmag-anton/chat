@@ -20,7 +20,8 @@ export const ChatsListItem = ({ chatData }: ChatsListItemProps) => {
     setActivePrivateChat(
       chatID ?? null,
       opponent?.id ?? null,
-      opponentName ?? null
+      opponentName ?? null,
+      opponent?.avatar ?? null
     )
   }
 

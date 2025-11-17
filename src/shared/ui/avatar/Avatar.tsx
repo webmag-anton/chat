@@ -5,6 +5,7 @@ interface AvatarProps {
   url: string | null
   size?: number
   title?: string
+  fill?: string
   className?: string
 }
 
@@ -13,6 +14,7 @@ export const Avatar = ( props: AvatarProps ) => {
     url,
     size = 50,
     title = 'Avatar',
+    fill = '#072c82',
     className
   } = props
 
@@ -30,7 +32,7 @@ export const Avatar = ( props: AvatarProps ) => {
           width={size}
           height={size}
           className={className}
-          fill='#072c82'
+          fill={fill}
           title={title}
       />
   )
