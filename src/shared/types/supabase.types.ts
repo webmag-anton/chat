@@ -83,21 +83,21 @@ export type Database = {
         Row: {
           chat_id: string | null
           content: string
-          created_at: string | null
+          created_at: string
           id: string
           sender_id: string | null
         }
         Insert: {
           chat_id?: string | null
           content: string
-          created_at?: string | null
+          created_at?: string
           id?: string
           sender_id?: string | null
         }
         Update: {
           chat_id?: string | null
           content?: string
-          created_at?: string | null
+          created_at?: string
           id?: string
           sender_id?: string | null
         }
