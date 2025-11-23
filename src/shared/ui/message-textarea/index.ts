@@ -1,0 +1,1 @@
+export { MessageTextarea } from './MessageTextarea'

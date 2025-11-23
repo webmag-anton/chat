@@ -24,6 +24,8 @@ export const ChatMessage = (props: ChatMessageProps) => {
     messageTime
   } = props
 
+  const messageContent = JSON.parse(message.content)
+
   return (
     <li
       className={className}
@@ -65,7 +67,7 @@ export const ChatMessage = (props: ChatMessageProps) => {
       </div>
 
       <div className={messageContentClassName}>
-        {message.content}
+        {messageContent}
 
         <time
           dateTime={message.created_at}

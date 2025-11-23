@@ -1,12 +1,13 @@
-import { useState } from 'react'
-import { Input } from '@/shared/ui/input'
+import { type ChangeEvent, useState } from 'react'
 import { Button } from '@/shared/ui/button'
 import { useAuthStore } from '@/features/authentication'
 import { useChatStore } from '@/entities/chat'
 import { useSendMessage } from '../model/useSendMessage'
+import { MessageTextarea } from '@/shared/ui/message-textarea'
 
 export const ChatFooter = () => {
   const [ message, setMessage ] = useState('')
+  const [ rows, setRows ] = useState<number>(1)
   const { session } = useAuthStore()
   const {
     currentUserId,
@@ -20,12 +21,13 @@ export const ChatFooter = () => {
     sendMessage.mutate(
       {
         recipientId: currentUserId,
-        messageText: message
+        messageText: JSON.stringify(message)
       },
       {
         onSuccess: (chatId) => {
-          updateCurrentChatId(chatId)
           setMessage('')
+          setRows(1)
+          updateCurrentChatId(chatId)
         },
         onError: (error) => {
           console.error('Failed to send message: ', error)
@@ -34,21 +36,16 @@ export const ChatFooter = () => {
     )
   }
 
-  const handleKeyUp = (event: React.KeyboardEvent<HTMLInputElement>) => {
-    if (event.key === 'Enter') {
-      handleMessageSending()
-    }
-  }
-
   return (
     <div className='flex basis-[60px] shrink-0'>
-      <Input
-        className='border-r-1 px-5'
+      <MessageTextarea
         value={message}
-        onChange={(e) => setMessage(e.target.value)}
-        onKeyUp={handleKeyUp}
+        rows={rows}
+        setRows={setRows}
+        onChange={(e: ChangeEvent<HTMLTextAreaElement>) => setMessage(e.target.value)}
+        onMessageSend={handleMessageSending}
         fullWidth
-        placeholder='Write a message...'
+        className='border-r-1'
       />
       <Button
         className='font-bold text-[#072c82] tracking-wider'
