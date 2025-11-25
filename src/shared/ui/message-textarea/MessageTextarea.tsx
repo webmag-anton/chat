@@ -1,11 +1,10 @@
 import type { ChangeEvent, TextareaHTMLAttributes } from 'react'
+import { useMessageStore } from '@/features/sendMessage'
 import clsx from 'clsx'
 
 const maxRows: number = 8
 
 interface MessageTextareaProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {
-  rows: number
-  setRows: (amount: number) => void
   onChange: (e: ChangeEvent<HTMLTextAreaElement>) => void
   onMessageSend: () => void
   fullWidth?: boolean
@@ -15,8 +14,6 @@ interface MessageTextareaProps extends TextareaHTMLAttributes<HTMLTextAreaElemen
 
 export const MessageTextarea = (props: MessageTextareaProps) => {
   const {
-    rows,
-    setRows,
     onChange,
     onMessageSend,
     fullHeight = false,
@@ -24,6 +21,8 @@ export const MessageTextarea = (props: MessageTextareaProps) => {
     className,
     ...otherProps
   } = props
+
+  const { messageTextareaRows, setMessageTextareaRows } = useMessageStore()
 
   const textareaClasses = clsx(
     'w-full px-5 py-4 leading-[28px] bg-[#3f4050] text-white resize-none',
@@ -38,7 +37,7 @@ export const MessageTextarea = (props: MessageTextareaProps) => {
     const value = e.target.value
     const newRows = value.split('\n').length
 
-    setRows(Math.max(1, Math.min(newRows, maxRows)))
+    setMessageTextareaRows(Math.max(1, Math.min(newRows, maxRows)))
     onChange(e)
   }
 
@@ -52,7 +51,7 @@ export const MessageTextarea = (props: MessageTextareaProps) => {
   return (
     <textarea
       id='message-textarea'
-      rows={rows}
+      rows={messageTextareaRows}
       onChange={handleChange}
       onKeyDown={handleKeyDown}
       className={textareaClasses}
