@@ -1,6 +1,6 @@
-import { ChatsListItem } from '@/entities/chat'
-import { useAuthStore } from '@/features/authentication'
+import { ChatsListItem } from './ChatsListItem'
 import { useChatsQuery } from '../model/useChatsQuery'
+import { useAuthStore } from '@/features/authentication'
 
 export const ChatsList = () => {
   const { session } = useAuthStore()
@@ -19,7 +19,7 @@ export const ChatsList = () => {
         ? <div className='p-3'>No chats yet</div>
         : <ul>
             {chatsWithOpponents.map((chat) => {
-              return <ChatsListItem chatData={chat} key={chat.id}/>
+              return <ChatsListItem chatData={chat} key={chat.id} />
             })}
           </ul>
       }

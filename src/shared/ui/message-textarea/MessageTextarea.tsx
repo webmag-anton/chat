@@ -22,7 +22,11 @@ export const MessageTextarea = (props: MessageTextareaProps) => {
     ...otherProps
   } = props
 
-  const { messageTextareaRows, setMessageTextareaRows } = useMessageStore()
+  const {
+    message,
+    messageTextareaRows,
+    setMessageTextareaRows
+  } = useMessageStore()
 
   const textareaClasses = clsx(
     'w-full px-5 py-4 leading-[28px] bg-[#3f4050] text-white resize-none',
@@ -51,6 +55,7 @@ export const MessageTextarea = (props: MessageTextareaProps) => {
   return (
     <textarea
       id='message-textarea'
+      value={message}
       rows={messageTextareaRows}
       onChange={handleChange}
       onKeyDown={handleKeyDown}

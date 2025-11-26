@@ -1,6 +1,7 @@
-import type { UserProfile } from '../types'
+import type { UserProfile } from '@/entities/profile'
 import { Avatar } from '@/shared/ui/avatar'
 import { useAuthStore } from '@/features/authentication'
+import { useMessageStore } from '@/features/sendMessage'
 import { useChatStore, fetchPrivateChatId } from '@/entities/chat'
 import clsx from 'clsx'
 
@@ -20,6 +21,7 @@ export const ProfilesListItem = ({ userData }: ProfilesListItemProps) => {
   const loggedInUserId = session?.user.id
 
   const { currentUserId, setActivePrivateChat } = useChatStore()
+  const { resetTextarea } = useMessageStore()
 
   const chatName = username || email
 
@@ -29,6 +31,10 @@ export const ProfilesListItem = ({ userData }: ProfilesListItemProps) => {
     const chatId = await fetchPrivateChatId(loggedInUserId, userID)
 
     setActivePrivateChat(chatId ?? null, userID, chatName, avatar)
+
+    if (currentUserId !== userID) {
+      resetTextarea()
+    }
   }
 
   const baseClasses = clsx(

@@ -1,4 +1,4 @@
-import { ProfilesListItem } from '@/entities/profile'
+import { ProfilesListItem } from './ProfilesListItem'
 import { useAuthStore } from '@/features/authentication'
 import { useProfilesQuery } from '../model/useProfilesQuery'
 

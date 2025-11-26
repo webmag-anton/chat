@@ -1,5 +1,6 @@
 import { Avatar } from '@/shared/ui/avatar'
 import { useChatStore, type ChatWithOpponent } from '@/entities/chat'
+import { useMessageStore } from '@/features/sendMessage'
 import clsx from 'clsx'
 
 interface ChatsListItemProps {
@@ -15,6 +16,7 @@ export const ChatsListItem = ({ chatData }: ChatsListItemProps) => {
   const opponentName = opponent?.username || opponent?.email
 
   const { currentChatId, setActivePrivateChat } = useChatStore()
+  const { resetTextarea } = useMessageStore()
 
   const handleListItemClick = () => {
     setActivePrivateChat(
@@ -23,6 +25,10 @@ export const ChatsListItem = ({ chatData }: ChatsListItemProps) => {
       opponentName ?? null,
       opponent?.avatar ?? null
     )
+
+    if (chatID !== currentChatId) {
+      resetTextarea()
+    }
   }
 
   const baseClasses = clsx(

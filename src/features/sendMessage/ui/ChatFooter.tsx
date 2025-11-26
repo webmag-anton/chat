@@ -39,7 +39,6 @@ export const ChatFooter = () => {
   return (
     <div className='flex basis-[60px] shrink-0'>
       <MessageTextarea
-        value={message}
         onChange={(e: ChangeEvent<HTMLTextAreaElement>) => setMessage(e.target.value)}
         onMessageSend={handleMessageSending}
         fullWidth

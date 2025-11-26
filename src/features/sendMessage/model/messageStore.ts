@@ -1,7 +1,7 @@
 import { create } from 'zustand'
 
 export interface MessageState {
-  message: string | undefined
+  message: string
   setMessage: (message: string) => void
   messageTextareaRows: number
   setMessageTextareaRows: (rows: number) => void
@@ -13,5 +13,5 @@ export const useMessageStore = create<MessageState>((set) => ({
   messageTextareaRows: 1,
   setMessage: (message) => set({ message }),
   setMessageTextareaRows: (rows) => set({ messageTextareaRows: rows }),
-  resetTextarea: () => set({ message: undefined, messageTextareaRows: 1 })
+  resetTextarea: () => set({ message: '', messageTextareaRows: 1 })
 }))
