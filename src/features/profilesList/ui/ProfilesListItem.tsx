@@ -3,6 +3,7 @@ import { Avatar } from '@/shared/ui/avatar'
 import { useAuthStore } from '@/features/authentication'
 import { useMessageStore } from '@/features/sendMessage'
 import { useChatStore, fetchPrivateChatId } from '@/entities/chat'
+import { useOnlineStatusStore } from '@/features/online-status-tracker'
 import clsx from 'clsx'
 
 interface ProfilesListItemProps {
@@ -22,6 +23,7 @@ export const ProfilesListItem = ({ userData }: ProfilesListItemProps) => {
 
   const { currentUserId, setActivePrivateChat } = useChatStore()
   const { resetTextarea } = useMessageStore()
+  const { onlineUsers } = useOnlineStatusStore()
 
   const chatName = username || email
 
@@ -44,6 +46,21 @@ export const ProfilesListItem = ({ userData }: ProfilesListItemProps) => {
     }
   )
 
+  const profileClasses = clsx(
+    `
+      text-lg
+      before:inline-block
+      before:w-[10px] 
+      before:h-[10px] 
+      before:mr-2 
+      before:rounded-full 
+      before:bg-[#b5b5b5]
+    `,
+    {
+      'before:bg-green-600': onlineUsers.includes(userID)
+    }
+  )
+
   return (
     <li
       className={baseClasses}
@@ -56,7 +73,9 @@ export const ProfilesListItem = ({ userData }: ProfilesListItemProps) => {
         title="User's avatar"
       />
 
-      {chatName}
+      <span className={profileClasses}>
+        {chatName}
+      </span>
     </li>
   )
 }

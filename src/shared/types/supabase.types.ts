@@ -17,17 +17,17 @@ export type Database = {
       chat_members: {
         Row: {
           chat_id: string
-          joined_at: string | null
+          joined_at: string
           user_id: string
         }
         Insert: {
           chat_id: string
-          joined_at?: string | null
+          joined_at?: string
           user_id: string
         }
         Update: {
           chat_id?: string
-          joined_at?: string | null
+          joined_at?: string
           user_id?: string
         }
         Relationships: [
@@ -49,21 +49,21 @@ export type Database = {
       }
       chats: {
         Row: {
-          created_at: string | null
+          created_at: string
           created_by: string | null
           id: string
           name: string | null
           type: string
         }
         Insert: {
-          created_at?: string | null
+          created_at?: string
           created_by?: string | null
           id?: string
           name?: string | null
           type: string
         }
         Update: {
-          created_at?: string | null
+          created_at?: string
           created_by?: string | null
           id?: string
           name?: string | null
@@ -125,7 +125,7 @@ export type Database = {
           email: string | null
           id: string
           last_seen: string | null
-          updated_at: string | null
+          updated_at: string
           username: string | null
         }
         Insert: {
@@ -134,7 +134,7 @@ export type Database = {
           email?: string | null
           id: string
           last_seen?: string | null
-          updated_at?: string | null
+          updated_at?: string
           username?: string | null
         }
         Update: {
@@ -143,7 +143,7 @@ export type Database = {
           email?: string | null
           id?: string
           last_seen?: string | null
-          updated_at?: string | null
+          updated_at?: string
           username?: string | null
         }
         Relationships: []

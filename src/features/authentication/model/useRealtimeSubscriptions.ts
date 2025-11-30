@@ -11,13 +11,22 @@ import {
   handleNewChatMembership,
   type ChatMember
 } from '@/entities/chat'
+import {
+  subscribeToOnlineStatusTracker,
+  useOnlineStatusStore
+} from '@/features/online-status-tracker'
 
 export const useRealtimeSubscriptions = (session: Session | null) => {
   const chatStore = useChatStore()
+  const { setOnlineUsers } = useOnlineStatusStore()
 
   useEffect(() => {
     // subscribe to Realtime only after session exists
-    if (!session) return
+    if (!session) {
+      subscriptionManager.clearSubscriptions()
+      setOnlineUsers({})
+      return
+    }
 
     // prevent multi subscriptions on re-renders (re-log in or refreshing of session)
     if (subscriptionManager.subscriptions.length) return
@@ -44,6 +53,12 @@ export const useRealtimeSubscriptions = (session: Session | null) => {
       handleNewChatInsertion(loggedInUserId, chat)
     )
     subscriptionManager.addSubscription(newChatsChannel)
+
+    const onlineStatusChannel = subscribeToOnlineStatusTracker(
+      loggedInUserId,
+      setOnlineUsers
+    )
+    subscriptionManager.addSubscription(onlineStatusChannel)
 
     return subscriptionManager.clearSubscriptions
   }, [session])

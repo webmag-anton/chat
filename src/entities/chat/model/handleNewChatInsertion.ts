@@ -35,8 +35,8 @@ export async function handleNewChatInsertion(
   const opponent =
     chat.type === 'private'
       ? chat.chat_members
-      .map((m) => m.profiles)
-      .find((p) => p.id !== loggedInUserId) || null
+        .map((m) => m.profiles)
+        .find((p) => p.id !== loggedInUserId) || null
       : null
 
   const chatWithOpponent: ChatWithOpponent = { ...chat, opponent }
