@@ -34,8 +34,10 @@ export const useSendMessage = (loggedInUserId: string) => {
       return newChatId
     },
 
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['chats', loggedInUserId] })
+    onSuccess: (_, { recipientId }) => {
+      queryClient.invalidateQueries(
+        { queryKey: ['chat', loggedInUserId, recipientId] }
+      )
     }
   })
 }

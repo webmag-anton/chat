@@ -14,7 +14,7 @@ import type { ChatWithOpponent } from '@/entities/chat'
   So it's the only correct RLS-friendly way to get the opponent’s profile.
 */
 export const getChats = async (loggedInUserId: string): Promise<ChatWithOpponent[]> => {
-  const { data, error } = await supabase
+  const { data: chats, error } = await supabase
     .from('chats')
     .select(`
       id,
@@ -37,9 +37,9 @@ export const getChats = async (loggedInUserId: string): Promise<ChatWithOpponent
     `)
 
   if (error) throw error
-  if (!data) return []
+  if (!chats) return []
 
-  const chatsWithOpponent: ChatWithOpponent[] = data.map(chat => {
+  const chatsWithOpponent: ChatWithOpponent[] = chats.map(chat => {
     const opponent =
       chat.type === 'private'
         ? chat.chat_members

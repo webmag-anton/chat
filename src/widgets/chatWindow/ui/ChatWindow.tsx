@@ -12,20 +12,25 @@ export const ChatWindow = () => {
     currentUserName,
     currentUserAvatar
   } = useChatStore()
+
   const {
     data: messages,
     isLoading: isMessagesLoading
   } = useMessagesQuery(currentChatId)
 
   if (!currentUserId) {
-    return <div className='p-3 grow border-y'>
-      Choose a user or group to chat with
-    </div>
+    return (
+      <div className='p-3 grow border-y'>
+        Choose a user or group to chat with
+      </div>
+    )
   }
   if (!currentChatId) {
     return <div className='p-3 grow border-y'>No messages here yet...</div>
   }
-  if (isMessagesLoading) return <div className='grow p-3'>Loading...</div>
+  if (isMessagesLoading) {
+    return <div className='grow p-3'>Loading...</div>
+  }
 
   let messageDate: string = ''
 

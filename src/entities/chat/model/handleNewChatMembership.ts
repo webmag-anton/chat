@@ -1,21 +1,27 @@
 import { getMessagesByChatId } from '@/entities/message'
 import { queryClient } from '@/shared/api/reactQueryClient'
 import type { ChatMember } from '../types'
-import type { ChatState } from './chatStore'
+import { useChatStore } from './chatStore'
+import { fetchPrivateChatId } from '@/entities/chat'
 
 export async function handleNewChatMembership(
-  newChatMember: ChatMember | {},
-  chatStore: ChatState
+  newChatMember: ChatMember | {}
 ) {
   if (
     !newChatMember || !('chat_id' in newChatMember) || !newChatMember.chat_id
   ) return
 
-  const chatId = newChatMember.chat_id
-  const { updateCurrentChatId } = chatStore
+  const newChatId = newChatMember.chat_id
+  const { currentUserId, updateCurrentChatId } = useChatStore.getState()
 
-  updateCurrentChatId(chatId)
+  if (currentUserId) {
+    const chatId = await fetchPrivateChatId(newChatMember.user_id, currentUserId)
 
-  const firstChatMessage = await getMessagesByChatId(chatId)
-  queryClient.setQueryData(['messages', chatId], firstChatMessage)
+    if (newChatId === chatId) {
+      updateCurrentChatId(newChatId)
+    }
+  }
+
+  const firstChatMessage = await getMessagesByChatId(newChatId)
+  queryClient.setQueryData(['messages', newChatId], firstChatMessage)
 }

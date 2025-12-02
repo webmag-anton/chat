@@ -5,11 +5,9 @@ import { subscribeToProfileUpdates } from '@/features/profilesList'
 import { subscribeToUserMessages, handleNewMessage } from '@/entities/message'
 import {
   subscribeToNewChatMembership,
-  useChatStore,
   subscribeToNewChats,
   handleNewChatInsertion,
-  handleNewChatMembership,
-  type ChatMember
+  handleNewChatMembership
 } from '@/entities/chat'
 import {
   subscribeToOnlineStatusTracker,
@@ -17,7 +15,6 @@ import {
 } from '@/features/online-status-tracker'
 
 export const useRealtimeSubscriptions = (session: Session | null) => {
-  const chatStore = useChatStore()
   const { setOnlineUsers } = useOnlineStatusStore()
 
   useEffect(() => {
@@ -44,8 +41,7 @@ export const useRealtimeSubscriptions = (session: Session | null) => {
 
     const newChatMembershipChannel: RealtimeChannel = subscribeToNewChatMembership(
       loggedInUserId,
-      (newChatMember: ChatMember | {}) =>
-        handleNewChatMembership(newChatMember, chatStore)
+      handleNewChatMembership
     )
     subscriptionManager.addSubscription(newChatMembershipChannel)
 
@@ -54,10 +50,7 @@ export const useRealtimeSubscriptions = (session: Session | null) => {
     )
     subscriptionManager.addSubscription(newChatsChannel)
 
-    const onlineStatusChannel = subscribeToOnlineStatusTracker(
-      loggedInUserId,
-      setOnlineUsers
-    )
+    const onlineStatusChannel = subscribeToOnlineStatusTracker(loggedInUserId)
     subscriptionManager.addSubscription(onlineStatusChannel)
 
     return subscriptionManager.clearSubscriptions

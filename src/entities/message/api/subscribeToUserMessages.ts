@@ -4,7 +4,7 @@ import type { Message } from '../types'
 
 export const subscribeToUserMessages = (
   userId: string,
-  onNewMessage: (message: Message) => void
+  onNewMessage: (newMessage: Message) => void
 ) => {
   const channel = supabase
     .channel(`user:${userId}:messages`)
