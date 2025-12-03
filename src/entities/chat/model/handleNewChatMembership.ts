@@ -4,18 +4,13 @@ import type { ChatMember } from '../types'
 import { useChatStore } from './chatStore'
 import { fetchPrivateChatId } from '@/entities/chat'
 
-export async function handleNewChatMembership(
-  newChatMember: ChatMember | {}
-) {
-  if (
-    !newChatMember || !('chat_id' in newChatMember) || !newChatMember.chat_id
-  ) return
-
+export async function handleNewChatMembership( newChatMember: ChatMember ) {
   const newChatId = newChatMember.chat_id
-  const { currentUserId, updateCurrentChatId } = useChatStore.getState()
+  const { currentOpponentId, updateCurrentChatId } = useChatStore.getState()
 
-  if (currentUserId) {
-    const chatId = await fetchPrivateChatId(newChatMember.user_id, currentUserId)
+  if (currentOpponentId) {
+    const chatId =
+      await fetchPrivateChatId(newChatMember.user_id, currentOpponentId)
 
     if (newChatId === chatId) {
       updateCurrentChatId(newChatId)

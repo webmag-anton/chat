@@ -8,9 +8,9 @@ import clsx from 'clsx'
 export const ChatWindow = () => {
   const {
     currentChatId,
-    currentUserId,
-    currentUserName,
-    currentUserAvatar
+    currentOpponentId,
+    currentOpponentName,
+    currentOpponentAvatar
   } = useChatStore()
 
   const {
@@ -18,7 +18,7 @@ export const ChatWindow = () => {
     isLoading: isMessagesLoading
   } = useMessagesQuery(currentChatId)
 
-  if (!currentUserId) {
+  if (!currentOpponentId) {
     return (
       <div className='p-3 grow border-y'>
         Choose a user or group to chat with
@@ -38,7 +38,7 @@ export const ChatWindow = () => {
     <div className='grow px-5 py-3 border-y overflow-y-auto overflow-x-hidden'>
       <ul className='flex flex-col max-w-[580px]'>
         {messages?.map((m, i) => {
-          const isOpponent = m.sender_id === currentUserId
+          const isOpponent = m.sender_id === currentOpponentId
           const messageCreationDate = m.created_at
 
           const next = messages[i + 1]
@@ -93,8 +93,8 @@ export const ChatWindow = () => {
                 messageContentClassName={messageContentBaseClasses}
                 isShowAvatar={isShowAvatar}
                 isOpponent={isOpponent}
-                avatar={currentUserAvatar}
-                userName={currentUserName}
+                avatar={currentOpponentAvatar}
+                userName={currentOpponentName}
                 message={m}
                 messageTime={messageTime}
               />

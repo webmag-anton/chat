@@ -2,14 +2,14 @@ import { create } from 'zustand'
 
 export interface ChatState {
   currentChatId: string | null
-  currentUserId: string | null
-  currentUserName: string | null
-  currentUserAvatar: string | null
+  currentOpponentId: string | null
+  currentOpponentName: string | null
+  currentOpponentAvatar: string | null
   currentGroupName: string | null
   setActivePrivateChat: (
     chatId: string | null,
-    userId: string | null,
-    userName: string | null,
+    opponentId: string | null,
+    opponentName: string | null,
     avatar: string | null
   ) => void
   setActiveGroupChat: (chatId: string | null, groupName: string | null) => void
@@ -18,24 +18,24 @@ export interface ChatState {
 
 export const useChatStore = create<ChatState>((set) => ({
   currentChatId: null,
-  currentUserId: null,
-  currentUserName: null,
-  currentUserAvatar: null,
+  currentOpponentId: null,
+  currentOpponentName: null,
+  currentOpponentAvatar: null,
   currentGroupName: null,
-  setActivePrivateChat: (chatId, userId, userName, avatar) =>
+  setActivePrivateChat: (chatId, opponentId, opponentName, avatar) =>
     set({
       currentChatId: chatId,
-      currentUserId: userId,
-      currentUserName: userName,
-      currentUserAvatar: avatar,
+      currentOpponentId: opponentId,
+      currentOpponentName: opponentName,
+      currentOpponentAvatar: avatar,
       currentGroupName: null
     }),
   setActiveGroupChat: (chatId, groupName) =>
     set({
       currentChatId: chatId,
       currentGroupName: groupName,
-      currentUserId: null,
-      currentUserName: null
+      currentOpponentId: null,
+      currentOpponentName: null
     }),
   updateCurrentChatId: (chatId) => set({ currentChatId: chatId })
 }))

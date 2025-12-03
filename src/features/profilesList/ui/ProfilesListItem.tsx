@@ -21,7 +21,7 @@ export const ProfilesListItem = ({ userData }: ProfilesListItemProps) => {
   const { session } = useAuthStore()
   const loggedInUserId = session?.user.id
 
-  const { currentUserId, setActivePrivateChat } = useChatStore()
+  const { currentOpponentId, setActivePrivateChat } = useChatStore()
   const { resetTextarea } = useMessageStore()
   const { onlineUsers } = useOnlineStatusStore()
 
@@ -34,7 +34,7 @@ export const ProfilesListItem = ({ userData }: ProfilesListItemProps) => {
 
     setActivePrivateChat(chatId ?? null, userID, chatName, avatar)
 
-    if (currentUserId !== userID) {
+    if (currentOpponentId !== userID) {
       resetTextarea()
     }
   }
@@ -42,7 +42,7 @@ export const ProfilesListItem = ({ userData }: ProfilesListItemProps) => {
   const baseClasses = clsx(
     'flex pl-8 pr-3 py-2 cursor-pointer hover:bg-accent',
     {
-      'bg-accent': userID === currentUserId
+      'bg-accent': userID === currentOpponentId
     }
   )
 

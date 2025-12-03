@@ -1,7 +1,7 @@
 import { useChatStore } from '@/entities/chat'
 
 export const ChatHeader = () => {
-  const { currentUserName } = useChatStore()
+  const { currentOpponentName } = useChatStore()
 
   return (
     <div
@@ -16,7 +16,7 @@ export const ChatHeader = () => {
       <span
         className='text-xl tracking-wider'
       >
-        {currentUserName}
+        {currentOpponentName}
       </span>
     </div>
   )

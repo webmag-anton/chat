@@ -4,7 +4,7 @@ import type { ChatMember } from '../types'
 
 export const subscribeToNewChatMembership = (
   userId: string,
-  onNewChatMembership: (newChatMember: ChatMember | {}) => void
+  onNewChatMembership: (newChatMember: ChatMember) => void
 ) => {
   const channel = supabase
     .channel(`chat_members:user:${userId}`)
@@ -17,7 +17,11 @@ export const subscribeToNewChatMembership = (
         filter: `user_id=eq.${userId}`
       },
       (payload: RealtimePostgresChangesPayload<ChatMember>) => {
-        onNewChatMembership(payload.new)
+        const newMember = payload.new
+
+        if ('chat_id' in newMember) {
+          onNewChatMembership(newMember as ChatMember)
+        }
       }
     )
     .subscribe()
