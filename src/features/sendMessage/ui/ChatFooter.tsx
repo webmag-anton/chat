@@ -5,6 +5,8 @@ import { useChatStore } from '@/entities/chat'
 import { useSendMessage } from '../model/useSendMessage'
 import { useMessageStore } from '../model/messageStore'
 import { MessageTextarea } from '@/shared/ui/message-textarea'
+import { Icon } from '@/shared/ui/icon'
+import SendSvg from '@/shared/assets/icons/send.svg?react'
 
 export const ChatFooter = () => {
   const { message, setMessage, setMessageTextareaRows } = useMessageStore()
@@ -15,8 +17,10 @@ export const ChatFooter = () => {
   } = useChatStore()
   const sendMessage = useSendMessage(session?.user.id ?? '')
 
+  const isMessageEmpty = !message.trim()
+
   const handleMessageSending = async () => {
-    if (!session || !currentOpponentId || !message?.trim()) return
+    if (!session || !currentOpponentId || isMessageEmpty) return
 
     sendMessage.mutate(
       {
@@ -47,10 +51,17 @@ export const ChatFooter = () => {
       <Button
         className='font-bold text-[#072c82] tracking-wider'
         onClick={handleMessageSending}
+        horizontalPadding='lg'
+        disabled={isMessageEmpty}
         square
         hasBorders={false}
       >
-        Send
+        <Icon
+          Svg={SendSvg}
+          width={32}
+          height={32}
+          fill='#1d0bb4'
+        />
       </Button>
     </div>
   )
