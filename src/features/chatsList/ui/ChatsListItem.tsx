@@ -2,6 +2,7 @@ import { Avatar } from '@/shared/ui/avatar'
 import { useChatStore, type ChatWithOpponent } from '@/entities/chat'
 import { useMessageStore } from '@/features/sendMessage'
 import { useOnlineStatusStore } from '@/features/online-status-tracker'
+import { useMessagesQuery } from '@/entities/message'
 import clsx from 'clsx'
 
 interface ChatsListItemProps {
@@ -20,6 +21,15 @@ export const ChatsListItem = ({ chatData }: ChatsListItemProps) => {
   const { currentChatId, setActivePrivateChat } = useChatStore()
   const { resetTextarea } = useMessageStore()
   const { onlineUsers } = useOnlineStatusStore()
+  const { data: chatMessages } = useMessagesQuery(chatID)
+
+  const lastMessage = chatMessages
+    ? JSON.parse(chatMessages[chatMessages.length - 1].content)
+    : null
+
+  const lastRowInLastMessage = lastMessage
+    ? lastMessage.split('\n').slice(-1)[0]
+    : null
 
   const handleListItemClick = () => {
     setActivePrivateChat(
@@ -63,14 +73,27 @@ export const ChatsListItem = ({ chatData }: ChatsListItemProps) => {
     >
       <Avatar
         url={opponent?.avatar ?? null}
-        className='mr-3'
+        className='shrink-0 mr-3'
         size={60}
         title="Chat's avatar"
       />
 
-      <span className={chatInfoClasses}>
-        {opponentName}
-      </span>
+      <div
+        className='
+          flex
+          flex-col
+          justify-between
+          max-w-[calc(100%-60px)]
+          pr-3
+          py-[2px]
+        '
+      >
+        <span className={chatInfoClasses}>
+          {opponentName}
+        </span>
+
+        <span className='truncate text-sm'>{lastRowInLastMessage}</span>
+      </div>
     </li>
   )
 }

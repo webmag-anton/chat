@@ -22,7 +22,7 @@ export const Avatar = ( props: AvatarProps ) => {
     url
       ? <img
           src={url}
-          width={size}
+          width={`${size}px`}
           height={size}
           className='rounded-full object-cover aspect-square'
           alt={title}
