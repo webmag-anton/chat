@@ -3,8 +3,13 @@ import { useSidebarStore } from '../model/sidebarStore'
 import { Button } from '@/shared/ui/button'
 
 export const Sidebar = () => {
-  const isOpen = useSidebarStore(state => state.isOpen)
+  const { isOpen, closeSidebar } = useSidebarStore()
   const { logOut } = useAuthStore()
+
+  const handleLogOut = () => {
+    logOut()
+    closeSidebar()
+  }
 
   return (
     <aside className={`
@@ -20,7 +25,7 @@ export const Sidebar = () => {
       z-2
       ${isOpen ? 'left-0' : '-left-full'}
     `}>
-      <Button onClick={logOut}>Log out</Button>
+      <Button onClick={handleLogOut}>Log out</Button>
     </aside>
   )
 }

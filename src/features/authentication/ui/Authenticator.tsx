@@ -21,7 +21,19 @@ export const Authenticator = ({ loggedInComponent }: AuthenticationProps) => {
   useRealtimeSubscriptions(session)
 
   if (!session) {
-    return <Auth supabaseClient={supabase} appearance={{ theme: ThemeSupa }} />
+    return (
+      <div className='flex justify-center items-center min-h-screen bg-gray-100'>
+        <div className='p-6 bg-white rounded-xl shadow-md'>
+          <Auth
+            supabaseClient={supabase}
+            providers={['github', 'google', 'linkedin']}
+            appearance={{
+              theme: ThemeSupa
+            }}
+          />
+        </div>
+      </div>
+    )
   }
 
   return loggedInComponent

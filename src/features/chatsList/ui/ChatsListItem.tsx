@@ -92,7 +92,7 @@ export const ChatsListItem = ({ chatData }: ChatsListItemProps) => {
           {opponentName}
         </span>
 
-        <span className='truncate text-sm'>{lastRowInLastMessage}</span>
+        <span className='truncate'>{lastRowInLastMessage}</span>
       </div>
     </li>
   )
