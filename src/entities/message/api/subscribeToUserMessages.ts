@@ -3,11 +3,11 @@ import type { RealtimePostgresChangesPayload } from '@supabase/supabase-js'
 import type { Message } from '../types'
 
 export const subscribeToUserMessages = (
-  userId: string,
-  onNewMessage: (newMessage: Message) => void
+  loggedInUserId: string,
+  onNewMessage: (newMessage: Message, loggedInUserId: string) => void
 ) => {
   const channel = supabase
-    .channel(`user:${userId}:messages`)
+    .channel(`user:${loggedInUserId}:messages`)
     .on(
       'postgres_changes',
       {
@@ -26,11 +26,11 @@ export const subscribeToUserMessages = (
           .from('chat_members')
           .select('chat_id')
           .eq('chat_id', newMessage.chat_id)
-          .eq('user_id', userId)
+          .eq('user_id', loggedInUserId)
           .maybeSingle() // maybeSingle returns one record from a query or null
 
         if (isMember) {
-          onNewMessage(newMessage)
+          onNewMessage(newMessage, loggedInUserId)
         }
       }
     )

@@ -61,7 +61,7 @@ export const ChatWindow = () => {
           )
 
           const messageContentBaseClasses = clsx(
-            'min-w-[100px] p-[10px] rounded-2xl bg-[#edf0f8] break-words ' +
+            'min-w-[95px] p-[10px] rounded-2xl bg-[#edf0f8] break-words ' +
             'whitespace-pre-line',
             {
               'bg-accent': isOpponent,

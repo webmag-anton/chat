@@ -3,7 +3,8 @@ export const MessageDate = ({ date }: { date: string }) => {
     <li
       className='
         self-center
-        my-3
+        mt-5
+        mb-3
         px-2
         py-1
         bg-neutral-500

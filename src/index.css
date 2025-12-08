@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap');
 @import "tailwindcss";
+@import "tw-animate-css";
 
 @theme {
   --font-nunito-sans: 'Nunito Sans';
@@ -13,4 +14,8 @@
     font-family: var(--font-nunito-sans), sans-serif;
     background-color: #eaeaea;
   }
+}
+
+[data-sonner-toast][data-styled=true] {
+  width: auto;
 }
