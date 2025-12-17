@@ -1,5 +1,4 @@
 export { useMessagesQuery } from './model/useMessagesQuery'
-export { handleNewMessage } from './model/handleNewMessage'
 export { subscribeToUserMessages } from './api/subscribeToUserMessages'
 export { getMessagesByChatId } from './api/getMessagesByChatId'
 export { ChatMessage } from './ui/ChatMessage'

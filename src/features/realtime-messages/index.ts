@@ -1,0 +1,1 @@
+export { handleNewMessage } from './model/handleNewMessage'

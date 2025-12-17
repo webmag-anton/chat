@@ -1,11 +1,13 @@
 import { queryClient } from '@/shared/api/reactQueryClient'
-import type { Message } from '../types'
+import type { Message } from '@/entities/message/types'
 import { type ChatWithOpponent, useChatStore } from '@/entities/chat'
 import { shouldShowMessageToast } from '@/shared/lib'
+import { useTypingStore } from '@/features/typing-tracker'
 import { toast } from 'sonner'
 
 export function handleNewMessage(newMessage: Message, loggedInUserId: string) {
   const newMessageChatId = newMessage.chat_id
+  const newMessageSenderId = newMessage.sender_id
 
   if (!newMessageChatId) return
 
@@ -16,6 +18,11 @@ export function handleNewMessage(newMessage: Message, loggedInUserId: string) {
         ? old
         : [...old, newMessage]
   )
+
+  if (newMessageSenderId) {
+    const { clearTyping } = useTypingStore.getState()
+    clearTyping(newMessageChatId, newMessageSenderId)
+  }
 
   const { currentChatId } = useChatStore.getState()
 

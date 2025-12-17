@@ -1,12 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap');
-@import "tailwindcss";
-@import "tw-animate-css";
+@import 'tailwindcss';
+@import 'tw-animate-css';
 
 @theme {
   --font-nunito-sans: 'Nunito Sans';
   --color-accent: #f5f1de;
 
   --headers-height: 56px;
+
+  --typing-dot-width: 8px;
+  --typing-dot-color: #3b5998;
+  --typing-dots-speed: 1s;
 }
 
 @layer base {
@@ -18,4 +22,39 @@
 
 [data-sonner-toast][data-styled=true] {
   width: auto;
+}
+
+.typing-dots {
+  display: flex;
+  align-items: center;
+
+  span {
+    height: var(--typing-dot-width);
+    width: var(--typing-dot-width);
+    background: var(--typing-dot-color);
+    border-radius: 50%;
+    animation-fill-mode: both;
+    animation: blink var(--typing-dots-speed) infinite;
+
+    &:nth-child(2) {
+      animation-delay: .2s;
+      margin: 0 6px;
+    }
+
+    &:nth-child(3) {
+      animation-delay: .4s;
+    }
+  }
+}
+
+@keyframes blink {
+  0% {
+    opacity: .1;
+  }
+  20% {
+    opacity: 1;
+  }
+  100% {
+    opacity: .1;
+  }
 }

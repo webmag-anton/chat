@@ -2,7 +2,8 @@ import { useEffect } from 'react'
 import type { RealtimeChannel, Session } from '@supabase/supabase-js'
 import { subscriptionManager } from '@/shared/lib'
 import { subscribeToProfileUpdates } from '@/features/profilesList'
-import { subscribeToUserMessages, handleNewMessage } from '@/entities/message'
+import { subscribeToUserMessages } from '@/entities/message'
+import { handleNewMessage } from '@/features/realtime-messages'
 import {
   subscribeToNewChatMembership,
   subscribeToNewChats,
@@ -13,9 +14,14 @@ import {
   subscribeToOnlineStatusTracker,
   useOnlineStatusStore
 } from '@/features/online-status-tracker'
+import {
+  subscribeToTypingTracker,
+  useTypingStore
+} from '@/features/typing-tracker'
 
 export const useRealtimeSubscriptions = (session: Session | null) => {
-  const { setOnlineUsers } = useOnlineStatusStore()
+  const { setOnlineUsers } = useOnlineStatusStore.getState()
+  const { setTyping } = useTypingStore.getState()
 
   useEffect(() => {
     // subscribe to Realtime only after session exists
@@ -52,6 +58,15 @@ export const useRealtimeSubscriptions = (session: Session | null) => {
 
     const onlineStatusChannel = subscribeToOnlineStatusTracker(loggedInUserId)
     subscriptionManager.addSubscription(onlineStatusChannel)
+
+    const typingTrackerChannel = subscribeToTypingTracker(
+      ({ chatId, userId, isTyping }) => {
+        if (isTyping) {
+          setTyping(chatId, userId)
+        }
+      }
+    )
+    subscriptionManager.addSubscription(typingTrackerChannel)
 
     return subscriptionManager.clearSubscriptions
   }, [session])

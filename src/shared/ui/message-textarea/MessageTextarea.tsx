@@ -6,6 +6,8 @@ const maxRows: number = 8
 
 interface MessageTextareaProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {
   onChange: (e: ChangeEvent<HTMLTextAreaElement>) => void
+  onKeyDown: () => void
+  onKeyUp: () => void
   onMessageSend: () => void
   fullWidth?: boolean
   fullHeight?: boolean
@@ -15,6 +17,8 @@ interface MessageTextareaProps extends TextareaHTMLAttributes<HTMLTextAreaElemen
 export const MessageTextarea = (props: MessageTextareaProps) => {
   const {
     onChange,
+    onKeyDown,
+    onKeyUp,
     onMessageSend,
     fullHeight = false,
     fullWidth = false,
@@ -49,6 +53,8 @@ export const MessageTextarea = (props: MessageTextareaProps) => {
     if (event.key === 'Enter' && !event.shiftKey) {
       event.preventDefault()
       onMessageSend()
+    } else {
+      onKeyDown()
     }
   }
 
@@ -59,6 +65,7 @@ export const MessageTextarea = (props: MessageTextareaProps) => {
       rows={messageTextareaRows}
       onChange={handleChange}
       onKeyDown={handleKeyDown}
+      onKeyUp={onKeyUp}
       className={textareaClasses}
       placeholder='Write a message...'
       {...otherProps}

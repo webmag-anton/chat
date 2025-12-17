@@ -3,6 +3,7 @@ import { useChatStore, type ChatWithOpponent } from '@/entities/chat'
 import { useMessageStore } from '@/features/sendMessage'
 import { useOnlineStatusStore } from '@/features/online-status-tracker'
 import { useMessagesQuery } from '@/entities/message'
+import { useTypingStore, TypingIndicator } from '@/features/typing-tracker'
 import clsx from 'clsx'
 
 interface ChatsListItemProps {
@@ -22,6 +23,7 @@ export const ChatsListItem = ({ chatData }: ChatsListItemProps) => {
   const { resetTextarea } = useMessageStore()
   const { onlineUsers } = useOnlineStatusStore()
   const { data: chatMessages } = useMessagesQuery(chatID)
+  const hasTyping = useTypingStore((s) => s.hasTypingInChat(chatID))
 
   const lastMessage = chatMessages
     ? JSON.parse(chatMessages[chatMessages.length - 1].content)
@@ -92,7 +94,11 @@ export const ChatsListItem = ({ chatData }: ChatsListItemProps) => {
           {opponentName}
         </span>
 
-        <span className='truncate'>{lastRowInLastMessage}</span>
+        {hasTyping ? (
+          <TypingIndicator chatId={chatID} />
+        ) : (
+          <span className='truncate'>{lastRowInLastMessage}</span>
+        )}
       </div>
     </li>
   )
