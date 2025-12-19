@@ -22,7 +22,6 @@ export const ProfilesListItem = ({ userData }: ProfilesListItemProps) => {
   const loggedInUserId = session?.user.id
 
   const { currentOpponentId, setActivePrivateChat } = useChatStore()
-  const { resetTextarea } = useMessageStore()
   const { onlineUsers } = useOnlineStatusStore()
 
   const chatName = username || email
@@ -35,8 +34,10 @@ export const ProfilesListItem = ({ userData }: ProfilesListItemProps) => {
     setActivePrivateChat(chatId ?? null, userID, chatName, avatar)
 
     if (currentOpponentId !== userID) {
-      resetTextarea()
+      useMessageStore.getState().resetTextarea()
     }
+
+    useMessageStore.getState().requestTextareaFocus()
   }
 
   const baseClasses = clsx(

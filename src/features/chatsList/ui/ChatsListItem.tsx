@@ -20,7 +20,6 @@ export const ChatsListItem = ({ chatData }: ChatsListItemProps) => {
   const opponentId = opponent?.id
 
   const { currentChatId, setActivePrivateChat } = useChatStore()
-  const { resetTextarea } = useMessageStore()
   const { onlineUsers } = useOnlineStatusStore()
   const { data: chatMessages } = useMessagesQuery(chatID)
   const hasTyping = useTypingStore((s) => s.hasTypingInChat(chatID))
@@ -42,8 +41,10 @@ export const ChatsListItem = ({ chatData }: ChatsListItemProps) => {
     )
 
     if (chatID !== currentChatId) {
-      resetTextarea()
+      useMessageStore.getState().resetTextarea()
     }
+
+    useMessageStore.getState().requestTextareaFocus()
   }
 
   const baseClasses = clsx(

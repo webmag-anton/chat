@@ -1,4 +1,5 @@
 import type { ChangeEvent, TextareaHTMLAttributes } from 'react'
+import { useEffect, useRef } from 'react'
 import { useMessageStore } from '@/features/sendMessage'
 import clsx from 'clsx'
 
@@ -29,8 +30,10 @@ export const MessageTextarea = (props: MessageTextareaProps) => {
   const {
     message,
     messageTextareaRows,
-    setMessageTextareaRows
+    focusTextareaToken
   } = useMessageStore()
+
+  const textareaRef = useRef<HTMLTextAreaElement | null>(null)
 
   const textareaClasses = clsx(
     'w-full px-5 py-4 leading-[28px] bg-[#3f4050] text-white resize-none',
@@ -45,7 +48,8 @@ export const MessageTextarea = (props: MessageTextareaProps) => {
     const value = e.target.value
     const newRows = value.split('\n').length
 
-    setMessageTextareaRows(Math.max(1, Math.min(newRows, maxRows)))
+    useMessageStore.getState()
+      .setMessageTextareaRows(Math.max(1, Math.min(newRows, maxRows)))
     onChange(e)
   }
 
@@ -58,10 +62,15 @@ export const MessageTextarea = (props: MessageTextareaProps) => {
     }
   }
 
+  useEffect(() => {
+    textareaRef.current?.focus()
+  }, [focusTextareaToken])
+
   return (
     <textarea
       id='message-textarea'
       value={message}
+      ref={textareaRef}
       rows={messageTextareaRows}
       onChange={handleChange}
       onKeyDown={handleKeyDown}
