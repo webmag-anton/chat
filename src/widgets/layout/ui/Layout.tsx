@@ -1,4 +1,4 @@
-import { ChatSidebar } from '@/widgets/chatSidebar'
+import { ChatSidebar } from '@/widgets/chat-sidebar'
 import { Chat } from '@/widgets/chat'
 import { Sidebar, useSidebarStore } from '@/widgets/sidebar'
 import { Overlay } from '@/shared/ui/overlay'

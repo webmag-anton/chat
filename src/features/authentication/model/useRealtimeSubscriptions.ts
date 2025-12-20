@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import type { RealtimeChannel, Session } from '@supabase/supabase-js'
 import { subscriptionManager } from '@/shared/lib'
-import { subscribeToProfileUpdates } from '@/features/profilesList'
+import { subscribeToProfileUpdates } from '@/features/profiles-list'
 import { subscribeToUserMessages } from '@/entities/message'
 import { handleNewMessage } from '@/features/realtime-messages'
 import {

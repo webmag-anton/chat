@@ -1,6 +1,6 @@
 import type { ChangeEvent, TextareaHTMLAttributes } from 'react'
 import { useEffect, useRef } from 'react'
-import { useMessageStore } from '@/features/sendMessage'
+import { useMessageStore } from '@/features/send-message'
 import clsx from 'clsx'
 
 const maxRows: number = 8

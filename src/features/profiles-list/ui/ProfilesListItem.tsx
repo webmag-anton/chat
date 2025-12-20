@@ -1,7 +1,7 @@
 import type { UserProfile } from '@/entities/profile'
 import { Avatar } from '@/shared/ui/avatar'
 import { useAuthStore } from '@/features/authentication'
-import { useMessageStore } from '@/features/sendMessage'
+import { useMessageStore } from '@/features/send-message'
 import { useChatStore, fetchPrivateChatId } from '@/entities/chat'
 import { useOnlineStatusStore } from '@/features/online-status-tracker'
 import clsx from 'clsx'

@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
-import { ProfilesList } from '@/features/profilesList'
+import { ProfilesList } from '@/features/profiles-list'
 import { useChatSidebarStore } from '../model/chatSidebarStore'
-import { ChatsList } from '@/features/chatsList'
+import { ChatsList } from '@/features/chats-list'
 import { useFirstChatId } from '@/entities/chat'
 import { useAuthStore } from '@/features/authentication'
 

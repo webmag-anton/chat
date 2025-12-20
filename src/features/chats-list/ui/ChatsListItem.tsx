@@ -1,6 +1,6 @@
 import { Avatar } from '@/shared/ui/avatar'
 import { useChatStore, type ChatWithOpponent } from '@/entities/chat'
-import { useMessageStore } from '@/features/sendMessage'
+import { useMessageStore } from '@/features/send-message'
 import { useOnlineStatusStore } from '@/features/online-status-tracker'
 import { useMessagesQuery } from '@/entities/message'
 import { useTypingStore, TypingIndicator } from '@/features/typing-tracker'
