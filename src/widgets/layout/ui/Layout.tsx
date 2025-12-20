@@ -6,7 +6,7 @@ import { Toaster } from 'sonner'
 
 export const Layout = () => {
   const isSidebarOpen = useSidebarStore((state) => state.isOpen)
-  const closeSidebarHandler = useSidebarStore((state) => state.closeSidebar)
+  const closeSidebar = useSidebarStore((state) => state.closeSidebar)
 
   return (
     <>
@@ -25,7 +25,7 @@ export const Layout = () => {
 
         <Sidebar/>
 
-        {isSidebarOpen && <Overlay onClick={closeSidebarHandler}/>}
+        {isSidebarOpen && <Overlay onClick={closeSidebar}/>}
       </div>
 
       <Toaster />

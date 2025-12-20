@@ -32,7 +32,7 @@ export const ChatsListItem = ({ chatData }: ChatsListItemProps) => {
     ? lastMessage.split('\n').slice(-1)[0]
     : null
 
-  const handleListItemClick = () => {
+  const handleSelectChat = () => {
     setActivePrivateChat(
       chatID ?? null,
       opponentId ?? null,
@@ -72,7 +72,7 @@ export const ChatsListItem = ({ chatData }: ChatsListItemProps) => {
   return (
     <li
       className={baseClasses}
-      onClick={handleListItemClick}
+      onClick={handleSelectChat}
     >
       <Avatar
         url={opponent?.avatar ?? null}

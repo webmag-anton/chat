@@ -26,7 +26,7 @@ export const ProfilesListItem = ({ userData }: ProfilesListItemProps) => {
 
   const chatName = username || email
 
-  const handleListItemClick = async () => {
+  const handleSelectUser = async () => {
     if (!loggedInUserId) return
     // Trigger the query manually — it will also be cached
     const chatId = await fetchPrivateChatId(loggedInUserId, userID)
@@ -65,7 +65,7 @@ export const ProfilesListItem = ({ userData }: ProfilesListItemProps) => {
   return (
     <li
       className={baseClasses}
-      onClick={handleListItemClick}
+      onClick={handleSelectUser}
     >
       <Avatar
         url={avatar}
