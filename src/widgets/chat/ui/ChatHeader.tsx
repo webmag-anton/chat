@@ -11,10 +11,15 @@ export const ChatHeader = () => {
         basis-[var(--headers-height)]
         shrink-0
         px-5
+        py-1
+        bg-bg-main
+        border-l
+        border-text-reverted
+        font-bold
       '
     >
       <span
-        className='text-xl tracking-wider'
+        className='text-lg text-main tracking-wider'
       >
         {currentOpponentName}
       </span>

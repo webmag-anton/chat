@@ -20,15 +20,15 @@ export const ChatSidebarHeader = () => {
         items-center
         basis-[var(--headers-height)]
         shrink-0
+        py-1
+        pr-1
       '
     >
       <Hamburger onClick={openSidebarHandler} />
       <Button
-        className='border-l-1 font-semibold text-[#072c82] uppercase tracking-[2px]'
+        className='font-semibold text-main uppercase tracking-[2px]'
         horizontalPadding='sm'
         fullHeight
-        square
-        hasBorders={false}
         onClick={toggleListType}
       >
         {toggleButtonText}

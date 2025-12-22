@@ -48,10 +48,11 @@ export const Button = (props: ButtonProps) => {
   }
 
   const baseClasses = clsx(
-    'flex items-center justify-center cursor-pointer transition hover:bg-accent',
+    'flex items-center justify-center bg-accent cursor-pointer transition',
+    'hover:bg-accent',
     {
-      'rounded-[20px]': !square,
-      border: hasBorders,
+      'rounded-xl': !square,
+      'border-1 border-[var(--color-main)]': hasBorders,
       'w-full': fullWidth,
       'h-full': fullHeight,
       'opacity-50 pointer-events-none': disabled,

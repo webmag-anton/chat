@@ -25,7 +25,6 @@ export const ChatSidebarBody = () => {
       className={`
         relative
         grow
-        border-t
         overflow-y-auto
         before:fixed
         before:top-1/2
@@ -38,7 +37,7 @@ export const ChatSidebarBody = () => {
         before:text-center
         before:uppercase
         before:tracking-[14px]
-        before:text-[#1d0bb4]
+        before:text-main
         before:[writing-mode:vertical-lr]
         before:pointer-events-none
       `}

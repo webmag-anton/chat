@@ -9,7 +9,7 @@ export const MessageDate = ({ date }: { date: string }) => {
         py-1
         bg-neutral-500
         text-sm
-        text-white
+        text-text-reverted
         text-center
         rounded-2xl
       '

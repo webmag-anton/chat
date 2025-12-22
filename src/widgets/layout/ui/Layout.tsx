@@ -14,8 +14,8 @@ export const Layout = () => {
       relative
       max-w-7xl
       mx-auto
-      border-x
       bg-white
+      shadow-[0_6px_12px_var(--color-accent)]
       overflow-hidden'
       >
         <main className='flex h-screen'>

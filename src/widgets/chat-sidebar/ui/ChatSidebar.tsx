@@ -7,10 +7,10 @@ export const ChatSidebar = () => {
       className='
         flex
         flex-col
-        basis-[400px]
+        basis-[var(--chat-sidebar-width)]
         shrink-0
-        max-w-[400px]
-        border-r
+        max-w-[var(--chat-sidebar-width)]
+        bg-bg-main
       '
     >
       <ChatSidebarHeader />

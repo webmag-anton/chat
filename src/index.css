@@ -4,50 +4,60 @@
 
 @theme {
   --font-nunito-sans: 'Nunito Sans';
-  --color-accent: #f5f1de;
+
+  /*--color-main: #072c82;*/
+  --color-main: #2f1908;
+  /*--color-accent: #c3f2f2;*/
+  --color-accent: #fff6df;
+  --color-text-main: #000;
+  --color-text-reverted: #fff;
+  --color-bg-main: #f4f4f4;
+  --color-bg-message: #e8e8e8;
+
+  --color-main-hover: #904d19;
 
   --headers-height: 56px;
+  --text-input-height: 60px;
+  --chat-sidebar-width: 420px;
+  --sidebar-width: 400px;
 
-  --typing-dot-width: 8px;
-  --typing-dot-color: #3b5998;
+  --typing-dot-size: 8px;
+  --typing-dot-color: var(--color-main);
   --typing-dots-speed: 1s;
 }
 
 @layer base {
   html {
+    /*background-color: #eaeaea;*/
     font-family: var(--font-nunito-sans), sans-serif;
-    background-color: #eaeaea;
+    color: var(--color-text-main);
   }
 }
 
-[data-sonner-toast][data-styled=true] {
-  width: auto;
-}
+@layer components {
+  .typing-dots {
+    @apply flex items-center;
+  }
 
-.typing-dots {
-  display: flex;
-  align-items: center;
+  .typing-dots span {
+    @apply rounded-full;
+    width: var(--typing-dot-size);
+    height: var(--typing-dot-size);
+    background-color: var(--typing-dot-color);
+    animation: typing-blink var(--typing-dots-speed) infinite both;
+  }
 
-  span {
-    height: var(--typing-dot-width);
-    width: var(--typing-dot-width);
-    background: var(--typing-dot-color);
-    border-radius: 50%;
-    animation-fill-mode: both;
-    animation: blink var(--typing-dots-speed) infinite;
+  .typing-dots span:nth-child(2) {
+    animation-delay: 0.2s;
+    margin: 0 6px;
+  }
 
-    &:nth-child(2) {
-      animation-delay: .2s;
-      margin: 0 6px;
-    }
-
-    &:nth-child(3) {
-      animation-delay: .4s;
-    }
+  .typing-dots span:nth-child(3) {
+    animation-delay: 0.4s;
   }
 }
 
-@keyframes blink {
+@keyframes typing-blink {
   0% {
     opacity: .1;
   }
@@ -57,4 +67,8 @@
   100% {
     opacity: .1;
   }
+}
+
+[data-sonner-toast][data-styled=true] {
+  width: auto;
 }

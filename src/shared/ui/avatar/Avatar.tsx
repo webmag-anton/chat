@@ -14,7 +14,7 @@ export const Avatar = ( props: AvatarProps ) => {
     url,
     size = 50,
     title = 'Avatar',
-    fill = '#072c82',
+    fill = 'var(--color-main)',
     className
   } = props
 

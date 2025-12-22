@@ -20,22 +20,36 @@ export const ChatWindow = () => {
 
   if (!currentOpponentId) {
     return (
-      <div className='p-3 grow border-y'>
-        Choose a user or group to chat with
+      <div className='grow text-center place-content-center'>
+        <span className='p-2 rounded-2xl bg-bg-message'>
+          Choose a user or group to chat with
+        </span>
       </div>
     )
   }
   if (!currentChatId) {
-    return <div className='p-3 grow border-y'>No messages here yet...</div>
+    return (
+      <div className='grow text-center place-content-center'>
+        <span className='p-2 rounded-2xl bg-bg-message'>
+          No messages here yet...
+        </span>
+      </div>
+    )
   }
   if (isMessagesLoading) {
-    return <div className='grow p-3'>Loading...</div>
+    return (
+      <div className='grow text-center place-content-center'>
+        <span className='p-2 rounded-2xl bg-bg-message'>
+          Loading...
+        </span>
+      </div>
+    )
   }
 
   let messageDate: string = ''
 
   return (
-    <div className='grow px-5 py-3 border-y overflow-y-auto overflow-x-hidden'>
+    <div className='grow px-5 py-3 overflow-y-auto overflow-x-hidden'>
       <ul className='flex flex-col max-w-[580px]'>
         {messages?.map((m, i) => {
           const isOpponent = m.sender_id === currentOpponentId
@@ -61,10 +75,9 @@ export const ChatWindow = () => {
           )
 
           const messageContentBaseClasses = clsx(
-            'min-w-[95px] p-[10px] rounded-2xl bg-[#edf0f8] break-words ' +
-            'whitespace-pre-line',
+            'min-w-[95px] p-[10px] rounded-2xl break-words whitespace-pre-line',
+            isOpponent ? 'bg-accent' : 'bg-bg-message',
             {
-              'bg-accent': isOpponent,
               'rounded-bl-none': isShowAvatar
             }
           )

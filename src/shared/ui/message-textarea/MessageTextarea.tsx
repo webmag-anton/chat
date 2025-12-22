@@ -36,7 +36,8 @@ export const MessageTextarea = (props: MessageTextareaProps) => {
   const textareaRef = useRef<HTMLTextAreaElement | null>(null)
 
   const textareaClasses = clsx(
-    'w-full px-5 py-4 leading-[28px] bg-[#3f4050] text-white resize-none',
+    'w-full px-5 py-4 leading-[28px] bg-main text-text-reverted resize-none',
+    'focus:outline-none',
     {
       'w-full': fullWidth,
       'h-full': fullHeight,

@@ -16,7 +16,7 @@ export const Sidebar = () => {
       absolute 
       top-0 
       bottom-0 
-      w-[400px] 
+      w-[var(--sidebar-width)] 
       max-w-screen 
       p-3
       bg-white

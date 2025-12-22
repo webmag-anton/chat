@@ -24,6 +24,7 @@ export const ChatFooter = () => {
   } = useTypingSender(currentChatId, session?.user.id ?? null)
 
   const isMessageEmpty = !message.trim()
+  const isBtnActive= !!currentOpponentId && !isMessageEmpty
 
   const handleMessageSending = async () => {
     if (!session || !currentOpponentId || isMessageEmpty) return
@@ -47,20 +48,19 @@ export const ChatFooter = () => {
   }
 
   return (
-    <div className='flex basis-[60px] shrink-0'>
+    <div className='flex basis-[var(--text-input-height)] shrink-0'>
       <MessageTextarea
         onChange={(e: ChangeEvent<HTMLTextAreaElement>) => setMessage(e.target.value)}
         onKeyDown={notifyTyping}
         onKeyUp={notifyStopped}
         onMessageSend={handleMessageSending}
         fullWidth
-        className='border-r-1'
       />
       <Button
-        className='font-bold text-[#072c82] tracking-wider'
+        className='bg-accent text-main font-bold text-main tracking-wider'
         onClick={handleMessageSending}
         horizontalPadding='lg'
-        disabled={isMessageEmpty}
+        disabled={!isBtnActive}
         square
         hasBorders={false}
       >
@@ -68,7 +68,7 @@ export const ChatFooter = () => {
           Svg={SendSvg}
           width={32}
           height={32}
-          fill='#1d0bb4'
+          fill='currentColor'
         />
       </Button>
     </div>
