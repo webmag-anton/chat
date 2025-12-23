@@ -21,7 +21,7 @@ export const ChatSidebarHeader = () => {
         basis-[var(--headers-height)]
         shrink-0
         py-1
-        pr-1
+        pr-3
       '
     >
       <Hamburger onClick={openSidebarHandler} />

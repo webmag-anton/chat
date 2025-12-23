@@ -1,4 +1,4 @@
-import { supabase } from '@/shared/api/supabaseClient'
+import { getTypingChannel } from './typingChannel'
 
 export type TypingPayload = {
   chatId: string
@@ -6,18 +6,10 @@ export type TypingPayload = {
   isTyping: boolean
 }
 
-export const sendTypingEvent = async (payload: TypingPayload) => {
-  const channel = supabase.channel('typing:tracker', {
-    config: { broadcast: { self: true } }
-  })
-
-  await channel.send({
+export const sendTypingEvent = (payload: TypingPayload) => {
+  return getTypingChannel().send({
     type: 'broadcast',
     event: 'typing',
     payload
   })
-
-  try {
-    await supabase.removeChannel(channel)
-  } catch {}
 }
