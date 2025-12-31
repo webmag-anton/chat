@@ -3,7 +3,7 @@ import { useChatsQuery } from '../model/useChatsQuery'
 import { useAuthStore } from '@/features/authentication'
 
 export const ChatsList = () => {
-  const { session } = useAuthStore()
+  const session = useAuthStore(s => s.session)
   const {
     data: chatsWithOpponents,
     isLoading,

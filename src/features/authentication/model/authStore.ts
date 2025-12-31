@@ -1,7 +1,7 @@
 import { create } from 'zustand'
 import type { Session, Subscription } from '@supabase/supabase-js'
-import { signOut } from '../api/signOut.ts'
-import { subscribeToAuthChange } from '../api/subscribeToAuthChange.ts'
+import { signOut } from '../api/signOut'
+import { subscribeToAuthChange } from '../api/subscribeToAuthChange'
 
 interface AuthState {
   session: Session | null

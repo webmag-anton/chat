@@ -5,8 +5,9 @@ import { useChatSidebarStore } from '../model/chatSidebarStore'
 import type { listType } from '../types'
 
 export const ChatSidebarHeader = () => {
-  const openSidebarHandler = useSidebarStore(state => state.openSidebar)
-  const { listType, toggleListType } = useChatSidebarStore()
+  const openSidebarHandler = useSidebarStore(s => s.openSidebar)
+  const listType = useChatSidebarStore(s => s.listType)
+  const toggleListType = useChatSidebarStore(s => s.toggleListType)
 
   const nextListType: listType =
     listType === 'users' ? 'chats' : 'users'

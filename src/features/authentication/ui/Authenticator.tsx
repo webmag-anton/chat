@@ -10,7 +10,9 @@ interface AuthenticationProps {
 }
 
 export const Authenticator = ({ loggedInComponent }: AuthenticationProps) => {
-  const { session, startAuthListener, stopAuthListener } = useAuthStore()
+  const session = useAuthStore(s => s.session)
+  const startAuthListener = useAuthStore(s => s.startAuthListener)
+  const stopAuthListener = useAuthStore(s => s.stopAuthListener)
 
   useEffect(() => {
     startAuthListener()

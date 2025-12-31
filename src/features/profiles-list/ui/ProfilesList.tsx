@@ -4,7 +4,7 @@ import { useProfilesQuery } from '../model/useProfilesQuery'
 
 export const ProfilesList = () => {
   const { data, isLoading, error } = useProfilesQuery()
-  const { session } = useAuthStore()
+  const session = useAuthStore(s => s.session)
 
   if (isLoading) {
     return (

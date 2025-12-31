@@ -1,7 +1,7 @@
 import { useTypingStore } from '../model/typingStore'
 
 export const TypingIndicator = ({ chatId }: { chatId: string }) => {
-  const typingMap = useTypingStore((s) => s.typingByChat[chatId])
+  const typingMap = useTypingStore(s => s.typingByChat[chatId])
   if (!typingMap) return null
 
   const userIds = Object.keys(typingMap).filter((id) => typingMap[id])

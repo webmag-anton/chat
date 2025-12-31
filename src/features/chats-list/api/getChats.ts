@@ -28,6 +28,7 @@ export const getChats = async (loggedInUserId: string): Promise<ChatWithOpponent
           id,
           username,
           avatar,
+          avatar_version,
           bio,
           email,
           last_seen,

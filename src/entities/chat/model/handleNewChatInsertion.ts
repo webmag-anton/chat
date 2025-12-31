@@ -20,6 +20,7 @@ export async function handleNewChatInsertion(
           id,
           username,
           avatar,
+          avatar_version,
           bio,
           email,
           last_seen,

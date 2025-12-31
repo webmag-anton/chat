@@ -10,13 +10,14 @@ import { Icon } from '@/shared/ui/icon'
 import SendSvg from '@/shared/assets/icons/send.svg?react'
 
 export const ChatFooter = () => {
-  const { message, setMessage, setMessageTextareaRows } = useMessageStore()
-  const { session } = useAuthStore()
-  const {
-    currentOpponentId,
-    currentChatId,
-    updateCurrentChatId
-  } = useChatStore()
+  const message = useMessageStore(s => s.message)
+  const setMessage = useMessageStore(s => s.setMessage)
+  const setMessageTextareaRows = useMessageStore(s => s.setMessageTextareaRows)
+  const session = useAuthStore(s => s.session)
+  const currentOpponentId = useChatStore(s => s.currentOpponentId)
+  const currentChatId = useChatStore(s => s.currentChatId)
+  const updateCurrentChatId = useChatStore(s => s.updateCurrentChatId)
+
   const sendMessage = useSendMessage(session?.user.id ?? '')
   const {
     notifyTyping,

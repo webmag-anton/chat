@@ -6,8 +6,10 @@ import { useFirstChatId } from '@/entities/chat'
 import { useAuthStore } from '@/features/authentication'
 
 export const ChatSidebarBody = () => {
-  const { listType, setListType } = useChatSidebarStore()
-  const { session } = useAuthStore()
+  const listType = useChatSidebarStore(s => s.listType)
+  const setListType = useChatSidebarStore(s => s.setListType)
+  const session = useAuthStore(s => s.session)
+
   const loggedInUserId = session?.user?.id ?? ''
   const { data: firstChatId } = useFirstChatId(loggedInUserId)
 

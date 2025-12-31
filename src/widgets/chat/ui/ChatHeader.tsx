@@ -1,7 +1,7 @@
 import { useChatStore } from '@/entities/chat'
 
 export const ChatHeader = () => {
-  const { currentOpponentName } = useChatStore()
+  const currentOpponentName = useChatStore(s => s.currentOpponentName)
 
   return (
     <div

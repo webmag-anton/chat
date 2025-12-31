@@ -11,6 +11,9 @@ export function handleNewMessage(newMessage: Message, loggedInUserId: string) {
 
   if (!newMessageChatId) return
 
+  const { currentChatId } = useChatStore.getState()
+  const { clearTyping } = useTypingStore.getState()
+
   queryClient.setQueryData<Message[]>(
     ['messages', newMessageChatId],
     (old = []) =>
@@ -20,11 +23,8 @@ export function handleNewMessage(newMessage: Message, loggedInUserId: string) {
   )
 
   if (newMessageSenderId) {
-    const { clearTyping } = useTypingStore.getState()
     clearTyping(newMessageChatId, newMessageSenderId)
   }
-
-  const { currentChatId } = useChatStore.getState()
 
   if (currentChatId !== newMessageChatId) {
     const chats = queryClient

@@ -13,7 +13,8 @@ export const ChatWindow = () => {
   const currentOpponentId = useChatStore(s => s.currentOpponentId)
   const currentOpponentName = useChatStore(s => s.currentOpponentName)
   const currentOpponentAvatar = useChatStore(s => s.currentOpponentAvatar)
-  const currentOpponentAvatarVersion = useChatStore(s => s.currentOpponentAvatarVersion)
+  const currentOpponentAvatarVersion
+    = useChatStore(s => s.currentOpponentAvatarVersion)
 
   const session = useAuthStore(s => s.session)
 
