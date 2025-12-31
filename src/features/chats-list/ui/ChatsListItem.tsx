@@ -4,6 +4,7 @@ import { useMessageStore } from '@/features/send-message'
 import { useOnlineStatusStore } from '@/features/online-status-tracker'
 import { useMessagesQuery } from '@/entities/message'
 import { useTypingStore, TypingIndicator } from '@/features/typing-tracker'
+import { getPublicAvatarUrl } from '@/shared/lib'
 import clsx from 'clsx'
 
 interface ChatsListItemProps {
@@ -19,10 +20,14 @@ export const ChatsListItem = ({ chatData }: ChatsListItemProps) => {
   const opponentName = opponent?.username || opponent?.email
   const opponentId = opponent?.id
 
-  const { currentChatId, setActivePrivateChat } = useChatStore()
-  const { onlineUsers } = useOnlineStatusStore()
+  const currentChatId = useChatStore(s => s.currentChatId)
+  const setActivePrivateChat = useChatStore(s => s.setActivePrivateChat)
+  const onlineUsers = useOnlineStatusStore(s => s.onlineUsers)
+  const hasTyping = useTypingStore(s => s.hasTypingInChat(chatID))
+  const resetTextarea = useMessageStore(s => s.resetTextarea)
+  const requestTextareaFocus = useMessageStore(s => s.requestTextareaFocus)
+
   const { data: chatMessages } = useMessagesQuery(chatID)
-  const hasTyping = useTypingStore((s) => s.hasTypingInChat(chatID))
 
   const lastMessage = chatMessages
     ? JSON.parse(chatMessages[chatMessages.length - 1].content)
@@ -32,19 +37,23 @@ export const ChatsListItem = ({ chatData }: ChatsListItemProps) => {
     ? lastMessage.split('\n').slice(-1)[0]
     : null
 
+  const avatarUrl
+    = getPublicAvatarUrl(opponent?.avatar, opponent?.avatar_version)
+
   const handleSelectChat = () => {
     setActivePrivateChat(
       chatID ?? null,
       opponentId ?? null,
       opponentName ?? null,
-      opponent?.avatar ?? null
+      opponent?.avatar ?? null,
+      opponent?.avatar_version ?? null
     )
 
     if (chatID !== currentChatId) {
-      useMessageStore.getState().resetTextarea()
+      resetTextarea()
     }
 
-    useMessageStore.getState().requestTextareaFocus()
+    requestTextareaFocus()
   }
 
   const baseClasses = clsx(
@@ -75,7 +84,7 @@ export const ChatsListItem = ({ chatData }: ChatsListItemProps) => {
       onClick={handleSelectChat}
     >
       <Avatar
-        url={opponent?.avatar ?? null}
+        url={avatarUrl}
         className='shrink-0 mr-3'
         size={60}
         title="Chat's avatar"

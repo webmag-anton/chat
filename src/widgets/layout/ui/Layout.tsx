@@ -3,10 +3,11 @@ import { Chat } from '@/widgets/chat'
 import { Sidebar, useSidebarStore } from '@/widgets/sidebar'
 import { Overlay } from '@/shared/ui/overlay'
 import { Toaster } from 'sonner'
+import { EditProfileDialog } from '@/features/profile-edit'
 
 export const Layout = () => {
-  const isSidebarOpen = useSidebarStore((state) => state.isOpen)
-  const closeSidebar = useSidebarStore((state) => state.closeSidebar)
+  const isSidebarOpen = useSidebarStore(s => s.isOpen)
+  const closeSidebar = useSidebarStore(s => s.closeSidebar)
 
   return (
     <>
@@ -25,7 +26,9 @@ export const Layout = () => {
 
         <Sidebar/>
 
-        {isSidebarOpen && <Overlay onClick={closeSidebar}/>}
+        <Overlay isShow={isSidebarOpen} onClick={closeSidebar}/>
+
+        <EditProfileDialog />
       </div>
 
       <Toaster />

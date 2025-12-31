@@ -3,20 +3,26 @@ import { useChatStore } from '@/entities/chat'
 import { useMessagesQuery } from '@/entities/message'
 import { ChatMessage } from '@/entities/message'
 import { MessageDate } from './MessageDate'
+import { getPublicAvatarUrl } from '@/shared/lib'
+import { useLoggedInUserProfile } from '@/features/profile-edit'
+import { useAuthStore } from '@/features/authentication'
 import clsx from 'clsx'
 
 export const ChatWindow = () => {
-  const {
-    currentChatId,
-    currentOpponentId,
-    currentOpponentName,
-    currentOpponentAvatar
-  } = useChatStore()
+  const currentChatId = useChatStore(s => s.currentChatId)
+  const currentOpponentId = useChatStore(s => s.currentOpponentId)
+  const currentOpponentName = useChatStore(s => s.currentOpponentName)
+  const currentOpponentAvatar = useChatStore(s => s.currentOpponentAvatar)
+  const currentOpponentAvatarVersion = useChatStore(s => s.currentOpponentAvatarVersion)
+
+  const session = useAuthStore(s => s.session)
 
   const {
     data: messages,
     isLoading: isMessagesLoading
   } = useMessagesQuery(currentChatId)
+  const { data: myProfileData }
+    = useLoggedInUserProfile(session?.user?.id ?? '')
 
   if (!currentOpponentId) {
     return (
@@ -97,6 +103,13 @@ export const ChatWindow = () => {
           const messageTime =
             `${messageDateObj.getHours()}:${minutes < 10 ? `0${minutes}` : minutes}`
 
+          const avatar = getPublicAvatarUrl(
+            isOpponent ? currentOpponentAvatar : myProfileData?.avatar,
+            isOpponent
+              ? currentOpponentAvatarVersion
+              : myProfileData?.avatar_version
+          )
+
           return (
             <Fragment key={m.id}>
               {isShowNewDate && <MessageDate date={normalisedDate} />}
@@ -106,7 +119,7 @@ export const ChatWindow = () => {
                 messageContentClassName={messageContentBaseClasses}
                 isShowAvatar={isShowAvatar}
                 isOpponent={isOpponent}
-                avatar={currentOpponentAvatar}
+                avatar={avatar}
                 userName={currentOpponentName}
                 message={m}
                 messageTime={messageTime}

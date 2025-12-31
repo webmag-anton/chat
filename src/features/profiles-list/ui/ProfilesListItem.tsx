@@ -4,6 +4,7 @@ import { useAuthStore } from '@/features/authentication'
 import { useMessageStore } from '@/features/send-message'
 import { useChatStore, fetchPrivateChatId } from '@/entities/chat'
 import { useOnlineStatusStore } from '@/features/online-status-tracker'
+import { getPublicAvatarUrl } from '@/shared/lib'
 import clsx from 'clsx'
 
 interface ProfilesListItemProps {
@@ -15,29 +16,37 @@ export const ProfilesListItem = ({ userData }: ProfilesListItemProps) => {
     id: userID,
     username,
     email,
-    avatar
+    avatar,
+    avatar_version
   } = userData
 
-  const { session } = useAuthStore()
+  const session = useAuthStore(s => s.session)
   const loggedInUserId = session?.user.id
 
-  const { currentOpponentId, setActivePrivateChat } = useChatStore()
-  const { onlineUsers } = useOnlineStatusStore()
+  const currentOpponentId = useChatStore(s => s.currentOpponentId)
+  const setActivePrivateChat = useChatStore(s => s.setActivePrivateChat)
+  const onlineUsers = useOnlineStatusStore(s => s.onlineUsers)
+  const resetTextarea = useMessageStore(s => s.resetTextarea)
+  const requestTextareaFocus = useMessageStore(s => s.requestTextareaFocus)
 
   const chatName = username || email
+
+  const avatarUrl = getPublicAvatarUrl(avatar, avatar_version)
 
   const handleSelectUser = async () => {
     if (!loggedInUserId) return
     // Trigger the query manually — it will also be cached
     const chatId = await fetchPrivateChatId(loggedInUserId, userID)
 
-    setActivePrivateChat(chatId ?? null, userID, chatName, avatar)
+    setActivePrivateChat(
+      chatId ?? null, userID, chatName, avatar, avatar_version
+    )
 
     if (currentOpponentId !== userID) {
-      useMessageStore.getState().resetTextarea()
+      resetTextarea()
     }
 
-    useMessageStore.getState().requestTextareaFocus()
+    requestTextareaFocus()
   }
 
   const baseClasses = clsx(
@@ -68,7 +77,7 @@ export const ProfilesListItem = ({ userData }: ProfilesListItemProps) => {
       onClick={handleSelectUser}
     >
       <Avatar
-        url={avatar}
+        url={avatarUrl}
         className='mr-3'
         size={60}
         title="User's avatar"

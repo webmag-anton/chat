@@ -72,3 +72,7 @@
 [data-sonner-toast][data-styled=true] {
   width: auto;
 }
+
+div[role='dialog'] {
+  background: var(--color-text-reverted);
+}
