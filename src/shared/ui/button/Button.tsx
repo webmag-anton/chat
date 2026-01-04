@@ -3,6 +3,8 @@ import clsx from 'clsx'
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   className?: string
+  centered?: boolean
+  transparent?: boolean
   square?: boolean
   hasBorders?: boolean
   fullWidth?: boolean
@@ -18,6 +20,8 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 export const Button = (props: ButtonProps) => {
   const {
     className,
+    centered = true,
+    transparent = false,
     square = false,
     hasBorders = true,
     fullWidth = false,
@@ -48,9 +52,10 @@ export const Button = (props: ButtonProps) => {
   }
 
   const baseClasses = clsx(
-    'flex items-center justify-center bg-accent cursor-pointer transition',
-    'hover:bg-accent',
+    'flex items-center bg-accent cursor-pointer transition',
     {
+      'justify-center': centered,
+      'bg-transparent hover:bg-accent': transparent,
       'rounded-xl': !square,
       'border-1 border-[var(--color-main)]': hasBorders,
       'w-full': fullWidth,

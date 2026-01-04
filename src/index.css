@@ -5,16 +5,14 @@
 @theme {
   --font-nunito-sans: 'Nunito Sans';
 
-  /*--color-main: #072c82;*/
-  --color-main: #2f1908;
-  /*--color-accent: #c3f2f2;*/
+  --color-main: #361e0b;
   --color-accent: #fff6df;
   --color-text-main: #000;
   --color-text-reverted: #fff;
   --color-bg-main: #f4f4f4;
   --color-bg-message: #e8e8e8;
 
-  --color-main-hover: #904d19;
+  --color-main-hover: #9d653b;
 
   --headers-height: 56px;
   --text-input-height: 60px;

@@ -22,7 +22,7 @@ export const ChatWindow = () => {
     data: messages,
     isLoading: isMessagesLoading
   } = useMessagesQuery(currentChatId)
-  const { data: myProfileData }
+  const { data: loggedInUserData }
     = useLoggedInUserProfile(session?.user?.id ?? '')
 
   if (!currentOpponentId) {
@@ -105,10 +105,10 @@ export const ChatWindow = () => {
             `${messageDateObj.getHours()}:${minutes < 10 ? `0${minutes}` : minutes}`
 
           const avatar = getPublicAvatarUrl(
-            isOpponent ? currentOpponentAvatar : myProfileData?.avatar,
+            isOpponent ? currentOpponentAvatar : loggedInUserData?.avatar,
             isOpponent
               ? currentOpponentAvatarVersion
-              : myProfileData?.avatar_version
+              : loggedInUserData?.avatar_version
           )
 
           return (
