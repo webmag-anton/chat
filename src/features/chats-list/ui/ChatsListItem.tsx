@@ -4,7 +4,7 @@ import { useMessageStore } from '@/features/send-message'
 import { useOnlineStatusStore } from '@/features/online-status-tracker'
 import { useMessagesQuery } from '@/entities/message'
 import { useTypingStore, TypingIndicator } from '@/features/typing-tracker'
-import { getPublicAvatarUrl } from '@/shared/lib'
+import { getMessageDateFormat, getPublicAvatarUrl } from '@/shared/lib'
 import clsx from 'clsx'
 
 interface ChatsListItemProps {
@@ -30,12 +30,20 @@ export const ChatsListItem = ({ chatData }: ChatsListItemProps) => {
   const { data: chatMessages } = useMessagesQuery(chatID)
 
   const lastMessage = chatMessages
-    ? JSON.parse(chatMessages[chatMessages.length - 1].content)
+    ? chatMessages[chatMessages.length - 1]
+    : undefined
+
+  const lastMessageContent = lastMessage
+    ? JSON.parse(lastMessage.content)
     : null
 
-  const lastRowInLastMessage = lastMessage
-    ? lastMessage.split('\n').slice(-1)[0]
+  const lastRowInLastMessage = lastMessageContent
+    ? lastMessageContent.split('\n').slice(-1)[0]
     : null
+
+  const lastMessageCreation = lastMessage ? lastMessage.created_at : null
+
+  const lastMessageDate = getMessageDateFormat(lastMessageCreation)
 
   const avatarUrl
     = getPublicAvatarUrl(opponent?.avatar, opponent?.avatar_version)
@@ -63,19 +71,9 @@ export const ChatsListItem = ({ chatData }: ChatsListItemProps) => {
     }
   )
 
-  const chatInfoClasses = clsx(
-    `
-      text-lg
-      before:inline-block
-      before:w-[10px] 
-      before:h-[10px] 
-      before:mr-2 
-      before:rounded-full 
-      before:bg-[#b5b5b5]
-    `,
-    {
-      'before:bg-green-600': onlineUsers.includes(opponentId ?? '')
-    }
+  const onlineStatusClasses = clsx(
+    'shrink-0 inline-block w-[10px] h-[10px] rounded-full mr-2',
+    onlineUsers.includes(opponentId ?? '') ? 'bg-green-600' : 'bg-[#b5b5b5]'
   )
 
   return (
@@ -92,20 +90,27 @@ export const ChatsListItem = ({ chatData }: ChatsListItemProps) => {
 
       <div
         className='
+          grow
           flex
           flex-col
           justify-between
+          min-w-0
           max-w-[calc(100%-60px)]
-          pr-3
           py-[2px]
         '
       >
-        <span className={chatInfoClasses}>
-          {opponentName}
-        </span>
+        <div className='flex items-center'>
+          <span className={onlineStatusClasses} />
+          <span className='grow truncate pr-[20px] text-lg'>
+            {opponentName}
+          </span>
+          <span className='shrink-0 whitespace-nowrap text-sm'>
+            {lastMessageDate}
+          </span>
+        </div>
 
         {hasTyping ? (
-          <TypingIndicator chatId={chatID} />
+          <TypingIndicator chatId={chatID}/>
         ) : (
           <span className='truncate'>{lastRowInLastMessage}</span>
         )}

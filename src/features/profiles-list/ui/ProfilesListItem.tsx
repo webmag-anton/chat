@@ -56,19 +56,9 @@ export const ProfilesListItem = ({ userData }: ProfilesListItemProps) => {
     }
   )
 
-  const profileClasses = clsx(
-    `
-      text-lg
-      before:inline-block
-      before:w-[10px] 
-      before:h-[10px] 
-      before:mr-2 
-      before:rounded-full 
-      before:bg-[#b5b5b5]
-    `,
-    {
-      'before:bg-green-600': onlineUsers.includes(userID)
-    }
+  const onlineStatusClasses = clsx(
+    'shrink-0 inline-block w-[10px] h-[10px] rounded-full mr-2',
+    onlineUsers.includes(userID ?? '') ? 'bg-green-600' : 'bg-[#b5b5b5]'
   )
 
   return (
@@ -83,7 +73,8 @@ export const ProfilesListItem = ({ userData }: ProfilesListItemProps) => {
         title="User's avatar"
       />
 
-      <span className={profileClasses}>
+      <span className='text-lg'>
+        <span className={onlineStatusClasses} />
         {chatName}
       </span>
     </li>

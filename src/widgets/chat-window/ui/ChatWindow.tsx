@@ -100,9 +100,10 @@ export const ChatWindow = () => {
             day: 'numeric'
           })
 
-          const minutes = messageDateObj.getMinutes()
-          const messageTime =
-            `${messageDateObj.getHours()}:${minutes < 10 ? `0${minutes}` : minutes}`
+          const messageTime = messageDateObj.toLocaleTimeString('en-GB', {
+            hour: '2-digit',
+            minute: '2-digit'
+          })
 
           const avatar = getPublicAvatarUrl(
             isOpponent ? currentOpponentAvatar : loggedInUserData?.avatar,
