@@ -1,28 +1,35 @@
 import { useChatStore } from '@/entities/chat'
+import { useOpponentLastSeen} from '@/features/last-seen'
 
 export const ChatHeader = () => {
   const currentOpponentName = useChatStore(s => s.currentOpponentName)
+  const currentOpponentId = useChatStore(s => s.currentOpponentId)
+
+  const lastSeenText = useOpponentLastSeen(currentOpponentId)
 
   return (
     <div
       className='
         flex
-        items-center
+        flex-col
+        justify-between
         basis-[var(--headers-height)]
+        max-h-[var(--headers-height)]
         shrink-0
         px-5
-        py-1
+        py-[2px]
         bg-bg-main
         border-l
         border-text-reverted
-        font-bold
       '
     >
-      <span
-        className='text-lg text-main tracking-wider'
-      >
+      <span className='font-bold text-lg text-main tracking-wider'>
         {currentOpponentName}
       </span>
+      {currentOpponentId
+        ? <span>{lastSeenText}</span>
+        : null
+      }
     </div>
   )
 }

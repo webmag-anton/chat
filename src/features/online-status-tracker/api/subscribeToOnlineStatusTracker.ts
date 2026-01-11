@@ -1,5 +1,5 @@
 import { supabase } from '@/shared/api/supabaseClient'
-import { useOnlineStatusStore } from '@/features/online-status-tracker'
+import { useOnlineStatusStore } from '../model/onlineStatusStore'
 
 export const subscribeToOnlineStatusTracker = ( userId: string ) => {
   const channel = supabase

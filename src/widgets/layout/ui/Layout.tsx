@@ -4,8 +4,11 @@ import { Sidebar, useSidebarStore } from '@/widgets/sidebar'
 import { Overlay } from '@/shared/ui/overlay'
 import { Toaster } from 'sonner'
 import { EditProfileDialog } from '@/features/profile-edit'
+import { useLastSeenHeartbeat } from '@/features/last-seen'
 
 export const Layout = () => {
+  useLastSeenHeartbeat()
+
   const isSidebarOpen = useSidebarStore(s => s.isOpen)
   const closeSidebar = useSidebarStore(s => s.closeSidebar)
 

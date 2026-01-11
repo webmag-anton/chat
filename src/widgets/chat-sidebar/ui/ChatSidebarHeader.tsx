@@ -29,7 +29,6 @@ export const ChatSidebarHeader = () => {
       <Button
         className='font-semibold text-main uppercase tracking-[2px]'
         horizontalPadding='sm'
-        fullHeight
         onClick={toggleListType}
       >
         {toggleButtonText}
