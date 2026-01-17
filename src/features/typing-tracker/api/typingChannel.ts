@@ -1,4 +1,4 @@
-import { supabase } from '@/shared/api/supabaseClient'
+import { supabase } from '@/shared/api'
 import type { RealtimeChannel } from '@supabase/supabase-js'
 
 let channel: RealtimeChannel | null = null

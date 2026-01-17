@@ -1,8 +1,8 @@
 import { useMutation } from '@tanstack/react-query'
-import { supabase } from '@/shared/api/supabaseClient'
-import { queryClient } from '@/shared/api/reactQueryClient'
-import { getPrivateChatId } from '@/entities/chat'
-import { startPrivateChatAndSendMessage } from '../api/startPrivateChatAndSendMessage'
+import { supabase, queryClient, getPrivateChatId } from '@/shared/api'
+import {
+  startPrivateChatAndSendMessage
+} from '../api/startPrivateChatAndSendMessage'
 
 export const useSendMessage = (loggedInUserId: string) => {
   return useMutation({

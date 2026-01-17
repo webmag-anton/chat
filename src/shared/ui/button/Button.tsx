@@ -1,10 +1,18 @@
 import type { ButtonHTMLAttributes, ReactNode } from 'react'
 import clsx from 'clsx'
 
+type ButtonVariant = 'primary' | 'secondary' | 'transparent'
+
+const variantMap: Record<ButtonVariant, string> = {
+  primary: 'bg-accent text-main',
+  secondary: 'bg-bg-button-secondary text-text-button-secondary',
+  transparent: 'bg-transparent hover:bg-accent'
+}
+
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   className?: string
+  variant?: ButtonVariant
   centered?: boolean
-  transparent?: boolean
   square?: boolean
   hasBorders?: boolean
   fullWidth?: boolean
@@ -20,8 +28,8 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 export const Button = (props: ButtonProps) => {
   const {
     className,
+    variant = 'primary',
     centered = true,
-    transparent = false,
     square = false,
     hasBorders = true,
     fullWidth = false,
@@ -52,16 +60,16 @@ export const Button = (props: ButtonProps) => {
   }
 
   const baseClasses = clsx(
-    'flex items-center bg-accent cursor-pointer transition',
+    'flex items-center cursor-pointer transition',
     {
       'justify-center': centered,
-      'bg-transparent hover:bg-accent': transparent,
       'rounded-xl': !square,
       'border-1 border-[var(--color-main)]': hasBorders,
       'w-full': fullWidth,
       'h-full': fullHeight,
-      'opacity-50 pointer-events-none': disabled,
+      'opacity-50 pointer-events-none': disabled
     },
+    variantMap[variant],
     paddingXMap[horizontalPadding],
     paddingYMap[verticalPadding],
     className

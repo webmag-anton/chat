@@ -11,11 +11,10 @@ export const subscriptionManager: ISubscriptionManager = {
   addSubscription: (channel) => {
     subscriptionManager.subscriptions.push(channel)
   },
-  clearSubscriptions: async () => {
+  clearSubscriptions: () => {
     for (const channel of subscriptionManager.subscriptions) {
       try {
-        await channel.untrack?.()
-        await channel.unsubscribe()
+        channel.unsubscribe()
       } catch (e) {
         console.warn('Error unsubscribing channel:', e)
       }

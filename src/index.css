@@ -6,11 +6,14 @@
   --font-nunito-sans: 'Nunito Sans';
 
   --color-main: #361e0b;
-  --color-accent: #fff6df;
+  --color-accent: #d3e0cb;
   --color-text-main: #000;
   --color-text-reverted: #fff;
   --color-bg-main: #f4f4f4;
   --color-bg-message: #e8e8e8;
+
+  --color-bg-button-secondary: #703f19;
+  --color-text-button-secondary: #2affe5;
 
   --color-main-hover: #9d653b;
 

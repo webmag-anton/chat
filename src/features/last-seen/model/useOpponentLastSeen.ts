@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react'
 import { useOnlineStatusStore } from '@/features/online-status-tracker'
-import { useProfilesQuery } from '@/features/profiles-list'
+import { useProfilesQuery } from '@/features/load-profiles'
 import { getLastSeenDate } from './getLastSeenDate'
 
 const MINUTE = 60_000

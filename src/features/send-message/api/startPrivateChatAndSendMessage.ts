@@ -1,4 +1,4 @@
-import { supabase } from '@/shared/api/supabaseClient'
+import { supabase } from '@/shared/api'
 
 export const startPrivateChatAndSendMessage = async (
   senderId: string,

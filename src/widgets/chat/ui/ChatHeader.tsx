@@ -1,5 +1,5 @@
 import { useChatStore } from '@/entities/chat'
-import { useOpponentLastSeen} from '@/features/last-seen'
+import { useOpponentLastSeen } from '@/features/last-seen'
 
 export const ChatHeader = () => {
   const currentOpponentName = useChatStore(s => s.currentOpponentName)

@@ -1,2 +1,2 @@
-export { ChatFooter } from './ui/ChatFooter'
+export { SendMessagePanel } from './ui/SendMessagePanel'
 export { useMessageStore } from './model/messageStore'

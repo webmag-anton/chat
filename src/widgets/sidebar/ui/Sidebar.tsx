@@ -76,7 +76,7 @@ export const Sidebar = () => {
           <li>
             <Button
               fullWidth
-              transparent
+              variant='transparent'
               verticalPadding='lg'
               square
               hasBorders={false}
@@ -97,7 +97,7 @@ export const Sidebar = () => {
           <li>
             <Button
               fullWidth
-              transparent
+              variant='transparent'
               verticalPadding='lg'
               square
               hasBorders={false}

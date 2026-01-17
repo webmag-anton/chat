@@ -1,4 +1,4 @@
-import { supabase } from '@/shared/api/supabaseClient'
+import { supabase } from '@/shared/api'
 
 export const updateLastSeen = async ( loggedInUserId: string ) => {
   const { error } = await supabase

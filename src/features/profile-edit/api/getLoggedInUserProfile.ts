@@ -1,4 +1,4 @@
-import { supabase } from '@/shared/api/supabaseClient'
+import { supabase } from '@/shared/api'
 import type { UserProfile } from '@/entities/profile'
 
 export const getLoggedInUserProfile

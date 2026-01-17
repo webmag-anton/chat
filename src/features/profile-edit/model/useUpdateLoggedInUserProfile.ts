@@ -1,6 +1,5 @@
 import { useMutation } from '@tanstack/react-query'
-import { queryClient } from '@/shared/api/reactQueryClient'
-import { supabase } from '@/shared/api/supabaseClient'
+import { queryClient, supabase } from '@/shared/api'
 import { useAuthStore } from '@/features/authentication'
 
 type UpdateProfilePayload = {

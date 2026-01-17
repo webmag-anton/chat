@@ -1,4 +1,4 @@
-import { queryClient } from '@/shared/api/reactQueryClient'
+import { queryClient } from '@/shared/api'
 import type { Message } from '@/entities/message/types'
 import { type ChatWithOpponent, useChatStore } from '@/entities/chat'
 import { shouldShowMessageToast } from '@/shared/lib'

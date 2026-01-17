@@ -1,5 +1,3 @@
-export { useMessagesQuery } from './model/useMessagesQuery'
-export { subscribeToUserMessages } from './api/subscribeToUserMessages'
-export { getMessagesByChatId } from './api/getMessagesByChatId'
-export { ChatMessage } from './ui/ChatMessage'
 export type { Message } from './types'
+export { ChatMessage } from './ui/ChatMessage'
+export { MessageDate } from './ui/MessageDate'

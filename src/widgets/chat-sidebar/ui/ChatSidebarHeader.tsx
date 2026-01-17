@@ -1,8 +1,10 @@
 import { Hamburger } from '@/shared/ui/hamburger'
 import { useSidebarStore } from '@/widgets/sidebar'
 import { Button } from '@/shared/ui/button'
-import { useChatSidebarStore } from '../model/chatSidebarStore'
-import type { listType } from '../types'
+import {
+  useChatSidebarStore,
+  type listType
+} from '@/features/load-chat-sidebar'
 
 export const ChatSidebarHeader = () => {
   const openSidebarHandler = useSidebarStore(s => s.openSidebar)
@@ -27,7 +29,8 @@ export const ChatSidebarHeader = () => {
     >
       <Hamburger onClick={openSidebarHandler} />
       <Button
-        className='font-semibold text-main uppercase tracking-[2px]'
+        className='font-semibold uppercase tracking-[2px]'
+        variant='secondary'
         horizontalPadding='sm'
         onClick={toggleListType}
       >

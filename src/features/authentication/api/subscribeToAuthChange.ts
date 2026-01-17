@@ -1,4 +1,4 @@
-import { supabase } from '@/shared/api/supabaseClient'
+import { supabase } from '@/shared/api'
 import type { Session, AuthChangeEvent, Subscription } from '@supabase/supabase-js'
 
 export const subscribeToAuthChange = (

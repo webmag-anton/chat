@@ -1,15 +1,12 @@
 import { useEffect } from 'react'
 import type { RealtimeChannel, Session } from '@supabase/supabase-js'
 import { subscriptionManager } from '@/shared/lib'
-import { subscribeToProfileUpdates } from '@/features/profiles-list'
-import { subscribeToUserMessages } from '@/entities/message'
-import { handleNewMessage } from '@/features/realtime-messages'
+import { subscribeToProfileUpdates } from '@/features/load-profiles'
 import {
-  subscribeToNewChatMembership,
-  subscribeToNewChats,
-  handleNewChatInsertion,
-  handleNewChatMembership
-} from '@/entities/chat'
+  subscribeToUserMessages,
+  handleNewMessage
+} from '@/features/realtime-messages'
+import { handleNewChatMembership } from '@/features/open-private-chat'
 import {
   subscribeToOnlineStatusTracker,
   useOnlineStatusStore
@@ -18,6 +15,11 @@ import {
   subscribeToTypingTracker,
   useTypingStore
 } from '@/features/typing-tracker'
+import {
+  handleNewChatInsertion,
+  subscribeToNewChatMembership,
+  subscribeToNewChats
+} from '@/features/realtime-chats'
 
 export const useRealtimeSubscriptions = (session: Session | null) => {
   const { setOnlineUsers } = useOnlineStatusStore.getState()

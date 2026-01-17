@@ -1,7 +1,7 @@
 import { useEffect, type ReactElement } from 'react'
 import { Auth } from '@supabase/auth-ui-react'
 import { ThemeSupa } from '@supabase/auth-ui-shared'
-import { supabase } from '@/shared/api/supabaseClient'
+import { supabase } from '@/shared/api'
 import { useAuthStore } from '../model/authStore'
 import { useRealtimeSubscriptions } from '../model/useRealtimeSubscriptions'
 

@@ -1,6 +1,6 @@
 import { ChatHeader } from './ChatHeader'
 import { ChatWindow } from '@/widgets/chat-window'
-import { ChatFooter } from '@/features/send-message'
+import { SendMessagePanel } from '@/features/send-message'
 
 export const Chat = () => {
   return (
@@ -16,7 +16,7 @@ export const Chat = () => {
     >
       <ChatHeader />
       <ChatWindow />
-      <ChatFooter />
+      <SendMessagePanel />
     </div>
   )
 }

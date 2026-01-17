@@ -1,4 +1,4 @@
-import { supabase } from '@/shared/api/supabaseClient'
+import { supabase } from '@/shared/api'
 import { useOnlineStatusStore } from '../model/onlineStatusStore'
 
 export const subscribeToOnlineStatusTracker = ( userId: string ) => {
