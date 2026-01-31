@@ -52,7 +52,7 @@ export const Sidebar = () => {
       top-0 
       bottom-0 
       w-[var(--sidebar-width)] 
-      max-w-screen 
+      max-w-[calc(100vw-70px)]
       py-3
       bg-white
       duration-200 

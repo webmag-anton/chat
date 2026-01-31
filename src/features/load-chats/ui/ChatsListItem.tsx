@@ -37,8 +37,8 @@ export const ChatsListItem = ({ chatData }: ChatsListItemProps) => {
     ? JSON.parse(lastMessage.content)
     : null
 
-  const lastRowInLastMessage = lastMessageContent
-    ? lastMessageContent.split('\n').slice(-1)[0]
+  const firstRowInLastMessage = lastMessageContent
+    ? lastMessageContent.split('\n')[0]
     : null
 
   const lastMessageCreation = lastMessage ? lastMessage.created_at : null
@@ -112,7 +112,7 @@ export const ChatsListItem = ({ chatData }: ChatsListItemProps) => {
         {hasTyping ? (
           <TypingIndicator chatId={chatID}/>
         ) : (
-          <span className='truncate'>{lastRowInLastMessage}</span>
+          <span className='truncate'>{firstRowInLastMessage}</span>
         )}
       </div>
     </li>

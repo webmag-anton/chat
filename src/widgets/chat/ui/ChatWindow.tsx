@@ -6,6 +6,7 @@ import { useProcessedMessages } from '@/features/load-chat-messages'
 import { useLoggedInUserProfile } from '@/features/profile-edit'
 import { useAuthStore } from '@/features/authentication'
 import { getPublicAvatarUrl } from '@/shared/lib'
+import { useAutoScrollToBottom } from '@/shared/hooks'
 import clsx from 'clsx'
 
 export const ChatWindow = () => {
@@ -23,6 +24,8 @@ export const ChatWindow = () => {
   const { data: me } = useLoggedInUserProfile(
     session?.user?.id ?? ''
   )
+
+  const containerRef = useAutoScrollToBottom(processedMessages.length)
 
   if (!chat.currentOpponentId) {
     return (
@@ -55,7 +58,7 @@ export const ChatWindow = () => {
   }
 
   return (
-    <div className='grow px-5 py-3 overflow-y-auto'>
+    <div ref={containerRef} className='grow px-5 py-3 overflow-y-auto'>
       <ul className='flex flex-col max-w-[580px]'>
         {processedMessages.map(message => {
           const avatar = getPublicAvatarUrl(
@@ -73,7 +76,7 @@ export const ChatWindow = () => {
           )
 
           const contentClasses = clsx(
-            'min-w-[95px] p-[10px] rounded-2xl whitespace-pre-line',
+            'min-w-[95px] p-[10px] rounded-2xl whitespace-pre-line break-all',
             message.isOpponent ? 'bg-accent' : 'bg-bg-message',
             { 'rounded-bl-none': message.isShowAvatar }
           )

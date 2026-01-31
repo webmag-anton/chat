@@ -14,15 +14,27 @@ export const Layout = () => {
 
   return (
     <>
-      <div className='
-      relative
-      max-w-7xl
-      mx-auto
-      bg-white
-      shadow-[0_6px_12px_var(--color-accent)]
-      overflow-hidden'
+      <div
+        className='
+          relative
+          w-screen
+          h-dvh
+          bg-white
+          overflow-hidden
+          md:max-w-7xl
+          md:mx-auto
+          md:shadow-[0_6px_12px_var(--color-accent)]
+        '
       >
-        <main className='flex h-screen'>
+        <main
+          className='
+            fixed
+            inset-0
+            md:static
+            md:h-dvh
+            md:flex
+          '
+        >
           <ChatSidebar/>
           <Chat/>
         </main>

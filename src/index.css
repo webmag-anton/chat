@@ -19,7 +19,8 @@
 
   --headers-height: 56px;
   --text-input-height: 60px;
-  --chat-sidebar-width: 420px;
+  --chat-sidebar-small-width: 300px;
+  --chat-sidebar-big-width: 420px;
   --sidebar-width: 400px;
 
   --typing-dot-size: 8px;
@@ -29,7 +30,6 @@
 
 @layer base {
   html {
-    /*background-color: #eaeaea;*/
     font-family: var(--font-nunito-sans), sans-serif;
     color: var(--color-text-main);
   }

@@ -15,15 +15,15 @@ export const ChatSidebarBody = () => {
     <div
       style={{ '--chat-sidebar-title': `"${title}"` } as React.CSSProperties}
       className={`
-        relative
         grow
         overflow-y-auto
         before:fixed
-        before:top-1/2
+        before:top-[calc(46%+var(--headers-height))]
         before:-translate-y-1/2
         before:content-[var(--chat-sidebar-title)]
+        before:min-h-[240px]
         before:pl-[2px]
-        before:text-[18px]
+        before:text-[16px]
         before:font-medium
         before:italic
         before:text-center
@@ -31,7 +31,9 @@ export const ChatSidebarBody = () => {
         before:tracking-[14px]
         before:text-main
         before:[writing-mode:vertical-lr]
+        before:break-all
         before:pointer-events-none
+        md:before:text-[18px]
       `}
     >
       {listType === 'users' ? <ProfilesList /> : <ChatsList />}
