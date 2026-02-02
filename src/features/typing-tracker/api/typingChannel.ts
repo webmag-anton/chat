@@ -4,6 +4,9 @@ import type { RealtimeChannel } from '@supabase/supabase-js'
 let channel: RealtimeChannel | null = null
 let isSubscribed = false
 
+const isSubscribedState = (status: unknown): status is 'SUBSCRIBED' =>
+  status === 'SUBSCRIBED'
+
 export const getTypingChannel = () => {
   if (channel && !isSubscribed) {
     channel = null
@@ -16,7 +19,7 @@ export const getTypingChannel = () => {
     })
 
     channel.subscribe((status) => {
-      isSubscribed = status === 'SUBSCRIBED'
+      isSubscribed = isSubscribedState(status)
     })
   }
 

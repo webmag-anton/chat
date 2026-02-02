@@ -5,6 +5,7 @@ interface ProcessedMessage {
   message: Message
   isOpponent: boolean
   isShowAvatar: boolean
+  isLastInSeries: boolean
   isShowNewDate: boolean
   dateLabel?: string
   timeLabel: string
@@ -44,6 +45,7 @@ export const useProcessedMessages = (
         message: m,
         isOpponent,
         isShowAvatar,
+        isLastInSeries,
         isShowNewDate,
         dateLabel: isShowNewDate
           ? dateObj.toLocaleDateString('en-US', {

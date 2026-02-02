@@ -1,0 +1,9 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "noEmit": true,          // Do not output files when linting
+    "declaration": false,    // Disable .d.ts generation for ESLint
+    "skipLibCheck": true     // Skip type checks for dependencies
+  },
+  "include": ["src/**/*"]
+}

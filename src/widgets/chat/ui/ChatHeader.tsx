@@ -46,12 +46,22 @@ export const ChatHeader = () => {
           justify-between
           max-h-[var(--headers-height)]
           shrink-0
-          px-5
+          px-3
           py-[2px]
           bg-bg-main
+          sm:px-5
+          md:max-w-none
         '
       >
-        <span className='font-bold text-lg text-main tracking-wider'>
+        <span
+          className='
+            font-bold
+            text-base
+            tracking-wider
+            truncate
+            sm:text-lg
+          '
+        >
           {currentOpponentName}
         </span>
         {currentOpponentId

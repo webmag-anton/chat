@@ -20,7 +20,7 @@ export const subscribeToNewChatMembership = (
         const newMember = payload.new
 
         if ('chat_id' in newMember) {
-          onNewChatMembership(newMember as ChatMember)
+          onNewChatMembership(newMember)
         }
       }
     )

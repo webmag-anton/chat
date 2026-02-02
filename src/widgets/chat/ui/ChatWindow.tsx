@@ -58,7 +58,7 @@ export const ChatWindow = () => {
   }
 
   return (
-    <div ref={containerRef} className='grow px-5 py-3 overflow-y-auto'>
+    <div ref={containerRef} className='grow px-2 py-3 overflow-y-auto sm:px-5'>
       <ul className='flex flex-col max-w-[580px]'>
         {processedMessages.map(message => {
           const avatar = getPublicAvatarUrl(
@@ -71,8 +71,8 @@ export const ChatWindow = () => {
           )
 
           const messageClasses = clsx(
-            'flex self-start max-w-full mb-1 text-lg',
-            { 'mb-3': message.isShowAvatar }
+            'flex self-start max-w-full text-base sm:text-lg',
+            message.isLastInSeries ? 'mb-3' : 'mb-1'
           )
 
           const contentClasses = clsx(
@@ -83,8 +83,8 @@ export const ChatWindow = () => {
 
           return (
             <Fragment key={message.message.id}>
-              {message.isShowNewDate && (
-                <MessageDate date={message.dateLabel!} />
+              {message.isShowNewDate && message.dateLabel && (
+                <MessageDate date={message.dateLabel} />
               )}
 
               <ChatMessage

@@ -37,7 +37,8 @@ export const ChatMessage = (props: ChatMessageProps) => {
           basis-[48px]
           shrink-0
           h-[48px]
-          mr-3
+          mr-2
+          sm:mr-3
         '
       >
         {isShowAvatar && (

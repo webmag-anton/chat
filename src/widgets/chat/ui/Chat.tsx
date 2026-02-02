@@ -8,14 +8,11 @@ export const Chat = () => {
   const currentOpponentId = useChatStore(s => s.currentOpponentId)
 
   const baseClasses = clsx(
-    'grow flex flex-col min-w-[400px] bg-text-reverted',
+    'grow flex flex-col min-w-[320px] bg-text-reverted',
     'absolute inset-0 transform',
     'transition-transform duration-250 ease-in-out',
     'md:static md:transform-none md:translate-none',
-    {
-      'translate-x-full': !currentOpponentId,
-      'translate-x-0': currentOpponentId
-    }
+    currentOpponentId ? 'translate-x-0' : 'translate-x-full'
   )
 
   return (

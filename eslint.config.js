@@ -6,18 +6,53 @@ import tseslint from 'typescript-eslint'
 import { defineConfig, globalIgnores } from 'eslint/config'
 
 export default defineConfig([
-  globalIgnores(['dist']),
+  globalIgnores([
+    'dist',
+    'src/shared/types/supabase.types.ts',
+    'src/shared/ui/shadcn/**',
+    '**/*.d.ts'
+  ]),
+
+  // TYPE-CHECKED SOURCE CODE
   {
-    files: ['**/*.{ts,tsx}'],
+    files: ['src/**/*.{ts,tsx}'],
     extends: [
       js.configs.recommended,
-      tseslint.configs.recommended,
+      ...tseslint.configs.recommendedTypeChecked,
       reactHooks.configs['recommended-latest'],
       reactRefresh.configs.vite,
     ],
     languageOptions: {
       ecmaVersion: 2020,
       globals: globals.browser,
+      parserOptions: {
+        project: './tsconfig.eslint.json', // point to the new TS config
+        // process.cwd() ensures ESLint resolves the path correctly on Windows
+        tsconfigRootDir: process.cwd(),
+      },
+    },
+    rules: {
+      '@typescript-eslint/no-unused-vars': [
+        'error',
+        { argsIgnorePattern: '^_' },
+      ],
+      'no-undef': 'off',
+      'no-empty': ['error', { allowEmptyCatch: true }],
+      '@typescript-eslint/consistent-type-imports': 'error',
+      '@typescript-eslint/no-misused-promises': 'warn',
+      '@typescript-eslint/no-floating-promises': 'warn',
+      '@typescript-eslint/explicit-function-return-type': 'off',
+      '@typescript-eslint/no-explicit-any': 'warn',
+      '@typescript-eslint/no-unsafe-assignment': 'warn',
+      '@typescript-eslint/no-unsafe-member-access': 'warn',
+      '@typescript-eslint/no-unsafe-call': 'warn',
+      '@typescript-eslint/no-unsafe-argument': 'warn',
     },
   },
+
+  // NON-TYPE-CHECKED CONFIG FILES
+  {
+    files: ['vite.config.ts', '*.config.ts'],
+    extends: [js.configs.recommended]
+  }
 ])

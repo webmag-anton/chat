@@ -14,10 +14,7 @@ export const ChatSidebar = () => {
     'lg:basis-[var(--chat-sidebar-big-width)]',
     'lg:max-w-[var(--chat-sidebar-big-width)]',
     'md:transform-none md:translate-none',
-    {
-      'translate-x-[-50px]': currentOpponentId,
-      'translate-x-0': !currentOpponentId
-    }
+    currentOpponentId ? 'translate-x-[-50px]' : 'translate-x-0'
   )
 
   return (

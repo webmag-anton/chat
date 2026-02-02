@@ -1,5 +1,6 @@
 import { supabase } from '@/shared/api'
 import { useOnlineStatusStore } from '../model/onlineStatusStore'
+import { REALTIME_SUBSCRIBE_STATES } from '@supabase/supabase-js'
 
 export const subscribeToOnlineStatusTracker = ( userId: string ) => {
   const channel = supabase
@@ -12,7 +13,7 @@ export const subscribeToOnlineStatusTracker = ( userId: string ) => {
       setOnlineUsers(state)
     })
     .subscribe(async (status) => {
-      if (status === 'SUBSCRIBED') {
+      if (status === REALTIME_SUBSCRIBE_STATES.SUBSCRIBED) {
         await channel.track({})
       }
     })

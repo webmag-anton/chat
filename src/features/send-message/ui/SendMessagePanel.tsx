@@ -27,7 +27,7 @@ export const SendMessagePanel = () => {
   const isMessageEmpty = !message.trim()
   const isBtnActive= !!currentOpponentId && !isMessageEmpty
 
-  const handleMessageSending = async () => {
+  const handleMessageSending = () => {
     if (!session || !currentOpponentId || isMessageEmpty) return
 
     sendMessage.mutate(
