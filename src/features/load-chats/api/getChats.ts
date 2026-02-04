@@ -22,6 +22,8 @@ export const getChats = async (loggedInUserId: string): Promise<ChatWithOpponent
       type,
       created_at,
       created_by,
+      last_message_at,
+      last_message_id,
       chat_members (
         user_id,
         profiles (
@@ -36,6 +38,7 @@ export const getChats = async (loggedInUserId: string): Promise<ChatWithOpponent
         )
       )
     `)
+    .order('last_message_at', { ascending: false })
 
   if (error) throw error
   if (!chats) return []

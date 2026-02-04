@@ -52,6 +52,8 @@ export type Database = {
           created_at: string
           created_by: string | null
           id: string
+          last_message_at: string | null
+          last_message_id: string | null
           name: string | null
           type: string
         }
@@ -59,6 +61,8 @@ export type Database = {
           created_at?: string
           created_by?: string | null
           id?: string
+          last_message_at?: string | null
+          last_message_id?: string | null
           name?: string | null
           type: string
         }
@@ -66,6 +70,8 @@ export type Database = {
           created_at?: string
           created_by?: string | null
           id?: string
+          last_message_at?: string | null
+          last_message_id?: string | null
           name?: string | null
           type?: string
         }

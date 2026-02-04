@@ -22,6 +22,10 @@ export function handleNewMessage(newMessage: Message, loggedInUserId: string) {
         : [...old, newMessage]
   )
 
+  queryClient.invalidateQueries({
+    queryKey: ['chats', loggedInUserId]
+  })
+
   if (newMessageSenderId) {
     clearTyping(newMessageChatId, newMessageSenderId)
   }
