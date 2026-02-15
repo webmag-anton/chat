@@ -1,10 +1,12 @@
-import { Authenticator } from '@/features/authentication'
 import { Layout } from '@/widgets/layout'
+import { AppInitializer } from '@/features/init-app'
 
 function App() {
-  return <Authenticator
-    loggedInComponent={<Layout />}
-  />
+  return (
+    <AppInitializer>
+      <Layout />
+    </AppInitializer>
+  )
 }
 
 export default App

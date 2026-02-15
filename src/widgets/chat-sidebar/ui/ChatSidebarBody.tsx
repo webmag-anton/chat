@@ -1,15 +1,23 @@
 import { ProfilesList } from '@/features/load-profiles'
 import { ChatsList } from '@/features/load-chats'
 import { useChatSidebar } from '@/features/load-chat-sidebar'
+import { useAuthStore } from '@/features/authentication'
+import { DemoProfilesList } from '@/entities/demo-user'
 
 export const ChatSidebarBody = () => {
   const { listType, isInitialized } = useChatSidebar()
+  const session = useAuthStore(s => s.session)
 
-  if (!isInitialized) {
+  if (session && !isInitialized) {
     return null
   }
 
-  const title = listType === 'users' ? 'all users' : 'my chats'
+  let title
+  if (session) {
+    title = listType === 'users' ? 'all users' : 'my chats'
+  } else {
+    title = 'users'
+  }
 
   return (
     <div
@@ -36,7 +44,10 @@ export const ChatSidebarBody = () => {
         md:before:text-[18px]
       `}
     >
-      {listType === 'users' ? <ProfilesList /> : <ChatsList />}
+      {session
+        ? listType === 'users' ? <ProfilesList /> : <ChatsList />
+        : <DemoProfilesList />
+      }
     </div>
   )
 }

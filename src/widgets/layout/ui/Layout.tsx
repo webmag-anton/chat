@@ -5,6 +5,7 @@ import { Overlay } from '@/shared/ui/overlay'
 import { Toaster } from 'sonner'
 import { EditProfileDialog } from '@/features/profile-edit'
 import { useLastSeenHeartbeat } from '@/features/last-seen'
+import { SignInDialog } from '@/features/sign-in'
 
 export const Layout = () => {
   useLastSeenHeartbeat()
@@ -47,6 +48,8 @@ export const Layout = () => {
       </div>
 
       <Toaster />
+
+      <SignInDialog />
     </>
   )
 }

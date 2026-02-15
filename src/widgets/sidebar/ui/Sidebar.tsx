@@ -1,5 +1,7 @@
 import { useSidebarStore } from '../model/sidebarStore'
 import { useAuthStore } from '@/features/authentication'
+import { useMessageStore } from '@/features/send-message'
+import { useChatStore } from '@/entities/chat'
 import {
   useLoggedInUserProfile,
   useProfileEditDialogStore
@@ -19,6 +21,8 @@ export const Sidebar = () => {
   const session = useAuthStore(s => s.session)
   const logOut = useAuthStore(s => s.logOut)
   const setProfileEditDialogOpen = useProfileEditDialogStore(s => s.setOpen)
+  const resetTextarea = useMessageStore(s => s.resetTextarea)
+  const clearActiveChat = useChatStore(s => s.clearActiveChat)
 
   const { data: loggedInUserData }
     = useLoggedInUserProfile(session?.user?.id ?? '')
@@ -35,8 +39,10 @@ export const Sidebar = () => {
   }
 
   const handleLogOut = () => {
-    logOut()
+    clearActiveChat()
+    resetTextarea()
     closeSidebar()
+    logOut()
   }
 
   const avatarClasses = clsx(
