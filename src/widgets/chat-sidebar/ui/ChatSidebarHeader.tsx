@@ -7,6 +7,9 @@ import {
 } from '@/features/load-chat-sidebar'
 import { useSignInDialogState } from '@/features/sign-in'
 import { useAuthStore } from '@/features/authentication'
+import { Icon } from '@/shared/ui/icon'
+import LoginSvg from '@/shared/assets/icons/login.svg?react'
+import clsx from 'clsx'
 
 export const ChatSidebarHeader = () => {
   const openSidebarHandler = useSidebarStore(s => s.openSidebar)
@@ -40,18 +43,14 @@ export const ChatSidebarHeader = () => {
     }
   }
 
+  const mainClasses = clsx(
+    'flex justify-between items-center basis-[var(--headers-height)]',
+    'shrink-0 py-1',
+    session ? 'pr-3' : 'md:pr-3',
+  )
+
   return (
-    <div
-      className='
-        flex
-        justify-between
-        items-center
-        basis-[var(--headers-height)]
-        shrink-0
-        py-1
-        pr-3
-      '
-    >
+    <div className={mainClasses}>
       <Hamburger onClick={handleHamburgerClick} />
       <Button
         className='font-semibold uppercase tracking-[2px]'
@@ -61,6 +60,24 @@ export const ChatSidebarHeader = () => {
       >
         {toggleButtonText}
       </Button>
+
+      {!session && <Button
+        variant='transparent'
+        className='text-main md:hidden'
+        onClick={() => setSignInDialogOpen(true)}
+        horizontalPadding='lg'
+        square
+        hasBorders={false}
+        fullHeight
+      >
+        <Icon
+          Svg={LoginSvg}
+          width={40}
+          height={40}
+          fill='var(--color-main)'
+          title='log in'
+        />
+      </Button>}
     </div>
   )
 }
