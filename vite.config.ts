@@ -4,6 +4,7 @@ import tailwindcss from '@tailwindcss/vite'
 import svgr from 'vite-plugin-svgr'
 import path from 'path'
 import { fileURLToPath } from 'url'
+import { visualizer } from 'rollup-plugin-visualizer'
 
 // ESM replacement for __dirname
 const __filename = fileURLToPath(import.meta.url)
@@ -13,7 +14,13 @@ export default defineConfig({
   plugins: [
     react(),
     tailwindcss(),
-    svgr()
+    svgr(),
+    visualizer({
+      filename: 'stats.html',
+      open: true,
+      gzipSize: true,
+      brotliSize: true
+    })
   ],
   resolve: {
     alias: {

@@ -13,6 +13,8 @@ export async function handleNewChatInsertion(
       type,
       created_at,
       created_by,
+      last_message_at,
+      last_message_id,
       chat_members (
         user_id,
         profiles (

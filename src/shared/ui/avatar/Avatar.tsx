@@ -8,6 +8,7 @@ interface AvatarProps {
   title?: string
   fill?: string
   className?: string
+  highFetchPriority?: boolean
 }
 
 export const Avatar = ( props: AvatarProps ) => {
@@ -16,7 +17,8 @@ export const Avatar = ( props: AvatarProps ) => {
     size = 50,
     title = 'Avatar',
     fill = 'var(--color-main)',
-    className
+    className,
+    highFetchPriority = false
   } = props
 
   const imgClasses = clsx(
@@ -28,10 +30,11 @@ export const Avatar = ( props: AvatarProps ) => {
     url
       ? <img
           src={url}
-          width={`${size}px`}
+          width={size}
           height={size}
           className={imgClasses}
           alt={title}
+          {...(highFetchPriority && { fetchpriority: 'high' })}
         />
       : <Icon
           Svg={AvatarSvg}
@@ -40,6 +43,6 @@ export const Avatar = ( props: AvatarProps ) => {
           className={className}
           fill={fill}
           title={title}
-      />
+        />
   )
 }

@@ -5,8 +5,9 @@ import {
   useChatSidebarStore,
   type listType
 } from '@/features/load-chat-sidebar'
-import { useSignInDialogState } from '@/features/sign-in'
+import { useSignInDialogStore, loadSignInDialog } from '@/features/sign-in'
 import { useAuthStore } from '@/features/authentication'
+import { loadEditProfileDialog } from '@/features/profile-edit'
 import { Icon } from '@/shared/ui/icon'
 import LoginSvg from '@/shared/assets/icons/login.svg?react'
 import clsx from 'clsx'
@@ -17,7 +18,8 @@ export const ChatSidebarHeader = () => {
   const toggleListType = useChatSidebarStore(s => s.toggleListType)
 
   const session = useAuthStore(s => s.session)
-  const setSignInDialogOpen = useSignInDialogState(s => s.setOpen)
+  const isAuthInitialized = useAuthStore(s => s.isInitialized)
+  const setSignInDialogOpen = useSignInDialogStore(s => s.setOpen)
 
   let nextListType: listType
   if (session) {
@@ -43,19 +45,43 @@ export const ChatSidebarHeader = () => {
     }
   }
 
+  const handleHamburgerHover = () => {
+    if (session) {
+      loadEditProfileDialog()
+    } else {
+      loadSignInDialog()
+    }
+  }
+
+  const handleChatsTogglerHover = () => {
+    if (!session) {
+      loadSignInDialog()
+    }
+  }
+
   const mainClasses = clsx(
     'flex justify-between items-center basis-[var(--headers-height)]',
     'shrink-0 py-1',
     session ? 'pr-3' : 'md:pr-3',
   )
 
+  if (!isAuthInitialized) {
+    return null
+  }
+
   return (
     <div className={mainClasses}>
-      <Hamburger onClick={handleHamburgerClick} />
+      <Hamburger
+        onClick={handleHamburgerClick}
+        onMouseEnter={handleHamburgerHover}
+        onFocus={handleHamburgerHover}
+      />
       <Button
         className='font-semibold uppercase tracking-[2px]'
         variant='secondary'
         horizontalPadding='sm'
+        onMouseEnter={handleChatsTogglerHover}
+        onFocus={handleChatsTogglerHover}
         onClick={handleListTypeSwitcherClick}
       >
         {toggleButtonText}
@@ -64,6 +90,8 @@ export const ChatSidebarHeader = () => {
       {!session && <Button
         variant='transparent'
         className='text-main md:hidden'
+        onMouseEnter={loadSignInDialog}
+        onFocus={loadSignInDialog}
         onClick={() => setSignInDialogOpen(true)}
         horizontalPadding='lg'
         square

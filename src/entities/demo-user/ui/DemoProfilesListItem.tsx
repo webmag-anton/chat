@@ -1,6 +1,6 @@
 import { Avatar } from '@/shared/ui/avatar'
 import type { DemoUser } from '../types'
-import { useSignInDialogState } from '@/features/sign-in'
+import { useSignInDialogStore, loadSignInDialog } from '@/features/sign-in'
 import clsx from 'clsx'
 
 interface ProfilesListItemProps {
@@ -14,7 +14,7 @@ export const DemoProfilesListItem = ({ userData }: ProfilesListItemProps) => {
     online
   } = userData
 
-  const setSignInDialogOpen = useSignInDialogState(s => s.setOpen)
+  const setSignInDialogOpen = useSignInDialogStore(s => s.setOpen)
 
   const baseClasses = clsx(
     'flex pl-8 pr-3 py-2 transition cursor-pointer hover:bg-accent'
@@ -29,12 +29,15 @@ export const DemoProfilesListItem = ({ userData }: ProfilesListItemProps) => {
     <li
       className={baseClasses}
       onClick={() => setSignInDialogOpen(true)}
+      onMouseEnter={loadSignInDialog}
+      onFocus={loadSignInDialog}
     >
       <Avatar
         url={avatar}
         className='mr-3'
         size={60}
         title="User's avatar"
+        highFetchPriority
       />
 
       <span className='text-lg'>

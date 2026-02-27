@@ -1,17 +1,41 @@
+import { Suspense } from 'react'
 import { ChatSidebar } from '@/widgets/chat-sidebar'
 import { Chat } from '@/widgets/chat'
 import { Sidebar, useSidebarStore } from '@/widgets/sidebar'
 import { Overlay } from '@/shared/ui/overlay'
 import { Toaster } from 'sonner'
-import { EditProfileDialog } from '@/features/profile-edit'
+import {
+  EditProfileDialog,
+  useProfileEditDialogStore
+} from '@/features/profile-edit'
 import { useLastSeenHeartbeat } from '@/features/last-seen'
-import { SignInDialog } from '@/features/sign-in'
+import { SignInDialog, useSignInDialogStore } from '@/features/sign-in'
+import { Spinner } from '@/shared/ui/shadcn/spinner'
+
+const ScreenCenterSpinner = () => (
+  <div
+    className='
+      fixed
+      inset-0
+      flex
+      items-center
+      justify-center
+      bg-white/30
+      backdrop-blur-sm
+      z-2
+    '
+  >
+    <Spinner className='size-8' />
+  </div>
+)
 
 export const Layout = () => {
   useLastSeenHeartbeat()
 
   const isSidebarOpen = useSidebarStore(s => s.isOpen)
   const closeSidebar = useSidebarStore(s => s.closeSidebar)
+  const isProfileEditDialogOpen  = useProfileEditDialogStore(s => s.open)
+  const isSignInDialogOpen = useSignInDialogStore(s => s.open)
 
   return (
     <>
@@ -44,12 +68,16 @@ export const Layout = () => {
 
         <Overlay isShow={isSidebarOpen} onClick={closeSidebar}/>
 
-        <EditProfileDialog />
+        <Suspense fallback={<ScreenCenterSpinner />}>
+          {isProfileEditDialogOpen && <EditProfileDialog />}
+        </Suspense>
       </div>
 
       <Toaster />
 
-      <SignInDialog />
+      <Suspense fallback={<ScreenCenterSpinner />}>
+        {isSignInDialogOpen && <SignInDialog />}
+      </Suspense>
     </>
   )
 }

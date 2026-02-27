@@ -1,10 +1,14 @@
 interface HamburgerProps {
-  onClick: () => void
+  onClick?: () => void
+  onMouseEnter?: () => void
+  onFocus?: () => void
 }
 
 export const Hamburger = (props: HamburgerProps) => {
   const {
-    onClick
+    onClick,
+    onMouseEnter,
+    onFocus
   } = props
 
   return (
@@ -19,6 +23,8 @@ export const Hamburger = (props: HamburgerProps) => {
         hover:text-main-hover
         transition'
       onClick={onClick}
+      onMouseEnter={onMouseEnter}
+      onFocus={onFocus}
     >
       <span className='border-b-3'/>
       <span className='border-b-3'/>

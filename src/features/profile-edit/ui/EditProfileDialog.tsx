@@ -29,6 +29,7 @@ import {
   InputGroupText,
   InputGroupTextarea
 } from '@/shared/ui/shadcn/input-group'
+import styles from './EditProfileDialog.module.css'
 
 const formSchema = z.object({
   username: z.string().min(2).max(32).optional(),
@@ -39,7 +40,7 @@ const formSchema = z.object({
     .optional()
 })
 
-export function EditProfileDialog() {
+export default function EditProfileDialog() {
   const session = useAuthStore(s => s.session)
   const {
     data: loggedInUserProfileData,
@@ -121,14 +122,14 @@ export function EditProfileDialog() {
   if (!session) return null
   if (isLoading) {
     return (
-      <div className='w-fit mx-auto mt-8 p-2 rounded-2xl bg-bg-message'>
+      <div className={styles.loadingBox}>
         Loading...
       </div>
     )
   }
   if (error) {
     return (
-      <div className='w-fit mx-auto mt-8 p-2 rounded-2xl bg-bg-message'>
+      <div className={styles.errorBox}>
         Error loading profiles
       </div>
     )
@@ -144,7 +145,8 @@ export function EditProfileDialog() {
         setOpen(isOpen)
       }}
     >
-      <DialogContent className='sm:max-w-[520px] max-h-[94vh] overflow-y-auto'>
+      <DialogContent
+        className={`sm:max-w-[520px] ${styles.dialogContent}`}>
         <DialogHeader>
           <DialogTitle className='text-center'>
             Edit my profile
@@ -153,7 +155,7 @@ export function EditProfileDialog() {
 
         <Field>
           <FieldLabel>Email</FieldLabel>
-          <div className='rounded-md border bg-gray-200 px-3 py-2 text-sm'>
+          <div className={styles.emailField}>
             {`${loggedInUserEmail || ''}`}
           </div>
         </Field>
@@ -226,7 +228,7 @@ export function EditProfileDialog() {
                     accept='image/*'
                     ref={avatarInputRef}
                     onChange={(e) => field.onChange(e.target.files)}
-                    className='block rounded-md border border-input p-3 text-sm'
+                    className={styles.avatarInput}
                   />
                   {preview && (
                     <Avatar

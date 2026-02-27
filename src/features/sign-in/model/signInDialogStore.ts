@@ -5,7 +5,7 @@ interface sighInDialogState {
   setOpen: (open: boolean) => void
 }
 
-export const useSignInDialogState = create<sighInDialogState>(
+export const useSignInDialogStore = create<sighInDialogState>(
   ( set ) => ({
     open: false,
     setOpen: (open) => set({ open })

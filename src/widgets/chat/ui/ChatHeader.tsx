@@ -3,8 +3,8 @@ import { useOpponentLastSeen } from '@/features/last-seen'
 import { useAuthStore } from '@/features/authentication'
 import { Icon } from '@/shared/ui/icon'
 import { Button } from '@/shared/ui/button'
+import { useSignInDialogStore, loadSignInDialog } from '@/features/sign-in'
 import ArrowLeftSvg from '@/shared/assets/icons/left-arrow.svg?react'
-import { useSignInDialogState } from '@/features/sign-in'
 import LoginSvg from '@/shared/assets/icons/login.svg?react'
 
 export const ChatHeader = () => {
@@ -15,7 +15,7 @@ export const ChatHeader = () => {
 
   const lastSeenText = useOpponentLastSeen(currentOpponentId)
 
-  const setSignInDialogOpen = useSignInDialogState(s => s.setOpen)
+  const setSignInDialogOpen = useSignInDialogStore(s => s.setOpen)
 
   return (
     <div
@@ -80,6 +80,8 @@ export const ChatHeader = () => {
           variant='transparent'
           className='text-main'
           onClick={() => setSignInDialogOpen(true)}
+          onMouseEnter={loadSignInDialog}
+          onFocus={loadSignInDialog}
           horizontalPadding='lg'
           square
           hasBorders={false}

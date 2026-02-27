@@ -5,6 +5,7 @@ import { subscribeToAuthChange } from '../api/subscribeToAuthChange'
 
 interface AuthState {
   session: Session | null
+  isInitialized: boolean
   isLoading: boolean
   error: string | null
   subscription: Subscription | null
@@ -15,6 +16,7 @@ interface AuthState {
 
 export const useAuthStore = create<AuthState>((set) => ({
   session: null,
+  isInitialized: false,
   isLoading: false,
   error: null,
   subscription: null,
@@ -31,7 +33,10 @@ export const useAuthStore = create<AuthState>((set) => ({
   },
   startAuthListener: () => {
     const subscription = subscribeToAuthChange((_event, session) => {
-      set({ session })
+      set({
+        session,
+        isInitialized: true
+      })
     })
     set({ subscription })
   },

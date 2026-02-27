@@ -1,2 +1,5 @@
-export { SignInDialog } from './ui/SignInDialog'
-export { useSignInDialogState } from './model/signInDialogStore'
+export {
+  SignInDialogAsync as SignInDialog,
+  loadSignInDialog
+} from './ui/SignInDialog.async'
+export { useSignInDialogStore } from './model/signInDialogStore'

@@ -7,6 +7,11 @@ import { DemoProfilesList } from '@/entities/demo-user'
 export const ChatSidebarBody = () => {
   const { listType, isInitialized } = useChatSidebar()
   const session = useAuthStore(s => s.session)
+  const isAuthInitialized = useAuthStore(s => s.isInitialized)
+
+  if (!isAuthInitialized) {
+    return null
+  }
 
   if (session && !isInitialized) {
     return null
@@ -32,7 +37,6 @@ export const ChatSidebarBody = () => {
         before:min-h-[240px]
         before:pl-[2px]
         before:text-[16px]
-        before:font-medium
         before:italic
         before:text-center
         before:uppercase

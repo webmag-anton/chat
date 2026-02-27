@@ -8,12 +8,12 @@ import {
 import { Auth } from '@supabase/auth-ui-react'
 import { ThemeSupa } from '@supabase/auth-ui-shared'
 import { supabase } from '@/shared/api'
-import { useSignInDialogState } from '../model/signInDialogStore'
+import { useSignInDialogStore } from '../model/signInDialogStore'
 import { useMessageStore } from '@/features/send-message'
 
-export function SignInDialog() {
-  const open = useSignInDialogState(s => s.open)
-  const setOpen = useSignInDialogState(s => s.setOpen)
+export default function SignInDialog() {
+  const open = useSignInDialogStore(s => s.open)
+  const setOpen = useSignInDialogStore(s => s.setOpen)
   const resetTextarea = useMessageStore(s => s.resetTextarea)
 
   useEffect(() => {
