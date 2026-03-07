@@ -1,27 +1,26 @@
-import { useEffect, useRef } from 'react'
+import { useEffect } from 'react'
 import { useAuthStore } from '@/features/authentication'
 import { updateLastSeen } from '../api/updateLastSeen'
 
 const MINUTE = 60_000
 
 export const useLastSeenHeartbeat = () => {
-  const interval = useRef<ReturnType<typeof setInterval>>(undefined)
-
   const session = useAuthStore(s => s.session)
+  const userId = session?.user?.id
 
   useEffect(() => {
-    if (!session?.user?.id) return
+    if (!userId) return
 
-    const userId = session.user.id
-
-    updateLastSeen(userId)
-
-    interval.current = setInterval(() => {
-      updateLastSeen(userId)
-    }, MINUTE)
-
-    return () => {
-      if (interval.current) clearInterval(interval.current)
+    const safeUpdate = () => {
+      updateLastSeen(userId).catch((err) => {
+        console.error('last_seen heartbeat failed', err)
+      })
     }
-  }, [session?.user?.id])
+
+    safeUpdate()
+
+    const interval = setInterval(safeUpdate, MINUTE)
+
+    return () => clearInterval(interval)
+  }, [userId])
 }

@@ -2,7 +2,7 @@ import { Hamburger } from '@/shared/ui/hamburger'
 import { useSidebarStore } from '@/widgets/sidebar'
 import { Button } from '@/shared/ui/button'
 import {
-  useChatSidebarStore,
+  useChatSidebar,
   type listType
 } from '@/features/load-chat-sidebar'
 import { useSignInDialogStore, loadSignInDialog } from '@/features/sign-in'
@@ -13,31 +13,28 @@ import LoginSvg from '@/shared/assets/icons/login.svg?react'
 import clsx from 'clsx'
 
 export const ChatSidebarHeader = () => {
-  const openSidebarHandler = useSidebarStore(s => s.openSidebar)
-  const listType = useChatSidebarStore(s => s.listType)
-  const toggleListType = useChatSidebarStore(s => s.toggleListType)
+  const openSidebar = useSidebarStore(s => s.openSidebar)
 
   const session = useAuthStore(s => s.session)
   const isAuthInitialized = useAuthStore(s => s.isInitialized)
   const setSignInDialogOpen = useSignInDialogStore(s => s.setOpen)
 
-  let nextListType: listType
-  if (session) {
-    nextListType = listType === 'users' ? 'chats' : 'users'
-  } else {
-    nextListType = 'chats'
-  }
-  const toggleButtonText = `show ${nextListType}`
+  const { listType, toggleListType } = useChatSidebar()
+
+  if (!isAuthInitialized) return null
+
+  const nextListType: listType = listType === 'users' ? 'chats' : 'users'
+  const toggleButtonText = session ? `show ${nextListType}` : 'show chats'
 
   const handleHamburgerClick = () => {
     if (session) {
-      openSidebarHandler()
+      openSidebar()
     } else {
       setSignInDialogOpen(true)
     }
   }
 
-  const handleListTypeSwitcherClick = () => {
+  const handleListSwitcherClick = () => {
     if (session) {
       toggleListType()
     } else {
@@ -53,21 +50,11 @@ export const ChatSidebarHeader = () => {
     }
   }
 
-  const handleChatsTogglerHover = () => {
-    if (!session) {
-      loadSignInDialog()
-    }
-  }
-
   const mainClasses = clsx(
     'flex justify-between items-center basis-[var(--headers-height)]',
     'shrink-0 py-1',
     session ? 'pr-3' : 'md:pr-3',
   )
-
-  if (!isAuthInitialized) {
-    return null
-  }
 
   return (
     <div className={mainClasses}>
@@ -80,9 +67,9 @@ export const ChatSidebarHeader = () => {
         className='font-semibold uppercase tracking-[2px]'
         variant='secondary'
         horizontalPadding='sm'
-        onMouseEnter={handleChatsTogglerHover}
-        onFocus={handleChatsTogglerHover}
-        onClick={handleListTypeSwitcherClick}
+        onMouseEnter={!session ? loadSignInDialog : undefined}
+        onFocus={!session ? loadSignInDialog : undefined}
+        onClick={handleListSwitcherClick}
       >
         {toggleButtonText}
       </Button>

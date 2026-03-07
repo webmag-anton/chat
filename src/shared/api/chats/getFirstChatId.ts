@@ -7,8 +7,7 @@ export const getFirstChatId = async (): Promise<string | null> => {
     .limit(1)
 
   if (error) {
-    console.error('Error while checking chats existence:', error)
-    return null
+    throw error
   }
 
   return chat?.[0]?.id ?? null

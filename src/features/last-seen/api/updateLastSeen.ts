@@ -7,6 +7,6 @@ export const updateLastSeen = async ( loggedInUserId: string ) => {
     .eq('id', loggedInUserId)
 
   if (error) {
-    console.error('last_seen update failed:', error)
+    throw error
   }
 }

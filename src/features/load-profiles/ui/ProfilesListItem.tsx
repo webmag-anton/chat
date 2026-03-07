@@ -36,18 +36,23 @@ export const ProfilesListItem = ({ userData }: ProfilesListItemProps) => {
 
   const handleSelectUser = async () => {
     if (!loggedInUserId) return
-    // Trigger the query manually — it will also be cached
-    const chatId = await fetchPrivateChatId(loggedInUserId, userID)
 
-    setActivePrivateChat(
-      chatId ?? null, userID, chatName, avatar, avatar_version
-    )
+    try {
+      // Trigger the query manually — it will also be cached
+      const chatId = await fetchPrivateChatId(loggedInUserId, userID)
 
-    if (currentOpponentId !== userID) {
-      resetTextarea()
+      setActivePrivateChat(
+        chatId ?? null, userID, chatName, avatar, avatar_version
+      )
+
+      if (currentOpponentId !== userID) {
+        resetTextarea()
+      }
+
+      requestTextareaFocus()
+    } catch (error) {
+      console.error('Failed to open private chat', error)
     }
-
-    requestTextareaFocus()
   }
 
   const baseClasses = clsx(
