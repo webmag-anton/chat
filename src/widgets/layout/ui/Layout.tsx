@@ -20,8 +20,7 @@ const ScreenCenterSpinner = () => (
       flex
       items-center
       justify-center
-      bg-white/30
-      backdrop-blur-sm
+      bg-black/50
       z-2
     '
   >

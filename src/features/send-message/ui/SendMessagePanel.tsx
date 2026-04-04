@@ -64,6 +64,7 @@ export const SendMessagePanel = () => {
         disabled={!isBtnActive}
         square
         hasBorders={false}
+        aria-label='Send message'
       >
         <Icon
           Svg={SendSvg}

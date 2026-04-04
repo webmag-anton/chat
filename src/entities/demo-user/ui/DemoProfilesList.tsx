@@ -5,7 +5,7 @@ export const DemoProfilesList = () => {
   return (
     <div>
       <ul>
-        {demoUsers?.map((user) => {
+        {demoUsers.map((user) => {
           return <DemoProfilesListItem userData={user} key={user.id} />
         })}
       </ul>

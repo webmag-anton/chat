@@ -53,6 +53,9 @@ export default defineConfig([
   // NON-TYPE-CHECKED CONFIG FILES
   {
     files: ['vite.config.ts', '*.config.ts'],
-    extends: [js.configs.recommended]
+    extends: [js.configs.recommended],
+    languageOptions: {
+      globals: globals.node
+    }
   }
 ])

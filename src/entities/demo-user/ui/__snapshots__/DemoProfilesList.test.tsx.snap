@@ -1,0 +1,495 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`DemoProfilesList > layout does not change unexpectedly 1`] = `
+<div>
+  <ul>
+    <li
+      class="flex pl-8 pr-3 py-2 transition cursor-pointer hover:bg-accent"
+    >
+      <img
+        alt="User's avatar"
+        class="rounded-full object-cover aspect-square mr-3"
+        fetchpriority="high"
+        height="60"
+        src="/src/shared/assets/demo-user-photos/1.webp"
+        width="60"
+      />
+      <span
+        class="text-lg"
+      >
+        <span
+          class="shrink-0 inline-block w-[10px] h-[10px] rounded-full mr-2 bg-green-600"
+        />
+        Olivia
+      </span>
+    </li>
+    <li
+      class="flex pl-8 pr-3 py-2 transition cursor-pointer hover:bg-accent"
+    >
+      <img
+        alt="User's avatar"
+        class="rounded-full object-cover aspect-square mr-3"
+        fetchpriority="high"
+        height="60"
+        src="/src/shared/assets/demo-user-photos/2.webp"
+        width="60"
+      />
+      <span
+        class="text-lg"
+      >
+        <span
+          class="shrink-0 inline-block w-[10px] h-[10px] rounded-full mr-2 bg-[#b5b5b5]"
+        />
+        Ethan
+      </span>
+    </li>
+    <li
+      class="flex pl-8 pr-3 py-2 transition cursor-pointer hover:bg-accent"
+    >
+      <img
+        alt="User's avatar"
+        class="rounded-full object-cover aspect-square mr-3"
+        fetchpriority="high"
+        height="60"
+        src="/src/shared/assets/demo-user-photos/3.webp"
+        width="60"
+      />
+      <span
+        class="text-lg"
+      >
+        <span
+          class="shrink-0 inline-block w-[10px] h-[10px] rounded-full mr-2 bg-[#b5b5b5]"
+        />
+        Sophia
+      </span>
+    </li>
+    <li
+      class="flex pl-8 pr-3 py-2 transition cursor-pointer hover:bg-accent"
+    >
+      <img
+        alt="User's avatar"
+        class="rounded-full object-cover aspect-square mr-3"
+        fetchpriority="high"
+        height="60"
+        src="/src/shared/assets/demo-user-photos/4.webp"
+        width="60"
+      />
+      <span
+        class="text-lg"
+      >
+        <span
+          class="shrink-0 inline-block w-[10px] h-[10px] rounded-full mr-2 bg-green-600"
+        />
+        Isabella
+      </span>
+    </li>
+    <li
+      class="flex pl-8 pr-3 py-2 transition cursor-pointer hover:bg-accent"
+    >
+      <img
+        alt="User's avatar"
+        class="rounded-full object-cover aspect-square mr-3"
+        fetchpriority="high"
+        height="60"
+        src="/src/shared/assets/demo-user-photos/5.webp"
+        width="60"
+      />
+      <span
+        class="text-lg"
+      >
+        <span
+          class="shrink-0 inline-block w-[10px] h-[10px] rounded-full mr-2 bg-green-600"
+        />
+        Liam
+      </span>
+    </li>
+    <li
+      class="flex pl-8 pr-3 py-2 transition cursor-pointer hover:bg-accent"
+    >
+      <img
+        alt="User's avatar"
+        class="rounded-full object-cover aspect-square mr-3"
+        fetchpriority="high"
+        height="60"
+        src="/src/shared/assets/demo-user-photos/6.webp"
+        width="60"
+      />
+      <span
+        class="text-lg"
+      >
+        <span
+          class="shrink-0 inline-block w-[10px] h-[10px] rounded-full mr-2 bg-[#b5b5b5]"
+        />
+        MaxShadow
+      </span>
+    </li>
+    <li
+      class="flex pl-8 pr-3 py-2 transition cursor-pointer hover:bg-accent"
+    >
+      <img
+        alt="User's avatar"
+        class="rounded-full object-cover aspect-square mr-3"
+        fetchpriority="high"
+        height="60"
+        src="/src/shared/assets/demo-user-photos/7.webp"
+        width="60"
+      />
+      <span
+        class="text-lg"
+      >
+        <span
+          class="shrink-0 inline-block w-[10px] h-[10px] rounded-full mr-2 bg-green-600"
+        />
+        Emma
+      </span>
+    </li>
+    <li
+      class="flex pl-8 pr-3 py-2 transition cursor-pointer hover:bg-accent"
+    >
+      <img
+        alt="User's avatar"
+        class="rounded-full object-cover aspect-square mr-3"
+        fetchpriority="high"
+        height="60"
+        src="/src/shared/assets/demo-user-photos/8.webp"
+        width="60"
+      />
+      <span
+        class="text-lg"
+      >
+        <span
+          class="shrink-0 inline-block w-[10px] h-[10px] rounded-full mr-2 bg-[#b5b5b5]"
+        />
+        James
+      </span>
+    </li>
+    <li
+      class="flex pl-8 pr-3 py-2 transition cursor-pointer hover:bg-accent"
+    >
+      <img
+        alt="User's avatar"
+        class="rounded-full object-cover aspect-square mr-3"
+        fetchpriority="high"
+        height="60"
+        src="/src/shared/assets/demo-user-photos/9.webp"
+        width="60"
+      />
+      <span
+        class="text-lg"
+      >
+        <span
+          class="shrink-0 inline-block w-[10px] h-[10px] rounded-full mr-2 bg-[#b5b5b5]"
+        />
+        Chloe
+      </span>
+    </li>
+    <li
+      class="flex pl-8 pr-3 py-2 transition cursor-pointer hover:bg-accent"
+    >
+      <img
+        alt="User's avatar"
+        class="rounded-full object-cover aspect-square mr-3"
+        fetchpriority="high"
+        height="60"
+        src="/src/shared/assets/demo-user-photos/10.webp"
+        width="60"
+      />
+      <span
+        class="text-lg"
+      >
+        <span
+          class="shrink-0 inline-block w-[10px] h-[10px] rounded-full mr-2 bg-green-600"
+        />
+        Harper
+      </span>
+    </li>
+    <li
+      class="flex pl-8 pr-3 py-2 transition cursor-pointer hover:bg-accent"
+    >
+      <img
+        alt="User's avatar"
+        class="rounded-full object-cover aspect-square mr-3"
+        fetchpriority="high"
+        height="60"
+        src="/src/shared/assets/demo-user-photos/11.webp"
+        width="60"
+      />
+      <span
+        class="text-lg"
+      >
+        <span
+          class="shrink-0 inline-block w-[10px] h-[10px] rounded-full mr-2 bg-[#b5b5b5]"
+        />
+        Lily
+      </span>
+    </li>
+    <li
+      class="flex pl-8 pr-3 py-2 transition cursor-pointer hover:bg-accent"
+    >
+      <img
+        alt="User's avatar"
+        class="rounded-full object-cover aspect-square mr-3"
+        fetchpriority="high"
+        height="60"
+        src="/src/shared/assets/demo-user-photos/12.webp"
+        width="60"
+      />
+      <span
+        class="text-lg"
+      >
+        <span
+          class="shrink-0 inline-block w-[10px] h-[10px] rounded-full mr-2 bg-green-600"
+        />
+        Noah
+      </span>
+    </li>
+  </ul>
+</div>
+`;
+
+exports[`DemoProfilesList > matches snapshot 1`] = `
+<div>
+  <ul>
+    <li
+      class="flex pl-8 pr-3 py-2 transition cursor-pointer hover:bg-accent"
+    >
+      <img
+        alt="User's avatar"
+        class="rounded-full object-cover aspect-square mr-3"
+        fetchpriority="high"
+        height="60"
+        src="/src/shared/assets/demo-user-photos/1.webp"
+        width="60"
+      />
+      <span
+        class="text-lg"
+      >
+        <span
+          class="shrink-0 inline-block w-[10px] h-[10px] rounded-full mr-2 bg-green-600"
+        />
+        Olivia
+      </span>
+    </li>
+    <li
+      class="flex pl-8 pr-3 py-2 transition cursor-pointer hover:bg-accent"
+    >
+      <img
+        alt="User's avatar"
+        class="rounded-full object-cover aspect-square mr-3"
+        fetchpriority="high"
+        height="60"
+        src="/src/shared/assets/demo-user-photos/2.webp"
+        width="60"
+      />
+      <span
+        class="text-lg"
+      >
+        <span
+          class="shrink-0 inline-block w-[10px] h-[10px] rounded-full mr-2 bg-[#b5b5b5]"
+        />
+        Ethan
+      </span>
+    </li>
+    <li
+      class="flex pl-8 pr-3 py-2 transition cursor-pointer hover:bg-accent"
+    >
+      <img
+        alt="User's avatar"
+        class="rounded-full object-cover aspect-square mr-3"
+        fetchpriority="high"
+        height="60"
+        src="/src/shared/assets/demo-user-photos/3.webp"
+        width="60"
+      />
+      <span
+        class="text-lg"
+      >
+        <span
+          class="shrink-0 inline-block w-[10px] h-[10px] rounded-full mr-2 bg-[#b5b5b5]"
+        />
+        Sophia
+      </span>
+    </li>
+    <li
+      class="flex pl-8 pr-3 py-2 transition cursor-pointer hover:bg-accent"
+    >
+      <img
+        alt="User's avatar"
+        class="rounded-full object-cover aspect-square mr-3"
+        fetchpriority="high"
+        height="60"
+        src="/src/shared/assets/demo-user-photos/4.webp"
+        width="60"
+      />
+      <span
+        class="text-lg"
+      >
+        <span
+          class="shrink-0 inline-block w-[10px] h-[10px] rounded-full mr-2 bg-green-600"
+        />
+        Isabella
+      </span>
+    </li>
+    <li
+      class="flex pl-8 pr-3 py-2 transition cursor-pointer hover:bg-accent"
+    >
+      <img
+        alt="User's avatar"
+        class="rounded-full object-cover aspect-square mr-3"
+        fetchpriority="high"
+        height="60"
+        src="/src/shared/assets/demo-user-photos/5.webp"
+        width="60"
+      />
+      <span
+        class="text-lg"
+      >
+        <span
+          class="shrink-0 inline-block w-[10px] h-[10px] rounded-full mr-2 bg-green-600"
+        />
+        Liam
+      </span>
+    </li>
+    <li
+      class="flex pl-8 pr-3 py-2 transition cursor-pointer hover:bg-accent"
+    >
+      <img
+        alt="User's avatar"
+        class="rounded-full object-cover aspect-square mr-3"
+        fetchpriority="high"
+        height="60"
+        src="/src/shared/assets/demo-user-photos/6.webp"
+        width="60"
+      />
+      <span
+        class="text-lg"
+      >
+        <span
+          class="shrink-0 inline-block w-[10px] h-[10px] rounded-full mr-2 bg-[#b5b5b5]"
+        />
+        MaxShadow
+      </span>
+    </li>
+    <li
+      class="flex pl-8 pr-3 py-2 transition cursor-pointer hover:bg-accent"
+    >
+      <img
+        alt="User's avatar"
+        class="rounded-full object-cover aspect-square mr-3"
+        fetchpriority="high"
+        height="60"
+        src="/src/shared/assets/demo-user-photos/7.webp"
+        width="60"
+      />
+      <span
+        class="text-lg"
+      >
+        <span
+          class="shrink-0 inline-block w-[10px] h-[10px] rounded-full mr-2 bg-green-600"
+        />
+        Emma
+      </span>
+    </li>
+    <li
+      class="flex pl-8 pr-3 py-2 transition cursor-pointer hover:bg-accent"
+    >
+      <img
+        alt="User's avatar"
+        class="rounded-full object-cover aspect-square mr-3"
+        fetchpriority="high"
+        height="60"
+        src="/src/shared/assets/demo-user-photos/8.webp"
+        width="60"
+      />
+      <span
+        class="text-lg"
+      >
+        <span
+          class="shrink-0 inline-block w-[10px] h-[10px] rounded-full mr-2 bg-[#b5b5b5]"
+        />
+        James
+      </span>
+    </li>
+    <li
+      class="flex pl-8 pr-3 py-2 transition cursor-pointer hover:bg-accent"
+    >
+      <img
+        alt="User's avatar"
+        class="rounded-full object-cover aspect-square mr-3"
+        fetchpriority="high"
+        height="60"
+        src="/src/shared/assets/demo-user-photos/9.webp"
+        width="60"
+      />
+      <span
+        class="text-lg"
+      >
+        <span
+          class="shrink-0 inline-block w-[10px] h-[10px] rounded-full mr-2 bg-[#b5b5b5]"
+        />
+        Chloe
+      </span>
+    </li>
+    <li
+      class="flex pl-8 pr-3 py-2 transition cursor-pointer hover:bg-accent"
+    >
+      <img
+        alt="User's avatar"
+        class="rounded-full object-cover aspect-square mr-3"
+        fetchpriority="high"
+        height="60"
+        src="/src/shared/assets/demo-user-photos/10.webp"
+        width="60"
+      />
+      <span
+        class="text-lg"
+      >
+        <span
+          class="shrink-0 inline-block w-[10px] h-[10px] rounded-full mr-2 bg-green-600"
+        />
+        Harper
+      </span>
+    </li>
+    <li
+      class="flex pl-8 pr-3 py-2 transition cursor-pointer hover:bg-accent"
+    >
+      <img
+        alt="User's avatar"
+        class="rounded-full object-cover aspect-square mr-3"
+        fetchpriority="high"
+        height="60"
+        src="/src/shared/assets/demo-user-photos/11.webp"
+        width="60"
+      />
+      <span
+        class="text-lg"
+      >
+        <span
+          class="shrink-0 inline-block w-[10px] h-[10px] rounded-full mr-2 bg-[#b5b5b5]"
+        />
+        Lily
+      </span>
+    </li>
+    <li
+      class="flex pl-8 pr-3 py-2 transition cursor-pointer hover:bg-accent"
+    >
+      <img
+        alt="User's avatar"
+        class="rounded-full object-cover aspect-square mr-3"
+        fetchpriority="high"
+        height="60"
+        src="/src/shared/assets/demo-user-photos/12.webp"
+        width="60"
+      />
+      <span
+        class="text-lg"
+      >
+        <span
+          class="shrink-0 inline-block w-[10px] h-[10px] rounded-full mr-2 bg-green-600"
+        />
+        Noah
+      </span>
+    </li>
+  </ul>
+</div>
+`;
