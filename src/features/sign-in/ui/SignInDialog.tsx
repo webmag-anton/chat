@@ -43,7 +43,7 @@ export default function SignInDialog() {
 
         <Auth
           supabaseClient={supabase}
-          providers={['github', 'google', 'linkedin']}
+          providers={['google']}
           appearance={{ theme: ThemeSupa }}
         />
       </DialogContent>
