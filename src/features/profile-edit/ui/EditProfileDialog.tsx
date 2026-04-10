@@ -40,6 +40,8 @@ const formSchema = z.object({
     .optional()
 })
 
+const MAX_FILE_SIZE_MB = 2
+
 export default function EditProfileDialog() {
   const session = useAuthStore(s => s.session)
   const {
@@ -104,10 +106,26 @@ export default function EditProfileDialog() {
 
   const handleFormSubmit = async (data: z.infer<typeof formSchema>) => {
     try {
+      const file = data.avatar?.[0]
+
+      if (file) {
+        const sizeMB = file.size / 1024 / 1024
+
+        if (sizeMB > MAX_FILE_SIZE_MB) {
+          toast.error(
+            <div>
+              <div>Image is too large ({sizeMB.toFixed(2)} MB)</div>
+              <div>Max allowed is {MAX_FILE_SIZE_MB} MB</div>
+            </div>
+          )
+          return
+        }
+      }
+
       await updateProfile.mutateAsync({
         username: data.username,
         bio: data.bio,
-        avatarFile: data.avatar?.[0]
+        avatarFile: file
       })
 
       handleFormReset()
