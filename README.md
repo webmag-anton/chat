@@ -3,12 +3,26 @@
 Real-time chat application (MVP-version) built with React, TypeScript and Supabase, 
 structured using Feature-Sliced Design (FSD).
 
+## Live Demo
+
+https://b-chat-anton.netlify.app
+
+## Screenshots
+
+### Chat List & Messaging
+
+![Chat List](./docs/chat-list.png)
+
+### Profile Editing
+
+![Profile Editing](./docs/profile-edit.png)
+
 ## Tech Stack
 
 - **React + TypeScript**
 - **Vite**
 - **Zustand** (client/realtime state)
-- **React Query** (server state & caching)
+- **TanStack Query** (server state & caching)
 - **Supabase** (auth, database, realtime, storage)
 - **Tailwind CSS**
 - **Vitest + RTL**
@@ -45,14 +59,14 @@ src/
 ### State separation
 
 - **Zustand** → UI + realtime state (typing indicator, online/offline presence)
-- **React Query** → server state
+- **TanStack Query** → server state
 
 ### Realtime flow
 
 1. User action → mutation
 2. Supabase updates data
 3. Realtime event received
-4. React Query cache updates
+4. TanStack Query cache updates
 5. UI re-renders
 
 ---
@@ -120,7 +134,7 @@ npm run lint
 
 ---
 
-## Notes
+## Design Principles
 
 - Realtime-first architecture (no polling)
 - Clear separation between client and server state
