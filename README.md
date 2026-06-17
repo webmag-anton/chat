@@ -9,6 +9,10 @@ https://b-chat-anton.netlify.app
 
 ## Screenshots
 
+### Sign in
+
+![Sign in](./docs/sign-in.png)
+
 ### Chat List & Messaging
 
 ![Chat List](./docs/chat-list.png)
